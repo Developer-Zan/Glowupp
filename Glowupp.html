@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GlowUpp - Looksmaxing & Productivity App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      overscroll-behavior: none;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #2d3748;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 28px;
+    }
+    
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    
+    .nav-button {
+      transition: all 0.3s ease;
+      border-radius: 12px;
+      padding: 10px 0;
+      flex: 1;
+      text-align: center;
+    }
+    
+    .nav-button.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .screenshot-container {
+      perspective: 1000px;
+    }
+    
+    .screenshot {
+      transition: transform 0.5s ease;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      transform: rotateY(5deg) rotateX(5deg);
+    }
+    
+    .screenshot:hover {
+      transform: rotateY(0) rotateX(0);
+    }
+    
+    .download-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="min-h-screen pb-20">
+    <!-- Desktop Navbar -->
+    <header class="hidden md:block sticky top-0 z-50 glass-card">
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold gradient-text">GlowUpp</h1>
+        <ul class="flex space-x-8">
+          <li><button onclick="setActiveTab('home')" class="font-medium hover:text-purple-600 transition-colors">Home</button></li>
+          <li><button onclick="setActiveTab('features')" class="font-medium hover:text-purple-600 transition-colors">Features</button></li>
+          <li><button onclick="setActiveTab('screenshots')" class="font-medium hover:text-purple-600 transition-colors">Screenshots</button></li>
+          <li><button onclick="setActiveTab('download')" class="font-medium hover:text-purple-600 transition-colors">Download</button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4">
+      <!-- Home Tab -->
+      <div id="home" class="tab-content active">
+        <div class="gradient-bg text-white rounded-3xl mt-6 md:mt-12 overflow-hidden">
+          <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+              <h1 class="text-4xl md:text-5xl font-bold mb-4">Elevate Your Potential</h1>
+              <p class="text-xl mb-8 opacity-90">The all-in-one looksmaxing and productivity app designed to help you become your best self.</p>
+              <button onclick="setActiveTab('download')" class="download-btn">
+                <i class="fas fa-download mr-2"></i> Download Now
+              </button>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+              <img src="https://via.placeholder.com/400x600?text=App+Preview" alt="GlowUpp App" class="rounded-2xl shadow-2xl w-64 md:w-80">
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto my-16">
+          <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Why Choose GlowUpp?</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-6 rounded-2xl text-center hover-lift">
+              <div class="feature-icon">
+                <i class="fas fa-user-check"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Self-Improvement</h3>
+              <p class="text-gray-600">Track your looksmaxing journey with personalized routines and progress monitoring.</p>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl text-center hover-lift">
+              <div class="feature-icon">
+                <i class="fas fa-tasks"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Productivity</h3>
+              <p class="text-gray-600">Organize your tasks, set goals, and maximize your daily productivity.</p>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl text-center hover-lift">
+              <div class="feature-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <h3 class="text-xl font-semibold mb-3">Privacy Focused</h3>
+              <p class="text-gray-600">Your data stays on your device. No tracking, no ads, no compromises.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tasks Tab -->
+      <div id="tasks" class="tab-content">
+        <div class="max-w-4xl mx-auto my-12">
+          <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Your Daily Tasks</h2>
+          <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Organize your looksmaxing and productivity routines with our intuitive task system.</p>
+          
+          <div class="glass-card p-6 rounded-2xl mb-8">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-sun text-yellow-500 mr-2"></i> Morning Routine
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                <span>Skincare routine (15 min)</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                <span>Workout session (30 min)</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                <span>Meditation (10 min)</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-circle text-gray-300 mr-3"></i>
+                <span>Healthy breakfast</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="glass-card p-6 rounded-2xl">
+            <h3 class="text-xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-moon text-purple-500 mr-2"></i> Evening Goals
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <i class="fas fa-circle text-gray-300 mr-3"></i>
+                <span>Review daily progress</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-circle text-gray-300 mr-3"></i>
+                <span>Plan tomorrow's tasks</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-circle text-gray-300 mr-3"></i>
+                <span>Evening skincare routine</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-circle text-gray-300 mr-3"></i>
+                <span>Reading (30 min)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Tab -->
+      <div id="features" class="tab-content">
+        <div class="max-w-6xl mx-auto my-12">
+          <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Powerful Features</h2>
+          <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">GlowUpp combines simplicity with powerful tools to help you maximize your potential.</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-6 rounded-2xl hover-lift">
+              <div class="flex items-start">
+                <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-bolt text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Fast Performance</h3>
+                  <p class="text-gray-600">Optimized to run smoothly even on older devices with minimal resource usage.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl hover-lift">
+              <div class="flex items-start">
+                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-shield-alt text-green-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Privacy First</h3>
+                  <p class="text-gray-600">All your data stays on your device. No tracking, no ads, no cloud storage.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl hover-lift">
+              <div class="flex items-start">
+                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-paint-brush text-purple-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Beautiful Interface</h3>
+                  <p class="text-gray-600">Enjoy a clean, intuitive design that makes self-improvement enjoyable.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl hover-lift">
+              <div class="flex items-start">
+                <div class="bg-yellow-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-chart-line text-yellow-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Progress Tracking</h3>
+                  <p class="text-gray-600">Monitor your improvement over time with detailed analytics and insights.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl hover-lift">
+              <div class="flex items-start">
+                <div class="bg-red-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-bell text-red-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Smart Reminders</h3>
+                  <p class="text-gray-600">Get personalized notifications to keep your routines on track.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 rounded-2xl hover-lift">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-sync-alt text-indigo-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold mb-2">Routine Templates</h3>
+                  <p class="text-gray-600">Choose from pre-made routines or create your own custom plans.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screenshots Tab -->
+      <div id="screenshots" class="tab-content">
+        <div class="max-w-6xl mx-auto my-12">
+          <h2 class="text-3xl font-bold text-center mb-4 gradient-text">App Screenshots</h2>
+          <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Get a glimpse of GlowUpp's sleek and intuitive interface.</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="screenshot-container">
+              <img src="assets/Screen1.jpg" alt="Dashboard" class="screenshot w-full">
+            </div>
+            <div class="screenshot-container">
+              <img src="assets/Screen2.jpg" alt="Tasks" class="screenshot w-full">
+            </div>
+            <div class="screenshot-container">
+              <img src="assets/Screen4.jpg" alt="Progress" class="screenshot w-full">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Download Tab -->
+      <div id="download" class="tab-content">
+        <div class="max-w-4xl mx-auto my-12">
+          <div class="glass-card p-8 md:p-12 rounded-2xl text-center">
+            <h2 class="text-3xl font-bold mb-4 gradient-text">Ready to Transform Your Life?</h2>
+            <p class="text-gray-600 mb-8">Download GlowUpp now and start your journey to becoming your best self.</p>
+            
+            <button onclick="handleDownload()" class="download-btn mx-auto mb-8">
+              <i class="fas fa-download mr-2"></i> Download GlowUpp APK
+            </button>
+            
+            <div class="bg-gray-100 p-6 rounded-xl max-w-md mx-auto">
+              <h3 class="font-semibold mb-3">App Details</h3>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Size:</span>
+                <span class="font-medium">~30 MB</span>
+              </div>
+              <div class="flex justify-between mb-2">
+                <span class="text-gray-600">Version:</span>
+                <span class="font-medium">1.0.0</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Requires:</span>
+                <span class="font-medium">Android 12.0+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Mobile Bottom Navbar -->
+    <nav class="md:hidden bottom-nav flex justify-around items-center">
+      <button onclick="setActiveTab('home')" class="nav-button flex flex-col items-center">
+        <i class="fas fa-home mb-1"></i>
+        <span class="text-xs">Home</span>
+      </button>
+      </button>
+      <button onclick="setActiveTab('features')" class="nav-button flex flex-col items-center">
+        <i class="fas fa-star mb-1"></i>
+        <span class="text-xs">Features</span>
+      </button>
+      <button onclick="setActiveTab('screenshots')" class="nav-button flex flex-col items-center">
+        <i class="fas fa-image mb-1"></i>
+        <span class="text-xs">Screens</span>
+      </button>
+      <button onclick="setActiveTab('download')" class="nav-button flex flex-col items-center">
+        <i class="fas fa-download mb-1"></i>
+        <span class="text-xs">Download</span>
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    // Set active tab function
+    function setActiveTab(tabName) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show the selected tab content
+      document.getElementById(tabName).classList.add('active');
+      
+      // Update tab buttons
+      document.querySelectorAll('.nav-button').forEach(button => {
+        button.classList.remove('active');
+        button.classList.remove('text-white');
+        button.classList.add('text-gray-600');
+      });
+      
+      // Highlight the active tab button
+      const buttons = document.querySelectorAll('.nav-button');
+      buttons.forEach(button => {
+        if (button.querySelector('span').textContent.toLowerCase() === tabName.toLowerCase() || 
+            (tabName === 'screenshots' && button.querySelector('span').textContent.toLowerCase() === 'screens')) {
+          button.classList.add('active');
+          button.classList.add('text-white');
+          button.classList.remove('text-gray-600');
+        }
+      });
+    }
+    
+    // Handle download function
+    function handleDownload() {
+      alert('Downloading GlowUpp APK (15 MB) for Android 8.0+');
+    }
+    
+    // Initialize the page with home tab active
+    document.addEventListener('DOMContentLoaded', function() {
+      setActiveTab('home');
+    });
+  </script>
+</body>
+</html>
