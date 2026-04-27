@@ -3,90 +3,114 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Glowupp — Get Muscles. Look Better.</title>
-<meta name="description" content="The most efficient way to get muscles and look better. Advanced AI plans, accurate calorie tracking, personalised to you."/>
+<title>Upp — Get Muscles. Look Better.</title>
+<meta name="description" content="The most efficient way to get muscles, improve your hair and skincare. Smart AI plans that adapt weekly. Free to join."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ══════════════════════════════════════
-   DESIGN TOKENS — exact app palette
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   TOKENS
+═══════════════════════════════════ */
 :root{
-  /* App colours */
-  --blue:   #29B8D4;
-  --blue-dk:#1E9AB3;
-  --blue-lt:#E3F6FA;
-  --blue-xl:#C8EFF6;
-  --orange: #F5A623;
-  --orange-lt:#FFF3DC;
-  --orange-dk:#D98B0F;
-
-  /* Neutrals */
-  --bg:     #FFFFFF;
-  --bg2:    #F5F5F5;
-  --bg3:    #EAF6FA;   /* light teal card bg — matches app module cards */
-  --bg4:    #F0F0F0;
-  --ink:    #1A1A1A;
-  --mid:    #555555;
-  --soft:   #999999;
-  --xsoft:  #CCCCCC;
-
-  --bdr:    rgba(41,184,212,0.2);
-  --bdr2:   rgba(41,184,212,0.4);
-  --sh:     rgba(41,184,212,0.12);
-  --sh2:    rgba(0,0,0,0.06);
-  --r:      20px;
-  --r2:     14px;
-  --r3:     100px;
+  --blue:      #5079D4;
+  --blue-dk:   #6B8FE8;
+  --blue-lt:   rgba(80,121,212,0.15);
+  --orange:    #FF5A0E;
+  --orange-lt: rgba(255,90,14,0.15);
+  --orange-dk: #FF7A35;
+  --bg:        #161513;
+  --bg2:       #1D1B18;
+  --bg3:       #232018;
+  --bg4:       #2A2722;
+  --ink:       #F8F7F5;
+  --mid:       #A8A49E;
+  --soft:      #6B6660;
+  --xsoft:     #3D3A35;
+  --bdr:       rgba(80,121,212,0.22);
+  --bdr2:      rgba(80,121,212,0.5);
+  --sh:        rgba(80,121,212,0.18);
+  --r:20px; --r2:14px; --r3:100px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
-  background:var(--bg);
-  color:var(--ink);
+  background:var(--bg);color:var(--ink);
   font-family:'Inter',sans-serif;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    NAV
-══════════════════════════════════════ */
+═══════════════════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:999;
-  background:rgba(255,255,255,0.92);
+  background:rgba(22,21,19,0.92);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(41,184,212,0.15);
+  border-bottom:1px solid var(--bdr);
   transition:box-shadow .3s;
 }
 .nav-in{
   max-width:1120px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
-  height:62px;padding:0 20px;gap:12px;
+  height:64px;padding:0 20px;gap:16px;
 }
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-/* SVG stick-figure logo inline */
-.logo-icon{width:40px;height:40px;flex-shrink:0;}
-.logo-name{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;color:var(--ink);letter-spacing:-.01em;}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:.85rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--blue);}
+.logo-img{
+  height:64px;width:auto;
+  /* LOGO: replace logo.svg with your actual SVG filename in the same folder */
+}
+.logo-name{
+  font-family:'Nunito',sans-serif;font-size:1.3rem;
+  font-weight:900;color:var(--ink);letter-spacing:-.01em;
+}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{
+  font-size:.85rem;font-weight:500;color:var(--mid);
+  text-decoration:none;transition:color .2s;padding:4px 0;
+}
+.nav-links a:hover{color:var(--ink);}
 .btn-nav{
   background:var(--blue);color:#fff;
   font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
   padding:10px 22px;border-radius:var(--r3);border:none;cursor:pointer;
-  text-decoration:none;transition:all .2s;white-space:nowrap;
-  display:inline-flex;align-items:center;gap:7px;
+  text-decoration:none;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all .22s;
 }
 .btn-nav:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 6px 20px var(--sh);}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:6px;
+}
+.hamburger span{
+  width:22px;height:2px;border-radius:2px;
+  background:var(--ink);transition:all .3s;display:block;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{
+  display:none;position:fixed;top:64px;left:0;right:0;z-index:998;
+  background:rgba(22,21,19,0.98);backdrop-filter:blur(20px);
+  padding:20px;flex-direction:column;gap:4px;
+  border-bottom:1px solid var(--bdr);
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  color:var(--mid);text-decoration:none;font-size:1rem;
+  font-weight:600;padding:14px 16px;border-radius:var(--r2);
+  transition:all .2s;
+}
+.mobile-menu a:hover{background:var(--bg3);color:var(--ink);}
+.mobile-menu .btn-nav{margin-top:8px;justify-content:center;width:100%;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    BUTTONS
-══════════════════════════════════════ */
+═══════════════════════════════════ */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
@@ -96,14 +120,14 @@ nav{
 .btn-blue{background:var(--blue);color:#fff;padding:15px 30px;}
 .btn-blue:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 10px 28px var(--sh);}
 .btn-orange{background:var(--orange);color:#fff;padding:15px 30px;}
-.btn-orange:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,166,35,.3);}
+.btn-orange:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,90,14,.3);}
 .btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue);padding:13px 28px;}
 .btn-outline:hover{background:var(--blue-lt);transform:translateY(-1px);}
 .btn-xl{padding:18px 38px;font-size:1.05rem;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    HERO
-══════════════════════════════════════ */
+═══════════════════════════════════ */
 #hero{
   min-height:100svh;
   display:grid;grid-template-columns:1fr 1fr;
@@ -112,156 +136,113 @@ nav{
   max-width:1120px;margin:0 auto;
   position:relative;
 }
-.hero-left{display:flex;flex-direction:column;gap:0;}
-
-/* Floating orange pill */
+.hero-left{display:flex;flex-direction:column;}
 .hero-pill{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--orange-lt);color:var(--orange-dk);
-  font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
   padding:7px 16px;border-radius:var(--r3);
-  border:1.5px solid rgba(245,166,35,.3);
+  border:1.5px solid rgba(255,90,14,.25);
   margin-bottom:22px;align-self:flex-start;
 }
-.pill-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);}
+.pill-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--orange);
+  animation:pulse-dot 1.8s ease-in-out infinite;
+}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.6;}}
 
 h1{
   font-family:'Nunito',sans-serif;
-  font-size:clamp(2.4rem,5vw,4rem);
-  font-weight:900;line-height:1.08;
-  letter-spacing:-.025em;color:var(--ink);
-  margin-bottom:18px;
+  font-size:clamp(2.4rem,5vw,4.2rem);
+  font-weight:900;line-height:1.06;letter-spacing:-.025em;
+  margin-bottom:20px;
 }
 h1 .blue{color:var(--blue);}
 h1 .orange{color:var(--orange);}
 
 .hero-sub{
   font-size:1.05rem;color:var(--mid);
-  line-height:1.65;max-width:460px;
-  margin-bottom:32px;
+  line-height:1.68;max-width:460px;margin-bottom:32px;
 }
 .hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
 .chip-item{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--blue-lt);color:var(--blue-dk);
   font-size:.8rem;font-weight:600;
-  padding:6px 14px;border-radius:var(--r3);
-  border:1px solid var(--bdr);
+  padding:6px 14px;border-radius:var(--r3);border:1px solid var(--bdr);
+  transition:all .25s;
 }
-.chip-item .ck{font-weight:800;}
+.chip-item:hover{transform:translateY(-2px);background:rgba(80,121,212,.25);}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px;}
 
-/* Social proof */
-.proof{display:flex;align-items:center;gap:14px;}
-.proof-avs{display:flex;}
-.pav{
-  width:32px;height:32px;border-radius:50%;
-  border:2.5px solid var(--bg);margin-right:-9px;
-  background:var(--blue);
-}
-.proof-text{font-size:.83rem;color:var(--mid);line-height:1.4;}
-.proof-text strong{color:var(--ink);font-weight:700;}
-.stars{color:var(--orange);font-size:11px;}
-
-/* ── Hero phone cluster ── */
-.hero-right{
-  display:flex;justify-content:center;align-items:center;
-  position:relative;
-}
+.hero-right{display:flex;justify-content:center;align-items:center;position:relative;}
 .phone-hero{
-  width:240px;height:480px;
-  border-radius:36px;
-  background:#fff;
-  border:2px solid rgba(0,0,0,0.08);
-  box-shadow:0 40px 80px rgba(0,0,0,0.12),0 8px 24px rgba(41,184,212,0.12);
+  width:240px;height:480px;border-radius:36px;
+  background:var(--bg2);border:2px solid var(--bdr);
   position:relative;overflow:hidden;flex-shrink:0;
+  box-shadow:0 40px 80px rgba(0,0,0,.4),0 8px 24px var(--sh);
+  animation:float 3.5s ease-in-out infinite;
 }
-/* Floating decorative circles */
-.hero-blob{
-  position:absolute;border-radius:50%;
-  filter:blur(60px);pointer-events:none;z-index:0;
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.phone-glow{
+  position:absolute;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(80,121,212,.18) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;z-index:-1;
+  animation:glow-pulse 3.5s ease-in-out infinite;
 }
-.hb1{width:350px;height:350px;background:rgba(41,184,212,0.12);top:-80px;right:-80px;}
-.hb2{width:280px;height:280px;background:rgba(245,166,35,0.10);bottom:-60px;right:40px;}
-
-/* ══════════════════════════════════════
-   PHONE MOCKUP INTERNALS — App UI
-══════════════════════════════════════ */
+@keyframes glow-pulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08);}}
 .ph-notch{
   position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:72px;height:22px;background:#f0f0f0;
+  width:72px;height:22px;background:var(--bg);
   border-radius:0 0 12px 12px;z-index:10;
 }
 .ph-body{
-  position:absolute;inset:0;
-  padding:28px 13px 13px;
-  display:flex;flex-direction:column;gap:8px;
-  overflow:hidden;
+  position:absolute;inset:0;padding:28px 13px 13px;
+  display:flex;flex-direction:column;gap:8px;overflow:hidden;
 }
-
-/* App top bar */
-.ph-topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:6px;
-}
-.ph-logo{display:flex;align-items:center;gap:4px;}
-.ph-logo-fig{font-size:14px;}
-.ph-logo-txt{font-size:8px;font-weight:900;font-family:'Nunito',sans-serif;color:var(--ink);}
-.ph-premium{
-  background:var(--blue);color:#fff;
-  font-size:5.5px;font-weight:700;padding:3px 8px;border-radius:100px;
-}
-
-/* Module cards — exact copy of app */
-.ph-module{
-  background:var(--bg3);border-radius:12px;padding:9px 10px;
-  border:none;
-}
-.ph-mod-title{font-size:7px;font-weight:800;color:var(--ink);margin-bottom:3px;font-family:'Nunito',sans-serif;}
-.ph-mod-desc{font-size:5.5px;color:var(--mid);line-height:1.4;margin-bottom:5px;}
-.ph-mod-bar-wrap{margin-bottom:5px;}
-.ph-mod-bar{height:3px;background:#d0d0d0;border-radius:2px;overflow:hidden;}
-.ph-mod-fill{height:100%;border-radius:2px;background:var(--orange);}
-.ph-enter{
-  background:var(--blue);color:#fff;
-  font-size:6px;font-weight:700;font-family:'Nunito',sans-serif;
-  padding:4px 0;border-radius:100px;text-align:center;width:60%;
-}
-
-/* Bottom nav — matches app */
+.ph-toprow{display:flex;justify-content:space-between;align-items:center;padding-top:6px;}
+.ph-appname{font-family:'Nunito',sans-serif;font-weight:900;font-size:10px;color:var(--ink);}
+.ph-badge{background:var(--blue);color:#fff;font-size:5.5px;font-weight:700;padding:3px 8px;border-radius:100px;}
+.ph-module{background:var(--bg3);border-radius:10px;padding:9px 10px;border:1px solid var(--bdr);}
+.ph-mod-name{font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;margin-bottom:3px;}
+.ph-mod-desc{font-size:5.5px;color:var(--mid);margin-bottom:5px;}
+.ph-bar{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-bottom:5px;}
+.ph-fill{height:100%;border-radius:2px;background:var(--orange);}
+.ph-enter{background:var(--blue);color:#fff;font-size:6px;font-weight:700;padding:4px 0;border-radius:100px;text-align:center;width:55%;font-family:'Nunito',sans-serif;}
 .ph-nav{
   position:absolute;bottom:0;left:0;right:0;
-  background:#fff;border-top:1px solid #e8e8e8;
-  display:flex;justify-content:space-around;align-items:center;
-  padding:6px 0 8px;
+  background:var(--bg2);border-top:1px solid var(--bdr);
+  display:flex;justify-content:space-around;padding:6px 0 8px;
 }
-.ph-nav-item{display:flex;flex-direction:column;align-items:center;gap:1px;}
-.ph-nav-icon{font-size:10px;}
-.ph-nav-lbl{font-size:4.5px;color:var(--soft);}
-.ph-nav-item.active .ph-nav-lbl{color:var(--ink);font-weight:700;}
+.ph-ni{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:4.5px;color:var(--soft);}
+.ph-ni.a{color:var(--ink);font-weight:700;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    MARQUEE
-══════════════════════════════════════ */
+═══════════════════════════════════ */
 .mwrap{
-  overflow:hidden;
-  border-top:1px solid rgba(41,184,212,0.15);
-  border-bottom:1px solid rgba(41,184,212,0.15);
-  padding:13px 0;background:var(--bg3);
+  overflow:hidden;padding:14px 0;
+  background:var(--bg3);
+  border-top:1px solid var(--bdr);
+  border-bottom:1px solid var(--bdr);
 }
-.mtrack{display:flex;gap:40px;animation:mq 24s linear infinite;width:max-content;}
+.mtrack{
+  display:flex;gap:40px;width:max-content;
+  animation:mscroll 26s linear infinite;
+}
 .mtrack:hover{animation-play-state:paused;}
-@keyframes mq{to{transform:translateX(-50%);}}
+@keyframes mscroll{to{transform:translateX(-50%);}}
 .mi{
   display:flex;align-items:center;gap:12px;
-  font-size:.78rem;font-weight:700;letter-spacing:.07em;
-  text-transform:uppercase;color:var(--blue-dk);white-space:nowrap;
+  font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
+  color:var(--blue-dk);white-space:nowrap;
 }
 .md{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    SECTIONS
-══════════════════════════════════════ */
+═══════════════════════════════════ */
 section{padding:88px 20px;}
 .wrap{max-width:1120px;margin:0 auto;}
 .sec-center{text-align:center;}
@@ -275,57 +256,48 @@ h2{
   font-family:'Nunito',sans-serif;
   font-size:clamp(1.9rem,4vw,2.9rem);
   font-weight:900;color:var(--ink);
-  line-height:1.1;letter-spacing:-.02em;
-  margin-bottom:14px;
+  line-height:1.1;letter-spacing:-.02em;margin-bottom:14px;
 }
 h2 .bl{color:var(--blue);}
 h2 .or{color:var(--orange);}
 .sec-sub{font-size:.97rem;color:var(--mid);line-height:1.65;max-width:520px;}
 
-/* ══════════════════════════════════════
-   FEATURES — app module card style
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   FEATURES
+═══════════════════════════════════ */
 #features{background:var(--bg2);}
 .feat-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:16px;margin-top:48px;
 }
 .feat-card{
-  background:#fff;border-radius:var(--r);
-  padding:28px;
-  border:1.5px solid rgba(41,184,212,0.12);
-  transition:transform .25s,box-shadow .25s,border-color .25s;
-  position:relative;overflow:hidden;
+  background:var(--bg3);border-radius:var(--r);padding:28px;
+  border:1.5px solid var(--bdr);position:relative;overflow:hidden;
+  transition:all .3s cubic-bezier(.2,.9,.4,1.1);
 }
 .feat-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--blue),var(--blue-lt));
+  background:linear-gradient(90deg,var(--blue),transparent);
   border-radius:3px 3px 0 0;
+  transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
 }
-.feat-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 16px 40px var(--sh);
-  border-color:var(--bdr2);
-}
-.feat-card.orange-top::before{background:linear-gradient(90deg,var(--orange),var(--orange-lt));}
+.feat-card.orange-top::before{background:linear-gradient(90deg,var(--orange),transparent);}
+.feat-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.3);border-color:var(--bdr2);}
+.feat-card:hover::before{transform:scaleX(1);}
 .feat-icon{
   width:50px;height:50px;border-radius:14px;
-  background:var(--bg3);
+  background:var(--bg4);
   display:flex;align-items:center;justify-content:center;
-  font-size:1.5rem;margin-bottom:16px;
-  border:1px solid var(--bdr);
+  font-size:1.4rem;margin-bottom:16px;border:1px solid var(--bdr);
+  transition:transform .3s;
 }
-.feat-card.orange-top .feat-icon{background:var(--orange-lt);border-color:rgba(245,166,35,.2);}
+.feat-card:hover .feat-icon{transform:scale(1.08) rotate(3deg);}
 .feat-h{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:8px;}
 .feat-p{font-size:.88rem;color:var(--mid);line-height:1.6;}
-/* Orange progress bar decorative accent on cards */
-.feat-bar{height:3px;background:#e8e8e8;border-radius:2px;margin-top:16px;overflow:hidden;}
-.feat-bar-fill{height:100%;border-radius:2px;background:var(--orange);}
 
-/* ══════════════════════════════════════
-   MODULES SHOWCASE — matches app home
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   MODULES
+═══════════════════════════════════ */
 #modules{background:var(--bg3);}
 .modules-layout{
   display:grid;grid-template-columns:1fr 1fr;
@@ -333,483 +305,411 @@ h2 .or{color:var(--orange);}
 }
 .mod-list{display:flex;flex-direction:column;gap:14px;}
 .mod-card{
-  background:#fff;border-radius:var(--r);padding:20px 22px;
-  border:1.5px solid rgba(41,184,212,0.15);
-  display:flex;flex-direction:column;gap:8px;
-  transition:all .2s;
+  background:var(--bg2);border-radius:var(--r);padding:22px 24px;
+  border:1.5px solid var(--bdr);transition:all .25s;
 }
-.mod-card:hover{border-color:var(--bdr2);transform:translateX(4px);box-shadow:0 8px 24px var(--sh);}
-.mod-top{display:flex;align-items:center;justify-content:space-between;}
-.mod-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--ink);letter-spacing:.01em;}
+.mod-card:hover{transform:translateX(6px);border-color:var(--bdr2);box-shadow:0 8px 28px rgba(0,0,0,.3);}
+.mod-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.mod-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--ink);}
 .mod-pct{font-size:.78rem;font-weight:700;color:var(--orange);}
-.mod-desc{font-size:.84rem;color:var(--mid);line-height:1.5;}
-.mod-bar{height:4px;background:#e0e0e0;border-radius:2px;overflow:hidden;}
-.mod-fill{height:100%;border-radius:2px;background:var(--orange);}
+.mod-desc{font-size:.84rem;color:var(--mid);line-height:1.5;margin-bottom:10px;}
+.mod-bar{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-bottom:12px;}
+.mod-fill{height:100%;background:var(--orange);border-radius:2px;}
 .mod-enter{
   display:inline-flex;align-items:center;gap:6px;
   background:var(--blue);color:#fff;
   font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;
-  padding:8px 20px;border-radius:var(--r3);align-self:flex-start;
-  border:none;cursor:pointer;text-decoration:none;
-  transition:all .2s;
+  padding:8px 20px;border-radius:var(--r3);
+  border:none;cursor:pointer;text-decoration:none;transition:all .2s;
 }
 .mod-enter:hover{background:var(--blue-dk);transform:translateY(-1px);}
-/* Module phone mockup */
 .mod-phone-wrap{display:flex;justify-content:center;}
 .mod-phone{
-  width:230px;height:450px;
-  border-radius:34px;background:#fff;
-  border:2px solid rgba(0,0,0,0.08);
-  box-shadow:0 32px 64px rgba(0,0,0,0.10),0 4px 16px var(--sh);
-  position:relative;overflow:hidden;flex-shrink:0;
+  width:230px;height:450px;border-radius:34px;background:var(--bg2);
+  border:2px solid var(--bdr);position:relative;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.4),0 4px 16px var(--sh);
 }
 
-/* ══════════════════════════════════════
-   NUTRITION SCREEN SECTION
-══════════════════════════════════════ */
-#nutrition-sec{background:#fff;}
-.nutrition-layout{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:48px;align-items:center;margin-top:56px;
+/* ═══════════════════════════════════
+   SCREEN CAROUSEL
+═══════════════════════════════════ */
+#screens{background:var(--bg);padding:88px 0;}
+.screens-head{padding:0 20px;max-width:1120px;margin:0 auto 40px;text-align:center;}
+.screen-track{
+  display:flex;gap:18px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding:8px 20px 20px;
+  scrollbar-width:thin;scrollbar-color:var(--blue) var(--bg3);
 }
-.nutri-phone{
-  width:230px;height:450px;
-  border-radius:34px;background:#fff;
-  border:2px solid rgba(0,0,0,0.08);
-  box-shadow:0 32px 64px rgba(0,0,0,0.10),0 4px 16px var(--sh);
-  position:relative;overflow:hidden;flex-shrink:0;
-  margin:0 auto;
+.screen-track::-webkit-scrollbar{height:3px;}
+.screen-track::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+.sphone{
+  flex-shrink:0;width:210px;height:420px;
+  border-radius:28px;background:var(--bg2);
+  border:1.5px solid var(--bdr);
+  position:relative;overflow:hidden;scroll-snap-align:start;
+  transition:all .28s;
 }
+.sphone:hover{transform:translateY(-7px) scale(1.02);box-shadow:0 24px 48px rgba(0,0,0,.4);border-color:var(--bdr2);}
+.sp-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:58px;height:17px;background:var(--bg);border-radius:0 0 9px 9px;z-index:2;}
+.screenshot-img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
+.slide-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.7));
+  padding:24px 14px 12px;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:#fff;
+  text-align:center;pointer-events:none;z-index:3;
+}
+.screen-hint{text-align:center;font-size:.78rem;color:var(--soft);margin-top:14px;padding:0 20px;}
 
-/* Donut chart inside mockup */
-.donut-wrap{
-  position:relative;width:80px;height:80px;margin:0 auto;
-}
-.donut-wrap svg{width:100%;height:100%;}
-
-/* ══════════════════════════════════════
-   TESTIMONIALS
-══════════════════════════════════════ */
-#testimonials{background:var(--bg2);}
-.testi-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:16px;margin-top:48px;
-}
-.tcard{
-  background:#fff;border-radius:var(--r);padding:26px;
-  border:1.5px solid rgba(41,184,212,0.12);
-  transition:all .22s;position:relative;overflow:hidden;
-}
-.tcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px var(--sh);border-color:var(--bdr2);}
-.tcard-stars{color:var(--orange);font-size:13px;margin-bottom:12px;}
-.tcard-text{font-size:.9rem;color:var(--mid);line-height:1.65;margin-bottom:18px;}
-.tcard-author{display:flex;align-items:center;gap:10px;}
-.tcard-av{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;}
-.tcard-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--ink);}
-.tcard-role{font-size:.74rem;color:var(--soft);}
-
-/* ══════════════════════════════════════
-   HOW IT WORKS — step pills
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════ */
 #how{background:var(--bg3);}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:48px;}
-.step{
-  background:#fff;border-radius:var(--r);padding:28px;
-  border:1.5px solid rgba(41,184,212,0.12);
-  transition:all .22s;display:flex;flex-direction:column;gap:14px;
+.steps{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;margin-top:48px;position:relative;
 }
-.step:hover{transform:translateY(-4px);box-shadow:0 16px 40px var(--sh);border-color:var(--bdr2);}
+.steps::before{
+  content:'';position:absolute;top:46px;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--bdr),var(--blue),var(--bdr),transparent);
+  z-index:0;
+}
+.step{
+  background:var(--bg2);border-radius:var(--r);padding:28px;
+  border:1.5px solid var(--bdr);transition:all .28s;
+  position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;
+}
+.step:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.3);border-color:var(--bdr2);}
 .step-n{
   width:46px;height:46px;border-radius:14px;
   background:var(--blue);color:#fff;
   font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .28s,box-shadow .28s;
 }
+.step:hover .step-n{transform:scale(1.1);box-shadow:0 8px 20px var(--sh);}
 .step-h{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);}
 .step-p{font-size:.86rem;color:var(--mid);line-height:1.6;}
 
-/* ══════════════════════════════════════
-   SCREEN CAROUSEL
-══════════════════════════════════════ */
-#screens{background:#fff;padding:88px 0;}
-.screens-head{padding:0 20px;max-width:1120px;margin:0 auto 40px;}
-.screen-track{
-  display:flex;gap:16px;
-  overflow-x:auto;scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  padding:8px 20px 24px;
-  scrollbar-width:none;
-}
-.screen-track::-webkit-scrollbar{display:none;}
-.sphone{
-  flex-shrink:0;width:210px;height:400px;
-  border-radius:28px;background:#fff;
-  border:1.5px solid rgba(0,0,0,0.08);
-  position:relative;overflow:hidden;
-  scroll-snap-align:start;
-  box-shadow:0 12px 36px rgba(0,0,0,0.09),0 4px 12px var(--sh);
-  transition:transform .25s;
-}
-.sphone:hover{transform:translateY(-5px);}
-.sp-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:18px;background:#f2f2f2;border-radius:0 0 10px 10px;z-index:2;}
-.sp-body{position:absolute;inset:0;padding:24px 12px 12px;display:flex;flex-direction:column;gap:7px;overflow:hidden;}
-
-/* screen content helpers */
-.sp-label{font-size:7px;font-weight:800;color:var(--ink);text-transform:uppercase;letter-spacing:.05em;padding-top:10px;font-family:'Nunito',sans-serif;}
-.sp-sublabel{font-size:5.5px;color:var(--soft);margin-top:-4px;}
-.sp-card{background:var(--bg3);border-radius:10px;padding:8px;border:1px solid rgba(41,184,212,.15);}
-.sp-val{font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;color:var(--blue);}
-.sp-lbl{font-size:5.5px;color:var(--mid);}
-.sp-bar{height:4px;border-radius:2px;background:#e0e0e0;overflow:hidden;}
-.sp-fill{height:100%;border-radius:2px;}
-.sp-row{display:flex;align-items:center;gap:5px;padding:6px 8px;background:var(--bg3);border-radius:9px;border:1px solid rgba(41,184,212,.12);}
-.sp-ico{width:20px;height:20px;border-radius:6px;background:rgba(41,184,212,.15);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;}
-.sp-rn{font-size:6.5px;font-weight:700;color:var(--ink);font-family:'Nunito',sans-serif;}
-.sp-rs{font-size:5px;color:var(--mid);}
-.sp-btn{margin-top:auto;padding:7px;border-radius:100px;background:var(--blue);text-align:center;font-size:6.5px;font-weight:800;color:#fff;font-family:'Nunito',sans-serif;}
-.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
-.sp-bnav{
-  position:absolute;bottom:0;left:0;right:0;
-  background:#fff;border-top:1px solid #eee;
-  display:flex;justify-content:space-around;padding:4px 0 5px;
-}
-.sp-ni{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:7px;color:var(--soft);}
-.sp-ni.a{color:var(--ink);font-weight:700;}
-
-/* ══════════════════════════════════════
-   PRICING — matches app pricing screen
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   PRICING — free, sign-up gated
+═══════════════════════════════════ */
 #pricing{background:var(--bg2);}
-/* Free vs Free toggle section like app */
-.price-toggle{
-  display:inline-flex;background:#e8e8e8;border-radius:var(--r3);padding:4px;
-  margin:24px auto 0;
+.pricing-card{
+  max-width:560px;margin:48px auto 0;
+  background:var(--bg3);border-radius:24px;
+  border:2px solid var(--blue);padding:40px;
+  text-align:center;position:relative;
+  transition:all .3s;box-shadow:0 0 0 0 var(--sh);
 }
-.price-tab{
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;
-  padding:8px 20px;border-radius:var(--r3);cursor:pointer;
-  border:none;background:transparent;color:var(--mid);transition:all .2s;
-}
-.price-tab.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.08);}
-.price-cards{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:16px;max-width:680px;margin:32px auto 0;
-}
-.pcard{
-  background:#fff;border-radius:var(--r);padding:32px;
-  border:1.5px solid rgba(41,184,212,0.15);
-  transition:all .25s;position:relative;
-}
-.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 48px var(--sh);}
-.pcard.featured{
-  border-color:var(--blue);
-  background:linear-gradient(160deg,var(--blue-lt) 0%,#fff 50%);
-}
-.pcard-badge{
-  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+.pricing-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.35),0 0 40px var(--sh);}
+.pricing-badge{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
   background:var(--orange);color:#fff;
-  font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;
-  padding:4px 18px;border-radius:var(--r3);white-space:nowrap;letter-spacing:.04em;
+  font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;
+  padding:5px 20px;border-radius:var(--r3);white-space:nowrap;letter-spacing:.04em;
 }
-.pcard-tier{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin-bottom:10px;}
-.pcard-price{font-family:'Nunito',sans-serif;font-size:3rem;font-weight:900;color:var(--ink);line-height:1;}
-.pcard-per{font-size:.85rem;color:var(--soft);}
-.pcard-desc{font-size:.82rem;color:var(--mid);margin:6px 0 24px;}
-/* Free/pro comparison pills — like app */
-.compare-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:28px;}
-.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.compare-no{
-  background:#f0f0f0;color:var(--soft);
-  font-size:.75rem;font-weight:600;
-  padding:8px 12px;border-radius:10px;
-  text-align:center;
+.pricing-title{
+  font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:900;
+  color:var(--ink);margin:20px 0 6px;
 }
-.compare-yes{
-  background:var(--blue);color:#fff;
-  font-size:.75rem;font-weight:700;
-  padding:8px 12px;border-radius:10px;
-  text-align:center;
+.pricing-subtitle{font-size:.95rem;color:var(--mid);margin-bottom:28px;line-height:1.5;}
+.price-features{
+  list-style:none;display:flex;flex-direction:column;gap:12px;
+  text-align:left;margin-bottom:32px;
 }
-.price-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
-.price-list li{display:flex;align-items:center;gap:9px;font-size:.88rem;}
-.ck{color:var(--blue);font-weight:800;}
-.no{color:var(--xsoft);}
-.btn-upgrade{
-  width:100%;background:var(--blue);color:#fff;
-  font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;
-  padding:15px;border-radius:var(--r3);border:none;cursor:pointer;
-  text-decoration:none;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
+.price-features li{
+  display:flex;align-items:center;gap:12px;
+  font-size:.9rem;color:var(--ink);
 }
-.btn-upgrade:hover{background:var(--blue-dk);box-shadow:0 8px 24px var(--sh);}
-.btn-trial{
-  width:100%;background:var(--orange);color:#fff;
-  font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:800;
-  padding:13px;border-radius:var(--r3);border:none;cursor:pointer;
-  text-decoration:none;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;margin-top:10px;
+.pf-icon{
+  width:28px;height:28px;border-radius:8px;
+  background:var(--blue-lt);border:1px solid var(--bdr);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;flex-shrink:0;color:var(--blue-dk);
 }
-.btn-trial:hover{background:var(--orange-dk);box-shadow:0 8px 24px rgba(245,166,35,.3);}
+.pricing-actions{display:flex;flex-direction:column;gap:10px;align-items:center;}
+.pricing-note{font-size:.76rem;color:var(--soft);margin-top:10px;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+#contact{background:var(--bg2);}
+.contact-card{
+  max-width:600px;margin:48px auto 0;
+  background:var(--bg3);border-radius:var(--r);padding:32px;
+  border:1.5px solid var(--bdr);
+  transition:all .25s;
+}
+.contact-card:hover{border-color:var(--bdr2);box-shadow:0 16px 40px rgba(0,0,0,.3);}
+.contact-form{display:flex;flex-direction:column;gap:18px;}
+.contact-form input,
+.contact-form textarea{
+  background:var(--bg4);border:1px solid var(--bdr);
+  border-radius:12px;padding:14px 18px;
+  color:var(--ink);font-family:'Inter',sans-serif;font-size:.92rem;
+  outline:none;transition:border-color .2s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{border-color:var(--blue);}
+.contact-form textarea{resize:vertical;min-height:120px;}
+.contact-form button{align-self:flex-start;}
+
+/* ═══════════════════════════════════
    FAQ
-══════════════════════════════════════ */
+═══════════════════════════════════ */
+#faq{background:var(--bg3);}
 .faq-wrap{max-width:640px;margin:48px auto 0;}
 .fq{
-  background:#fff;border-radius:var(--r2);
-  border:1.5px solid rgba(41,184,212,0.12);
-  overflow:hidden;margin-bottom:10px;
+  background:var(--bg2);border-radius:var(--r2);
+  border:1.5px solid var(--bdr);
+  margin-bottom:10px;overflow:hidden;
   transition:border-color .2s;
 }
-.fq.open-item{border-color:var(--bdr2);}
+.fq.fq-open{border-color:var(--bdr2);}
 .fq-q{
   width:100%;background:none;border:none;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;
   padding:18px 22px;
   font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;
   color:var(--ink);text-align:left;gap:12px;
+  transition:background .2s;
 }
-.fq-icon{
-  width:28px;height:28px;border-radius:50%;
+.fq-q:hover{background:rgba(80,121,212,.06);}
+.fq-chevron{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
   background:var(--bg3);border:1.5px solid var(--bdr);
   display:flex;align-items:center;justify-content:center;
   font-size:11px;color:var(--mid);
-  transition:all .3s;flex-shrink:0;
+  transition:all .3s;
 }
-.fq-q[aria-expanded=true] .fq-icon{transform:rotate(180deg);background:var(--blue);color:#fff;border-color:var(--blue);}
-.fq-a{
+.fq-q[aria-expanded="true"] .fq-chevron{
+  transform:rotate(180deg);
+  background:var(--blue);border-color:var(--blue);color:#fff;
+}
+.fq-body{
   max-height:0;overflow:hidden;
-  transition:max-height .35s ease,padding .3s;
+  transition:max-height .38s cubic-bezier(.4,0,.2,1),padding .3s;
   font-size:.9rem;color:var(--mid);line-height:1.7;
 }
-.fq-a.open{max-height:300px;padding:0 22px 18px;}
+.fq-body.open{max-height:400px;padding:0 22px 20px;}
 
-/* ══════════════════════════════════════
-   CTA — styled like app Premium screen
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   CTA
+═══════════════════════════════════ */
 #cta{
-  background:linear-gradient(140deg,var(--blue) 0%,var(--blue-dk) 100%);
-  text-align:center;padding:100px 20px;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,var(--bg2) 0%,var(--bg3) 100%);
+  text-align:center;padding:110px 20px;
+  position:relative;overflow:hidden;
 }
-.cta-deco{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
-.cd1{width:500px;height:500px;background:rgba(255,255,255,0.08);top:-200px;right:-150px;}
-.cd2{width:350px;height:350px;background:rgba(245,166,35,0.15);bottom:-100px;left:-80px;}
-#cta h2{color:#fff;font-family:'Nunito',sans-serif;font-size:clamp(2rem,5vw,3.5rem);position:relative;z-index:1;margin-bottom:14px;}
-#cta h2 .or{color:var(--orange);}
-#cta .sub{color:rgba(255,255,255,.75);font-size:1rem;max-width:420px;margin:0 auto 36px;position:relative;z-index:1;line-height:1.65;}
-.cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;position:relative;z-index:1;}
-.btn-white{background:#fff;color:var(--blue);padding:16px 36px;font-size:1rem;font-weight:800;border-radius:var(--r3);display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:'Nunito',sans-serif;transition:all .2s;}
-.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.2);}
-.btn-white-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);padding:14px 30px;font-size:.9rem;font-weight:800;border-radius:var(--r3);display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:'Nunito',sans-serif;transition:all .2s;}
-.btn-white-outline:hover{background:rgba(255,255,255,.1);border-color:#fff;}
-.cta-note{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:16px;position:relative;z-index:1;}
-/* Social proof row in CTA */
-.cta-proof{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px;position:relative;z-index:1;}
-.cta-proof .stars{color:var(--orange);font-size:14px;}
-.cta-proof p{font-size:.82rem;color:rgba(255,255,255,.7);}
+#cta::before{
+  content:'';position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(80,121,212,.12),transparent 70%);
+  top:-200px;right:-150px;pointer-events:none;
+}
+#cta::after{
+  content:'';position:absolute;
+  width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,90,14,.08),transparent 70%);
+  bottom:-150px;left:-100px;pointer-events:none;
+}
+#cta .cta-inner{position:relative;z-index:1;}
+#cta h2{font-size:clamp(2rem,5vw,3.6rem);}
+#cta .cta-sub{
+  color:var(--mid);font-size:1.05rem;max-width:440px;
+  margin:16px auto 0;line-height:1.65;
+}
+.cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px;}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════
    FOOTER
-══════════════════════════════════════ */
-footer{
-  background:var(--bg2);
-  border-top:1px solid rgba(41,184,212,0.12);
-  padding:48px 20px;
-}
+═══════════════════════════════════ */
+footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:52px 20px 36px;}
 .foot-in{max-width:1120px;margin:0 auto;}
-.foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;margin-bottom:40px;}
-.foot-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:12px;}
-.foot-tagline{font-size:.83rem;color:var(--soft);max-width:200px;line-height:1.5;}
-.foot-col h4{font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--ink);margin-bottom:14px;}
-.foot-links{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.foot-links a{font-size:.83rem;color:var(--mid);text-decoration:none;transition:color .2s;}
+.foot-top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:40px;margin-bottom:48px;
+}
+.foot-brand{display:flex;flex-direction:column;gap:12px;}
+.foot-brand-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.foot-logo-img{height:28px;width:auto;}
+.foot-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--ink);}
+.foot-tagline{font-size:.82rem;color:var(--soft);line-height:1.55;max-width:220px;}
+.foot-col h4{
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
+  color:var(--ink);margin-bottom:14px;letter-spacing:.03em;
+}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.foot-links a{font-size:.82rem;color:var(--mid);text-decoration:none;transition:color .2s;}
 .foot-links a:hover{color:var(--blue);}
-.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid rgba(41,184,212,0.12);padding-top:24px;}
+.foot-bottom{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+  gap:12px;border-top:1px solid var(--bdr);padding-top:24px;
+}
 .foot-copy{font-size:.78rem;color:var(--soft);}
 
-/* ══════════════════════════════════════
-   REVEAL ANIMATIONS
-══════════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+/* ═══════════════════════════════════
+   REVEAL
+═══════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
 
-/* ══════════════════════════════════════
-   RESPONSIVE — MOBILE FIRST
-══════════════════════════════════════ */
+/* ═══════════════════════════════════
+   MOBILE
+═══════════════════════════════════ */
+@media(max-width:900px){
+  .foot-top{grid-template-columns:1fr 1fr;}
+}
 @media(max-width:860px){
-  #hero{grid-template-columns:1fr;text-align:center;min-height:auto;padding:100px 20px 60px;}
+  #hero{grid-template-columns:1fr;text-align:center;min-height:auto;padding:96px 20px 56px;}
   .hero-left{align-items:center;}
   .hero-pill{align-self:center;}
   .hero-sub{text-align:center;margin-left:auto;margin-right:auto;}
   .hero-chips{justify-content:center;}
   .hero-btns{justify-content:center;}
-  .proof{justify-content:center;}
-  .hero-right{display:none;}/* hide phone on small screens since hero has enough */
+  .hero-right{display:none;}
   .modules-layout{grid-template-columns:1fr;}
   .mod-phone-wrap{display:none;}
-  .nutrition-layout{grid-template-columns:1fr;}
-  .nutri-phone{display:none;}
-  .foot-top{flex-direction:column;gap:28px;}
+  .steps::before{display:none;}
 }
 @media(max-width:640px){
   section{padding:64px 16px;}
   #screens{padding:64px 0;}
   h2{font-size:1.9rem;}
-  h1{font-size:2.4rem;}
-  .nav-links{display:none;}
+  h1{font-size:2.3rem;}
+  nav .nav-links{display:none;}
+  .hamburger{display:flex;}
   .hero-btns{flex-direction:column;align-items:center;}
   .hero-btns .btn{width:100%;max-width:320px;}
   .feat-grid{grid-template-columns:1fr;}
-  .testi-grid{grid-template-columns:1fr;}
   .steps{grid-template-columns:1fr;}
-  .price-cards{grid-template-columns:1fr;}
-  #cta{padding:72px 16px;}
   .cta-btns{flex-direction:column;align-items:center;}
   .cta-btns a{width:100%;max-width:320px;justify-content:center;}
+  .foot-top{grid-template-columns:1fr;gap:28px;}
   .foot-bottom{flex-direction:column;align-items:flex-start;}
-  .compare-row{grid-template-columns:1fr;}
+  .pricing-card{padding:32px 20px;}
 }
 @media(max-width:400px){
-  h1{font-size:2.1rem;}
-  .hero-pill{font-size:.65rem;}
+  h1{font-size:2rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════
      NAV
-══════════════════════════════════════ -->
+═══════════════ -->
 <nav id="navbar">
   <div class="nav-in">
-    <a class="logo" href="#" aria-label="Glowupp home">
-      <!-- Stick figure logo matching app -->
-      <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="7" r="5" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-        <!-- halo -->
-        <ellipse cx="20" cy="4" rx="7" ry="2.5" fill="none" stroke="#F5A623" stroke-width="1.5" opacity=".8"/>
-        <!-- body -->
-        <line x1="20" y1="12" x2="20" y2="26" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round"/>
-        <!-- arms — flexing left -->
-        <path d="M20 16 L11 20 L8 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M20 16 L29 14" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-        <!-- legs -->
-        <line x1="20" y1="26" x2="14" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-        <line x1="20" y1="26" x2="26" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-        <!-- G on body -->
-        <text x="18" y="23" font-size="5" font-weight="700" fill="#1A1A1A" font-family="Arial">G</text>
-      </svg>
-      <span class="logo-name">Glowupp</span>
+    <a class="logo" href="#" aria-label="Upp home">
+      <!--
+        LOGO: Replace "logo.svg" below with your SVG filename.
+        Place your logo file in the same folder as this HTML file.
+      -->
+      <img src="Upp.svg" alt="Upp" class="logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
     </a>
-    <ul class="nav-links">
+
+    <ul class="nav-links" id="nav-links-desktop">
       <li><a href="#features">Features</a></li>
       <li><a href="#modules">Modules</a></li>
-      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#screens">Screenshots</a></li>
+      <li><a href="#how">How it works</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#download" class="btn-nav">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
-      Download Free
-    </a>
+
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="#" class="btn-nav" id="signupBtn">Sign Up Free</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="#features" class="mobile-link">Features</a>
+  <a href="#modules" class="mobile-link">Modules</a>
+  <a href="#screens" class="mobile-link">Screenshots</a>
+  <a href="#how" class="mobile-link">How it works</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#" class="btn-nav" id="mobileSignupBtn">Sign Up Free →</a>
+</div>
 
-<!-- ══════════════════════════════════════
+
+<!-- ═══════════════
      HERO
-══════════════════════════════════════ -->
-<section id="hero">
-  <!-- BG blobs -->
-  <div class="hero-blob hb1"></div>
-  <div class="hero-blob hb2"></div>
-
+═══════════════ -->
+<section id="hero" aria-labelledby="hero-heading">
   <div class="hero-left">
-    <div class="hero-pill reveal"><span class="pill-dot"></span>Free on Android · No sign-up needed</div>
+    <div class="hero-pill reveal"><span class="pill-dot"></span>Sign up free · Start today</div>
 
-    <h1 class="reveal d1">
+    <h1 id="hero-heading" class="reveal d1">
       Get <span class="blue">muscles.</span><br/>
       Look <span class="orange">better.</span><br/>
       Feel confident.
     </h1>
 
     <p class="hero-sub reveal d2">
-      Glowupp is your all-in-one body improvement app. Smart workout plans, accurate calorie tracking, and a programme that adapts every week as you improve.
+      Upp is your all-in-one self-improvement app. Smart AI workout plans, accurate calorie tracking, hair and skincare routines — all adapting to you every week.
     </p>
 
     <div class="hero-chips reveal d2">
-      <span class="chip-item"><span class="ck">✓</span> Body Module</span>
-      <span class="chip-item"><span class="ck">✓</span> Hair Module</span>
-      <span class="chip-item"><span class="ck">✓</span> Face Module</span>
-      <span class="chip-item"><span class="ck">✓</span> Nutrition Tracking</span>
+      <span class="chip-item">💪 Body Module</span>
+      <span class="chip-item">💇 Hair Module</span>
+      <span class="chip-item">✨ Face Module</span>
+      <span class="chip-item">🥗 Nutrition</span>
     </div>
 
-    <div class="hero-btns reveal d3" id="download">
-      <a class="btn btn-blue btn-xl" href="#">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
-        Get it on Google Play
+    <div class="hero-btns reveal d3">
+      <a class="btn btn-blue btn-xl" href="#" id="getStartedBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Sign Up Free
       </a>
       <a class="btn btn-outline btn-xl" href="#features">See how it works</a>
     </div>
-
-    <div class="proof reveal d4">
-      <div class="proof-avs">
-        <div class="pav" style="background:linear-gradient(135deg,#29B8D4,#1E9AB3);"></div>
-        <div class="pav" style="background:linear-gradient(135deg,#F5A623,#D98B0F);"></div>
-        <div class="pav" style="background:linear-gradient(135deg,#3C315B,#6B5FA0);"></div>
-        <div class="pav" style="background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;">+</div>
-      </div>
-      <div class="proof-text">
-        <div><strong>24,000+ people</strong> already glowing up</div>
-        <div class="stars">★★★★★ <span style="color:var(--mid);font-size:.75rem;">4.9 / 5</span></div>
-      </div>
-    </div>
   </div>
 
-  <!-- Phone mockup — Home screen -->
+  <!-- Hero phone -->
   <div class="hero-right">
+    <div class="phone-glow"></div>
     <div class="phone-hero">
       <div class="ph-notch"></div>
       <div class="ph-body">
-        <!-- Top bar -->
-        <div class="ph-topbar">
-          <div class="ph-logo">
-            <svg width="20" height="24" viewBox="0 0 40 40" fill="none">
-              <circle cx="20" cy="7" r="5" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>
-              <ellipse cx="20" cy="4" rx="7" ry="2.5" fill="none" stroke="#F5A623" stroke-width="1.5"/>
-              <line x1="20" y1="12" x2="20" y2="26" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M20 16 L11 20 L8 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="20" y1="26" x2="14" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-              <line x1="20" y1="26" x2="26" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="ph-premium">Upgrade to Premium</div>
-        </div>
-        <!-- Modules -->
-        <div class="ph-module">
-          <div class="ph-mod-title">BODY MODULE</div>
-          <div class="ph-mod-desc">Track workouts, build muscle, improve your physique with a daily personalised plan.</div>
-          <div class="ph-mod-bar-wrap"><div class="ph-mod-bar"><div class="ph-mod-fill" style="width:22%"></div></div></div>
-          <div class="ph-enter">Enter</div>
+        <div class="ph-toprow">
+          <div class="ph-appname">Upp</div>
+          <div class="ph-badge">Sign up free</div>
         </div>
         <div class="ph-module">
-          <div class="ph-mod-title">HAIR MODULE</div>
-          <div class="ph-mod-desc">Build healthy hair habits and track your daily care routine.</div>
-          <div class="ph-mod-bar-wrap"><div class="ph-mod-bar"><div class="ph-mod-fill" style="width:68%"></div></div></div>
-          <div class="ph-enter">Enter</div>
+          <div class="ph-mod-name">BODY MODULE</div>
+          <div class="ph-mod-desc">Build muscle with your daily plan.</div>
+          <div class="ph-bar"><div class="ph-fill" style="width:22%"></div></div>
+          <div class="ph-enter">Enter →</div>
         </div>
         <div class="ph-module">
-          <div class="ph-mod-title">FACE MODULE</div>
-          <div class="ph-mod-desc">Skincare routines, tracking and tips for a clear glowing face.</div>
-          <div class="ph-mod-bar-wrap"><div class="ph-mod-bar"><div class="ph-mod-fill" style="width:35%"></div></div></div>
-          <div class="ph-enter">Enter</div>
+          <div class="ph-mod-name">HAIR MODULE</div>
+          <div class="ph-mod-desc">Daily care habits, tracked.</div>
+          <div class="ph-bar"><div class="ph-fill" style="width:68%"></div></div>
+          <div class="ph-enter">Enter →</div>
         </div>
-        <!-- Bottom nav -->
+        <div class="ph-module">
+          <div class="ph-mod-name">FACE MODULE</div>
+          <div class="ph-mod-desc">Skincare routines & logging.</div>
+          <div class="ph-bar"><div class="ph-fill" style="width:35%"></div></div>
+          <div class="ph-enter">Enter →</div>
+        </div>
         <div class="ph-nav">
-          <div class="ph-nav-item active"><div class="ph-nav-icon">🏠</div><div class="ph-nav-lbl">Home</div></div>
-          <div class="ph-nav-item"><div class="ph-nav-icon">📈</div><div class="ph-nav-lbl">Progress</div></div>
-          <div class="ph-nav-item"><div class="ph-nav-icon">🥗</div><div class="ph-nav-lbl">Nutrition</div></div>
-          <div class="ph-nav-item"><div class="ph-nav-icon">👥</div><div class="ph-nav-lbl">Community</div></div>
+          <div class="ph-ni a"><span>🏠</span>Home</div>
+          <div class="ph-ni"><span>📈</span>Progress</div>
+          <div class="ph-ni"><span>🥗</span>Nutrition</div>
+          <div class="ph-ni"><span>👥</span>Community</div>
         </div>
       </div>
     </div>
@@ -817,9 +717,11 @@ footer{
 </section>
 
 
-<!-- MARQUEE -->
-<div class="mwrap">
-  <div class="mtrack" aria-hidden="true">
+<!-- ═══════════════
+     MARQUEE
+═══════════════ -->
+<div class="mwrap" aria-hidden="true">
+  <div class="mtrack">
     <span class="mi">Body Module<span class="md"></span></span>
     <span class="mi">Hair Module<span class="md"></span></span>
     <span class="mi">Face Module<span class="md"></span></span>
@@ -827,7 +729,7 @@ footer{
     <span class="mi">Daily Challenges<span class="md"></span></span>
     <span class="mi">XP &amp; Badges<span class="md"></span></span>
     <span class="mi">Community<span class="md"></span></span>
-    <span class="mi">Free Forever<span class="md"></span></span>
+    <span class="mi">Free to Join<span class="md"></span></span>
     <span class="mi">Body Module<span class="md"></span></span>
     <span class="mi">Hair Module<span class="md"></span></span>
     <span class="mi">Face Module<span class="md"></span></span>
@@ -835,131 +737,123 @@ footer{
     <span class="mi">Daily Challenges<span class="md"></span></span>
     <span class="mi">XP &amp; Badges<span class="md"></span></span>
     <span class="mi">Community<span class="md"></span></span>
-    <span class="mi">Free Forever<span class="md"></span></span>
+    <span class="mi">Free to Join<span class="md"></span></span>
   </div>
 </div>
 
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════
      FEATURES
-══════════════════════════════════════ -->
+═══════════════ -->
 <section id="features">
   <div class="wrap">
     <div class="sec-center reveal">
-      <div class="sec-tag">Why Glowupp works</div>
+      <div class="sec-tag">Why Upp works</div>
       <h2>Built different.<br/><span class="bl">Works different.</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Four things that make Glowupp the only app you'll need for your glow-up journey.</p>
+      <p class="sec-sub" style="margin:0 auto;">Everything you need to improve your body, hair and face — in one smart app that learns from you.</p>
     </div>
     <div class="feat-grid">
       <div class="feat-card reveal">
         <div class="feat-icon">🧠</div>
-        <div class="feat-h">Adaptive Algorithm</div>
-        <p class="feat-p">Your plan updates every single week based on your actual performance. Gaining strength? It adds load. Missing sessions? It adjusts. You never plateau.</p>
-        <div class="feat-bar"><div class="feat-bar-fill" style="width:85%"></div></div>
+        <div class="feat-h">Adaptive AI Algorithm</div>
+        <p class="feat-p">Your plan updates every week based on what you actually did. Gaining strength? It adds load. Missing workouts? It adjusts. You never plateau.</p>
       </div>
       <div class="feat-card orange-top reveal d1">
         <div class="feat-icon">🍎</div>
         <div class="feat-h">Accurate Calorie Tracking</div>
-        <p class="feat-p">5M+ food database, barcode scanning, macro breakdown. Logging your full day takes 2 minutes. Your targets adjust automatically as you change.</p>
-        <div class="feat-bar"><div class="feat-bar-fill" style="width:72%"></div></div>
+        <p class="feat-p">5M+ food database and barcode scanning. Logging your full day takes under 2 minutes. Targets adjust automatically as you change.</p>
       </div>
       <div class="feat-card reveal d2">
         <div class="feat-icon">⚡</div>
         <div class="feat-h">Built Around Your Life</div>
-        <p class="feat-p">Home gym, commercial, or no equipment? 2 days or 6? Student budget? Tell us your constraints and get a plan that fits your actual life.</p>
-        <div class="feat-bar"><div class="feat-bar-fill" style="width:60%"></div></div>
+        <p class="feat-p">Home gym or commercial? 2 days or 6? Student schedule? Tell us your constraints and get a plan that actually fits your real life.</p>
       </div>
       <div class="feat-card orange-top reveal d3">
         <div class="feat-icon">🏆</div>
         <div class="feat-h">XP, Badges &amp; Challenges</div>
-        <p class="feat-p">Earn XP, level up your profile, unlock badges and complete 30-day challenges. Glowupp makes self-improvement addictive.</p>
-        <div class="feat-bar"><div class="feat-bar-fill" style="width:45%"></div></div>
+        <p class="feat-p">Earn XP, level up your profile, complete 30-day challenges and unlock badges. Self-improvement made genuinely addictive.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════
-     MODULES — matches app home screen
-══════════════════════════════════════ -->
+<!-- ═══════════════
+     MODULES
+═══════════════ -->
 <section id="modules">
   <div class="wrap">
     <div class="sec-center reveal">
       <div class="sec-tag">The Modules</div>
       <h2>Every part of you.<br/><span class="or">Covered.</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Glowupp isn't just a workout app. It's a complete self-improvement system with separate modules for your body, hair, and face.</p>
+      <p class="sec-sub" style="margin:0 auto;">Upp isn't just a workout app. Three separate modules, one account, all adapting to your progress.</p>
     </div>
     <div class="modules-layout">
       <div class="mod-list">
         <div class="mod-card reveal">
           <div class="mod-top">
             <div class="mod-name">💪 BODY MODULE</div>
-            <div class="mod-pct">22% complete</div>
+            <div class="mod-pct">22%</div>
           </div>
-          <p class="mod-desc">Daily workout plans, strength tracking, challenges like "30 Days Sixpack". Your body transformation starts here.</p>
+          <p class="mod-desc">Daily workout plans, strength tracking, challenges like "30 Days Sixpack". Your physique transformation starts here.</p>
           <div class="mod-bar"><div class="mod-fill" style="width:22%"></div></div>
-          <a class="mod-enter" href="#">Enter Module →</a>
+          <a class="mod-enter" href="#" id="bodyEnterBtn">Enter Module →</a>
         </div>
         <div class="mod-card reveal d1">
           <div class="mod-top">
             <div class="mod-name">💇 HAIR MODULE</div>
-            <div class="mod-pct">68% complete</div>
+            <div class="mod-pct">68%</div>
           </div>
           <p class="mod-desc">Build daily hair care habits, track routines, get tips personalised to your hair type and goals.</p>
           <div class="mod-bar"><div class="mod-fill" style="width:68%"></div></div>
-          <a class="mod-enter" href="#">Enter Module →</a>
+          <a class="mod-enter" href="#" id="hairEnterBtn">Enter Module →</a>
         </div>
         <div class="mod-card reveal d2">
           <div class="mod-top">
             <div class="mod-name">✨ FACE MODULE</div>
-            <div class="mod-pct">35% complete</div>
+            <div class="mod-pct">35%</div>
           </div>
-          <p class="mod-desc">Skincare routines, daily logging, and face-specific advice to get that clear, confident look.</p>
+          <p class="mod-desc">Skincare routines, daily logging and face-specific advice. Build habits for clear, confident skin.</p>
           <div class="mod-bar"><div class="mod-fill" style="width:35%"></div></div>
-          <a class="mod-enter" href="#">Enter Module →</a>
+          <a class="mod-enter" href="#" id="faceEnterBtn">Enter Module →</a>
         </div>
       </div>
-      <!-- Right: Body Module screen mockup -->
+
+      <!-- Module phone mockup -->
       <div class="mod-phone-wrap">
         <div class="mod-phone">
-          <div class="ph-notch"></div>
+          <div class="ph-notch" style="background:var(--bg);"></div>
           <div class="ph-body">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;">
-              <div style="font-size:7px;color:var(--mid);">← Back</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:8px;">
+              <div style="font-size:6px;color:var(--mid);">← Back</div>
               <div style="font-size:9px;font-weight:900;color:var(--ink);font-family:'Nunito',sans-serif;">Body Module</div>
               <div style="width:20px;"></div>
             </div>
-            <div style="text-align:center;font-size:8px;color:var(--mid);">Weekly goal: <span style="color:var(--blue);font-weight:800;">2/4</span></div>
-            <!-- Day plan card -->
-            <div style="background:#f0f0f0;border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;">
+            <div style="text-align:center;font-size:7px;color:var(--mid);">Weekly goal: <span style="color:var(--blue);font-weight:800;">2/4</span></div>
+            <div style="background:var(--bg3);border-radius:12px;padding:10px;border:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;">
               <div>
                 <div style="font-size:6px;color:var(--mid);">Your plan</div>
-                <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;color:var(--ink);">DAY 5</div>
-                <div style="font-size:9px;">3🔥</div>
-                <div style="background:var(--blue);color:#fff;font-size:6.5px;font-weight:800;padding:4px 14px;border-radius:100px;margin-top:6px;display:inline-block;">START</div>
+                <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:var(--ink);">DAY 5</div>
+                <div style="font-size:10px;">3🔥</div>
+                <div style="background:var(--blue);color:#fff;font-size:7px;font-weight:800;padding:4px 14px;border-radius:100px;margin-top:6px;display:inline-block;">START</div>
               </div>
-              <svg width="36" height="50" viewBox="0 0 40 55" fill="none">
-                <circle cx="20" cy="7" r="6" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-                <ellipse cx="20" cy="3.5" rx="8" ry="3" fill="none" stroke="#29B8D4" stroke-width="1.5"/>
-                <line x1="20" y1="13" x2="20" y2="30" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M20 18 L10 22 L7 17" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M20 18 L30 15" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-                <line x1="20" y1="30" x2="14" y2="42" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-                <line x1="20" y1="30" x2="26" y2="42" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-                <text x="16" y="27" font-size="6" font-weight="700" fill="#1A1A1A" font-family="Arial">G</text>
+              <svg width="32" height="44" viewBox="0 0 40 55" fill="none">
+                <circle cx="20" cy="7" r="6" fill="none" stroke="#F8F7F5" stroke-width="2.5"/>
+                <ellipse cx="20" cy="3.5" rx="8" ry="3" fill="none" stroke="#FF5A0E" stroke-width="1.5"/>
+                <line x1="20" y1="13" x2="20" y2="30" stroke="#F8F7F5" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M20 18 L10 22 L7 17" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 18 L30 15" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round"/>
+                <line x1="20" y1="30" x2="14" y2="42" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round"/>
+                <line x1="20" y1="30" x2="26" y2="42" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round"/>
+                <text x="16" y="27" font-size="6" font-weight="700" fill="#F8F7F5" font-family="Arial">G</text>
               </svg>
             </div>
-            <!-- Challenges -->
             <div style="font-size:8px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">Challenges</div>
-            <div style="background:var(--bg3);border-radius:10px;padding:8px 10px;border:1px solid rgba(41,184,212,.15);">
+            <div style="background:var(--bg3);border-radius:10px;padding:8px;border:1px solid var(--bdr);">
               <div style="font-size:7.5px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">30 days sixpack</div>
-              <div style="font-size:5.5px;color:var(--mid);margin-bottom:5px;">Get a sixpack in 30 days with daily training</div>
-              <div style="background:var(--orange);color:#fff;font-size:6px;font-weight:800;padding:4px 10px;border-radius:100px;display:inline-block;">Accept</div>
+              <div style="font-size:5.5px;color:var(--mid);margin:3px 0;">Get visible abs in 30 days.</div>
+              <div style="background:var(--orange);color:#fff;font-size:6.5px;font-weight:800;padding:4px 12px;border-radius:100px;display:inline-block;">Accept</div>
             </div>
-            <!-- Exercises label -->
-            <div style="font-size:8px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">Exercises</div>
-            <div style="background:#f5f5f5;border-radius:8px;padding:6px 10px;font-size:6px;color:var(--soft);border:1px solid #e0e0e0;">🔍 Search exercises...</div>
           </div>
         </div>
       </div>
@@ -968,478 +862,113 @@ footer{
 </section>
 
 
-<!-- ══════════════════════════════════════
-     NUTRITION SECTION
-══════════════════════════════════════ -->
-<section id="nutrition-sec">
-  <div class="wrap">
-    <div class="nutrition-layout">
-      <!-- Left: Nutrition phone mockup -->
-      <div style="display:flex;justify-content:center;">
-        <div class="nutri-phone">
-          <div class="ph-notch"></div>
-          <div class="ph-body">
-            <div class="ph-topbar" style="padding-top:8px;">
-              <svg width="18" height="22" viewBox="0 0 40 45" fill="none">
-                <circle cx="20" cy="7" r="5" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>
-                <ellipse cx="20" cy="4" rx="7" ry="2.5" fill="none" stroke="#F5A623" stroke-width="1.5"/>
-                <line x1="20" y1="12" x2="20" y2="26" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M20 16 L11 20 L8 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="20" y1="26" x2="14" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-                <line x1="20" y1="26" x2="26" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <div class="ph-premium">Upgrade to Premium</div>
-            </div>
-            <!-- Donut chart representation -->
-            <div style="display:flex;justify-content:center;align-items:center;gap:8px;padding:4px 0;">
-              <div style="position:relative;width:75px;height:75px;">
-                <svg viewBox="0 0 36 36" style="width:100%;height:100%;transform:rotate(-90deg);">
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#e0e0e0" stroke-width="5"/>
-                  <circle cx="18" cy="18" r="14" fill="none" stroke="#29B8D4" stroke-width="5" stroke-dasharray="55 88" stroke-linecap="round"/>
-                  <circle cx="18" cy="18" r="10" fill="none" stroke="#e0e0e0" stroke-width="4"/>
-                  <circle cx="18" cy="18" r="10" fill="none" stroke="#F5A623" stroke-width="4" stroke-dasharray="42 63" stroke-linecap="round"/>
-                </svg>
-                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-                  <div style="font-family:'Nunito',sans-serif;font-size:9px;font-weight:900;color:var(--blue);">2000</div>
-                  <div style="font-size:4px;color:var(--mid);">ml</div>
-                  <div style="font-family:'Nunito',sans-serif;font-size:8px;font-weight:900;color:var(--orange);">1354</div>
-                  <div style="font-size:4px;color:var(--mid);">kcal</div>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:3px;">
-                <div style="font-size:5px;color:var(--mid);">🏃 2015 kcal burned</div>
-                <div style="height:40px;width:10px;background:#e0e0e0;border-radius:5px;overflow:hidden;position:relative;">
-                  <div style="position:absolute;bottom:0;width:100%;height:60%;background:var(--orange);border-radius:5px;"></div>
-                </div>
-                <div style="font-size:5px;color:var(--mid);">2500</div>
-              </div>
-            </div>
-            <div style="display:flex;justify-content:space-around;font-size:5.5px;color:var(--mid);">
-              <span>Proteins: <strong style="color:var(--ink);">234g</strong></span>
-              <span>Fat: <strong style="color:var(--ink);">35g</strong></span>
-              <span>Carbs: <strong style="color:var(--ink);">76g</strong></span>
-            </div>
-            <!-- Meal rows -->
-            <div style="display:flex;flex-direction:column;gap:5px;">
-              <div style="background:#f0f0f0;border-radius:9px;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:7.5px;font-weight:800;font-family:'Nunito',sans-serif;">Breakfast</span>
-                <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">+</div>
-              </div>
-              <div style="background:#f0f0f0;border-radius:9px;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:7.5px;font-weight:800;font-family:'Nunito',sans-serif;">Lunch</span>
-                <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">+</div>
-              </div>
-              <div style="background:#f0f0f0;border-radius:9px;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:7.5px;font-weight:800;font-family:'Nunito',sans-serif;">Dinner</span>
-                <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">+</div>
-              </div>
-              <div style="background:#f0f0f0;border-radius:9px;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:7.5px;font-weight:800;font-family:'Nunito',sans-serif;">Snacks</span>
-                <div style="width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700;">+</div>
-              </div>
-            </div>
-            <div class="ph-nav" style="font-size:5px;">
-              <div class="ph-nav-item"><div class="ph-nav-icon" style="font-size:9px;">🏠</div><div class="ph-nav-lbl">Home</div></div>
-              <div class="ph-nav-item"><div class="ph-nav-icon" style="font-size:9px;">📈</div><div class="ph-nav-lbl">Progress</div></div>
-              <div class="ph-nav-item active"><div class="ph-nav-icon" style="font-size:9px;">🥗</div><div class="ph-nav-lbl">Nutrition</div></div>
-              <div class="ph-nav-item"><div class="ph-nav-icon" style="font-size:9px;">👥</div><div class="ph-nav-lbl">Community</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Right: copy -->
-      <div style="display:flex;flex-direction:column;justify-content:center;gap:20px;">
-        <div class="reveal">
-          <div class="sec-tag">Nutrition</div>
-          <h2>Know exactly what<br/>you're putting in.<br/><span class="bl">Down to the gram.</span></h2>
-          <p class="sec-sub" style="margin-top:12px;">Our nutrition screen gives you a visual overview of your calories, water, macros, and meals — all in one glance. Tracking has never been this simple.</p>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:12px;" class="reveal d1">
-          <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--bg3);border-radius:var(--r2);border:1px solid var(--bdr);">
-            <div style="width:36px;height:36px;border-radius:10px;background:rgba(41,184,212,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🍩</div>
-            <div><div style="font-weight:700;font-size:.9rem;color:var(--ink);">Visual calorie ring</div><div style="font-size:.83rem;color:var(--mid);line-height:1.5;">See calories and water intake at a glance with the donut chart.</div></div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--orange-lt);border-radius:var(--r2);border:1px solid rgba(245,166,35,.2);">
-            <div style="width:36px;height:36px;border-radius:10px;background:rgba(245,166,35,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📱</div>
-            <div><div style="font-weight:700;font-size:.9rem;color:var(--ink);">Barcode scanner</div><div style="font-size:.83rem;color:var(--mid);line-height:1.5;">Scan any food in 1 second. 5M+ foods in our database.</div></div>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--bg3);border-radius:var(--r2);border:1px solid var(--bdr);">
-            <div style="width:36px;height:36px;border-radius:10px;background:rgba(41,184,212,.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🎯</div>
-            <div><div style="font-weight:700;font-size:.9rem;color:var(--ink);">Auto-adjusting targets</div><div style="font-size:.83rem;color:var(--mid);line-height:1.5;">Calorie and macro targets update automatically as your weight changes.</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ═══════════════
+     SCREENSHOTS
+═══════════════ -->
+<section id="screens">
+  <div class="screens-head reveal">
+    <div class="sec-tag">The App</div>
+    <h2>Clean. Fast.<br/><span class="bl">Yours.</span></h2>
+    <p class="sec-sub">Swipe through the real app screens below.</p>
   </div>
+
+  <!--
+    ══════════════════════════════════════════════
+    SCREENSHOTS — HOW TO ADD YOUR REAL SCREENSHOTS
+    ══════════════════════════════════════════════
+    1. Create an "images" folder next to this HTML file
+    2. Put your screenshot PNG/JPG files in it
+    3. Update the SCREENSHOTS array in the <script> at the bottom
+       with the correct filename and label for each screen.
+    Example: { src: 'images/home.png', label: 'Home' }
+    ══════════════════════════════════════════════
+  -->
+  <div class="screen-track" id="screenTrack" role="list" aria-label="App screenshots"></div>
+  <p class="screen-hint">← Swipe or drag to see all screens →</p>
 </section>
 
 
-<!-- ══════════════════════════════════════
-     TESTIMONIALS
-══════════════════════════════════════ -->
-<section id="testimonials">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">Real users</div>
-      <h2>Real people.<br/><span class="bl">Real glow-ups.</span></h2>
-    </div>
-    <div class="testi-grid">
-      <div class="tcard reveal">
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"Down 9kg in 3 months. Tried 4 apps before — none adapted like Glowupp. Every week felt like real progress. I actually stuck to it."</p>
-        <div class="tcard-author">
-          <div class="tcard-av" style="background:linear-gradient(135deg,#29B8D4,#1E9AB3);">🧑</div>
-          <div><div class="tcard-name">Jakub M.</div><div class="tcard-role">CS Student, 21</div></div>
-        </div>
-      </div>
-      <div class="tcard reveal d1">
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"The barcode scanner is so fast. Logging everything takes 2 minutes. Gained 5kg of muscle in my first semester — no trainer needed."</p>
-        <div class="tcard-author">
-          <div class="tcard-av" style="background:linear-gradient(135deg,#F5A623,#D98B0F);">🧑</div>
-          <div><div class="tcard-name">Leo T.</div><div class="tcard-role">Marketing Grad, 23</div></div>
-        </div>
-      </div>
-      <div class="tcard reveal d2">
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"My boyfriend noticed the change. Just Glowupp. The plan never let me plateau — always something new, every single week."</p>
-        <div class="tcard-author">
-          <div class="tcard-av" style="background:linear-gradient(135deg,#AB9FF2,#3C315B);">🧑</div>
-          <div><div class="tcard-name">Sofia R.</div><div class="tcard-role">Nursing Student, 22</div></div>
-        </div>
-      </div>
-      <div class="tcard reveal d3">
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"50-hour work weeks. Still hit 4 sessions. 4 months later I'm leaner and stronger than ever. The XP system keeps me coming back."</p>
-        <div class="tcard-author">
-          <div class="tcard-av" style="background:linear-gradient(135deg,#29B8D4,#AB9FF2);">🧑</div>
-          <div><div class="tcard-name">Daniel K.</div><div class="tcard-role">Junior Developer, 25</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
+<!-- ═══════════════
      HOW IT WORKS
-══════════════════════════════════════ -->
+═══════════════ -->
 <section id="how">
   <div class="wrap">
     <div class="sec-center reveal">
       <div class="sec-tag">The process</div>
-      <h2>From download<br/>to results in <span class="or">4 steps.</span></h2>
+      <h2>From sign-up<br/>to results in <span class="or">4 steps.</span></h2>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-n">1</div>
-        <div class="step-h">Set your goal</div>
-        <p class="step-p">Bulk, cut, or recomp. Tell us your schedule, equipment, and current stats. Done in under 2 minutes.</p>
+        <div class="step-h">Create your account</div>
+        <p class="step-p">Sign up in 30 seconds. No credit card, no commitment — just your email and you're in.</p>
       </div>
       <div class="step reveal d1">
         <div class="step-n">2</div>
-        <div class="step-h">Get your plan</div>
-        <p class="step-p">Instant personalised workout plan and daily nutrition targets — built for your exact body, not a template.</p>
+        <div class="step-h">Set your goals</div>
+        <p class="step-p">Tell us your schedule, equipment, and current stats. Bulk, cut, or recomp — we build around your actual life.</p>
       </div>
       <div class="step reveal d2">
         <div class="step-n">3</div>
-        <div class="step-h">Train, eat, log</div>
-        <p class="step-p">Guided workouts, barcode scanning, weight logging. Never more than 3 taps to track anything.</p>
+        <div class="step-h">Get your plan instantly</div>
+        <p class="step-p">A personalised workout schedule and daily nutrition targets, generated in seconds — not a template someone else used.</p>
       </div>
       <div class="step reveal d3">
         <div class="step-n">4</div>
-        <div class="step-h">It adapts weekly</div>
-        <p class="step-p">Every week the algorithm reviews your data and updates your plan automatically. Just show up.</p>
+        <div class="step-h">Watch it adapt</div>
+        <p class="step-p">Every week the algorithm reviews your data and updates your plan automatically. You just keep showing up.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════
-     SCREEN CAROUSEL — real screenshots from /images/ folder
-══════════════════════════════════════ -
-
-  <!-- ── DRAG OVERLAY ── -->
-  <div id="drag-overlay" style="display:none;position:fixed;inset:0;background:rgba(41,184,212,0.15);z-index:9999;backdrop-filter:blur(4px);align-items:center;justify-content:center;flex-direction:column;gap:12px;">
-    <div style="font-size:3rem;">📱</div>
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dk);">Spusti screenshote tukaj</div>
-  </div>
-
-  <!-- ── THE CAROUSEL ── -->
-  <div class="screen-track" id="screen-track" role="list" aria-label="App screenshots">
-
-    <!-- Screen 1: Home -->
-    <div class="sphone reveal" role="listitem" aria-label="Home screen">
-      <div class="sp-notch"></div>
-      <div class="sp-body">
-        <div class="sp-label" style="color:var(--ink);">Home</div>
-        <div style="background:var(--bg3);border-radius:10px;padding:7px;border:1px solid rgba(41,184,212,.15);">
-          <div style="font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">BODY MODULE</div>
-          <div style="font-size:5.5px;color:var(--mid);margin:2px 0;">Build your physique with daily workouts.</div>
-          <div class="sp-bar" style="margin-bottom:4px;"><div class="sp-fill" style="width:22%;background:var(--orange);"></div></div>
-          <div style="background:var(--blue);color:#fff;font-size:5.5px;font-weight:800;padding:3px 10px;border-radius:100px;display:inline-block;">Enter</div>
-        </div>
-        <div style="background:var(--bg3);border-radius:10px;padding:7px;border:1px solid rgba(41,184,212,.15);">
-          <div style="font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">HAIR MODULE</div>
-          <div style="font-size:5.5px;color:var(--mid);margin:2px 0;">Daily hair care habits and tracking.</div>
-          <div class="sp-bar" style="margin-bottom:4px;"><div class="sp-fill" style="width:68%;background:var(--orange);"></div></div>
-          <div style="background:var(--blue);color:#fff;font-size:5.5px;font-weight:800;padding:3px 10px;border-radius:100px;display:inline-block;">Enter</div>
-        </div>
-        <div style="background:var(--bg3);border-radius:10px;padding:7px;border:1px solid rgba(41,184,212,.15);">
-          <div style="font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">FACE MODULE</div>
-          <div style="font-size:5.5px;color:var(--mid);margin:2px 0;">Skincare routines for a clear face.</div>
-          <div class="sp-bar" style="margin-bottom:4px;"><div class="sp-fill" style="width:35%;background:var(--orange);"></div></div>
-          <div style="background:var(--blue);color:#fff;font-size:5.5px;font-weight:800;padding:3px 10px;border-radius:100px;display:inline-block;">Enter</div>
-        </div>
-        <div class="sp-bnav">
-          <div class="sp-ni a">🏠<br/>Home</div>
-          <div class="sp-ni">📈<br/>Progress</div>
-          <div class="sp-ni">🥗<br/>Nutrition</div>
-          <div class="sp-ni">👥<br/>Community</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Screen 2: Body Module -->
-    <div class="sphone reveal d1" role="listitem" aria-label="Body Module screen">
-      <div class="sp-notch"></div>
-      <div class="sp-body">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;">
-          <div style="font-size:6px;color:var(--mid);">←</div>
-          <div style="font-size:8px;font-weight:900;color:var(--ink);font-family:'Nunito',sans-serif;">Body Module</div>
-          <div></div>
-        </div>
-        <div style="text-align:center;font-size:6.5px;color:var(--mid);">Weekly goal: <span style="color:var(--blue);font-weight:800;">2/4</span></div>
-        <div style="background:#f0f0f0;border-radius:10px;padding:9px;display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <div style="font-size:5.5px;color:var(--mid);">Your plan</div>
-            <div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:var(--ink);">DAY 5</div>
-            <div>3🔥</div>
-            <div style="background:var(--blue);color:#fff;font-size:6px;font-weight:800;padding:3px 10px;border-radius:100px;margin-top:4px;display:inline-block;">START</div>
-          </div>
-          <svg width="28" height="40" viewBox="0 0 40 55" fill="none">
-            <circle cx="20" cy="7" r="6" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>
-            <ellipse cx="20" cy="3.5" rx="8" ry="3" fill="none" stroke="#29B8D4" stroke-width="1.5"/>
-            <line x1="20" y1="13" x2="20" y2="30" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M20 18 L10 22 L7 17" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="20" y1="30" x2="14" y2="42" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-            <line x1="20" y1="30" x2="26" y2="42" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div style="font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">Challenges</div>
-        <div style="background:var(--bg3);border-radius:9px;padding:7px;border:1px solid rgba(41,184,212,.15);">
-          <div style="font-size:7px;font-weight:800;font-family:'Nunito',sans-serif;">30 days sixpack</div>
-          <div style="font-size:5px;color:var(--mid);margin:2px 0;">Get a sixpack in 30 days with daily training.</div>
-          <div style="background:var(--orange);color:#fff;font-size:5.5px;font-weight:800;padding:3px 8px;border-radius:100px;display:inline-block;">Accept</div>
-        </div>
-        <div style="font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">Exercises</div>
-        <div style="background:#f5f5f5;border-radius:7px;padding:5px 8px;font-size:5.5px;color:var(--soft);">🔍 Chest</div>
-      </div>
-    </div>
-
-    <!-- Screen 3: Nutrition -->
-    <div class="sphone reveal d2" role="listitem" aria-label="Nutrition screen">
-      <div class="sp-notch"></div>
-      <div class="sp-body">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:10px;">
-          <div style="font-size:10px;">👤</div>
-          <div class="ph-premium" style="font-size:5px;padding:2px 6px;">Upgrade to Premium</div>
-        </div>
-        <div style="display:flex;justify-content:center;padding:4px 0;">
-          <div style="position:relative;width:72px;height:72px;">
-            <svg viewBox="0 0 36 36" style="width:100%;height:100%;transform:rotate(-90deg);">
-              <circle cx="18" cy="18" r="14" fill="none" stroke="#e0e0e0" stroke-width="5"/>
-              <circle cx="18" cy="18" r="14" fill="none" stroke="#29B8D4" stroke-width="5" stroke-dasharray="55 88" stroke-linecap="round"/>
-              <circle cx="18" cy="18" r="10" fill="none" stroke="#e0e0e0" stroke-width="4"/>
-              <circle cx="18" cy="18" r="10" fill="none" stroke="#F5A623" stroke-width="4" stroke-dasharray="42 63" stroke-linecap="round"/>
-            </svg>
-            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-              <div style="font-size:7px;font-weight:900;color:var(--blue);font-family:'Nunito',sans-serif;">2000ml</div>
-              <div style="font-size:7px;font-weight:900;color:var(--orange);font-family:'Nunito',sans-serif;">1354</div>
-              <div style="font-size:4px;color:var(--mid);">kcal</div>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;justify-content:space-around;font-size:5.5px;color:var(--mid);">
-          <span>Proteins: <b>234g</b></span><span>Fat: <b>35g</b></span><span>Carbs: <b>76g</b></span>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <div style="background:#f0f0f0;border-radius:8px;padding:6px 9px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:7px;font-weight:800;font-family:'Nunito',sans-serif;">Breakfast</span><div style="width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;">+</div></div>
-          <div style="background:#f0f0f0;border-radius:8px;padding:6px 9px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:7px;font-weight:800;font-family:'Nunito',sans-serif;">Lunch</span><div style="width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;">+</div></div>
-          <div style="background:#f0f0f0;border-radius:8px;padding:6px 9px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:7px;font-weight:800;font-family:'Nunito',sans-serif;">Dinner</span><div style="width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;">+</div></div>
-          <div style="background:#f0f0f0;border-radius:8px;padding:6px 9px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:7px;font-weight:800;font-family:'Nunito',sans-serif;">Snacks</span><div style="width:16px;height:16px;border-radius:50%;background:var(--blue);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;">+</div></div>
-        </div>
-        <div class="sp-bnav">
-          <div class="sp-ni">🏠<br/>Home</div>
-          <div class="sp-ni">📈<br/>Progress</div>
-          <div class="sp-ni a">🥗<br/>Nutrition</div>
-          <div class="sp-ni">👥<br/>Community</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Screen 4: Profile / XP -->
-    <div class="sphone reveal d3" role="listitem" aria-label="Profile screen">
-      <div class="sp-notch"></div>
-      <div class="sp-body">
-        <div style="padding-top:10px;font-size:6px;color:var(--mid);">← Back</div>
-        <div style="display:flex;justify-content:center;">
-          <svg width="48" height="60" viewBox="0 0 40 55" fill="none">
-            <circle cx="20" cy="7" r="6" fill="none" stroke="#1A1A1A" stroke-width="2.5"/>
-            <ellipse cx="20" cy="3" rx="9" ry="3" fill="none" stroke="#F5A623" stroke-width="2"/>
-            <line x1="20" y1="13" x2="20" y2="30" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
-            <path d="M20 18 L9 23 L6 17" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20 18 L30 15" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="20" y1="30" x2="13" y2="44" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="20" y1="30" x2="27" y2="44" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-            <text x="16" y="27" font-size="6" font-weight="700" fill="#1A1A1A" font-family="Arial">G</text>
-          </svg>
-        </div>
-        <div style="background:#f0f0f0;border-radius:10px;padding:8px;">
-          <div style="font-size:7.5px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;margin-bottom:5px;">Personal data</div>
-          <div style="display:flex;justify-content:space-between;font-size:5.5px;color:var(--mid);margin-bottom:2px;"><span>Username</span><span style="color:var(--ink);">Mihec2 First</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:5.5px;color:var(--mid);margin-bottom:2px;"><span>Name</span><span style="color:var(--ink);">Miha</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:5.5px;color:var(--mid);"><span>Email</span><span style="color:var(--ink);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99f4f0f1f8d9fef4f8f0f5b7faf6f4">[email&#160;protected]</a></span></div>
-        </div>
-        <div style="background:#f0f0f0;border-radius:10px;padding:8px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
-            <div style="font-size:7.5px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">Profile status</div>
-            <div style="font-size:7px;font-weight:800;color:var(--blue);">Lvl 5</div>
-          </div>
-          <div style="font-size:5.5px;color:var(--mid);margin-bottom:3px;">34/50 xp → Lvl 6</div>
-          <div class="sp-bar" style="height:5px;margin-bottom:8px;"><div class="sp-fill" style="width:68%;background:var(--orange);"></div></div>
-          <div style="display:flex;justify-content:space-around;">
-            <div style="text-align:center;font-size:5.5px;color:var(--mid);">👤<br/><b style="color:var(--ink);">3</b><br/>Followers</div>
-            <div style="text-align:center;font-size:5.5px;color:var(--mid);">🏆<br/><b style="color:var(--ink);">6</b><br/>Badges</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Screen 5: Premium pricing -->
-    <div class="sphone reveal d4" role="listitem" aria-label="Premium pricing screen">
-      <div class="sp-notch"></div>
-      <div class="sp-body">
-        <div style="padding-top:10px;font-size:6px;color:var(--mid);">← Back</div>
-        <div style="text-align:center;font-size:8.5px;font-weight:900;color:var(--ink);font-family:'Nunito',sans-serif;line-height:1.3;">Speed up your glow-up with GlowUpp Pro</div>
-        <div style="display:flex;flex-direction:column;gap:4px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-            <div style="background:#f0f0f0;border-radius:7px;padding:5px;font-size:5.5px;color:var(--mid);text-align:center;">No chats with AI</div>
-            <div style="background:var(--blue);border-radius:7px;padding:5px;font-size:5.5px;color:#fff;text-align:center;font-weight:700;">24/7 AI Coach</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-            <div style="background:#f0f0f0;border-radius:7px;padding:5px;font-size:5.5px;color:var(--mid);text-align:center;">No updates</div>
-            <div style="background:var(--blue);border-radius:7px;padding:5px;font-size:5.5px;color:#fff;text-align:center;font-weight:700;">Weekly workout updates</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-            <div style="background:#f0f0f0;border-radius:7px;padding:5px;font-size:5.5px;color:var(--mid);text-align:center;">Limited macros</div>
-            <div style="background:var(--blue);border-radius:7px;padding:5px;font-size:5.5px;color:#fff;text-align:center;font-weight:700;">Full macro view</div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px;">
-          <div style="border:1.5px solid #ccc;border-radius:10px;padding:7px;text-align:center;">
-            <div style="font-size:6.5px;font-weight:600;color:var(--mid);">Monthly</div>
-            <div style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;color:var(--ink);">3,49€</div>
-            <div style="font-size:5px;color:var(--soft);">per month</div>
-          </div>
-          <div style="border:2px solid var(--ink);border-radius:10px;padding:7px;text-align:center;background:var(--ink);">
-            <div style="font-size:6.5px;font-weight:600;color:rgba(255,255,255,.7);">Annually</div>
-            <div style="font-family:'Nunito',sans-serif;font-size:11px;font-weight:900;color:#fff;">2,98€</div>
-            <div style="font-size:5px;color:rgba(255,255,255,.6);">per month</div>
-          </div>
-        </div>
-        <div style="background:var(--blue);color:#fff;text-align:center;border-radius:100px;padding:7px;font-size:7px;font-weight:800;font-family:'Nunito',sans-serif;">Upgrade to Pro</div>
-        <div style="background:var(--orange);color:#fff;text-align:center;border-radius:100px;padding:6px;font-size:6.5px;font-weight:800;font-family:'Nunito',sans-serif;">7 days Free Trial</div>
-        <div style="text-align:center;font-size:5px;color:var(--soft);">No payment method needed</div>
-      </div>
-    </div>
-
-  </div><!-- end screen-track -->
-  <p id="swipe-hint" style="text-align:center;font-size:.78rem;color:var(--soft);margin-top:8px;padding:0 20px;">← Povleci za ogled vseh zaslonov →</p>
-
-</section>
-
-
-<!-- ══════════════════════════════════════
-     PRICING — mirrors app pricing screen
-══════════════════════════════════════ -->
+<!-- ═══════════════
+     PRICING — sign-up focused, no tiers
+═══════════════ -->
 <section id="pricing">
   <div class="wrap">
     <div class="sec-center reveal">
-      <div class="sec-tag">Pricing</div>
-      <h2>Speed up your glow-up<br/>with <span class="bl">Glowupp Pro.</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Start free. Upgrade when you want the extra edge. Cancel anytime.</p>
+      <div class="sec-tag">Get started</div>
+      <h2>Create your account.<br/><span class="bl">Start improving today.</span></h2>
+      <p class="sec-sub" style="margin:0 auto;">Sign up takes 30 seconds. Everything you need to glow up is waiting inside.</p>
     </div>
-    <!-- Free vs Pro comparison — like app screen -->
-    <div style="max-width:560px;margin:36px auto 0;" class="reveal d1">
-      <div style="display:flex;flex-direction:column;gap:8px;background:var(--bg2);border-radius:var(--r);padding:20px;border:1px solid rgba(41,184,212,.12);">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;">
-          <div style="text-align:center;font-size:.8rem;font-weight:600;color:var(--soft);">Free</div>
-          <div style="text-align:center;font-size:.8rem;font-weight:700;color:var(--blue);">Pro</div>
-        </div>
-        <div class="compare-row"><div class="compare-no">No chats with AI</div><div class="compare-yes">24/7 AI Coach</div></div>
-        <div class="compare-row"><div class="compare-no">No updates</div><div class="compare-yes">Weekly updated workout plans</div></div>
-        <div class="compare-row"><div class="compare-no">Limited view of macros</div><div class="compare-yes">Full view of Macros</div></div>
-        <div class="compare-row"><div class="compare-no">Ads</div><div class="compare-yes">No ads</div></div>
+
+    <div class="pricing-card reveal d1">
+      <div class="pricing-badge">✦ FREE TO JOIN</div>
+      <div class="pricing-title">One account. Everything included.</div>
+      <p class="pricing-subtitle">No credit card. No hidden costs. No limits.<br/>Just sign up and start your journey.</p>
+
+      <ul class="price-features">
+        <li><div class="pf-icon">💪</div> Full Body Module — workouts, tracking, challenges</li>
+        <li><div class="pf-icon">💇</div> Full Hair Module — daily routines, personalised tips</li>
+        <li><div class="pf-icon">✨</div> Full Face Module — skincare logging and advice</li>
+        <li><div class="pf-icon">🥗</div> Complete calorie and macro tracking</li>
+        <li><div class="pf-icon">🧠</div> AI plan that adapts to you every week</li>
+        <li><div class="pf-icon">🏆</div> XP, levels, badges and 30-day challenges</li>
+        <li><div class="pf-icon">👥</div> Community access</li>
+        <li><div class="pf-icon">🚫</div> No ads, ever</li>
+      </ul>
+
+      <div class="pricing-actions">
+        <a href="#" class="btn btn-blue btn-xl" id="pricingSignupBtn" style="width:100%;max-width:340px;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Create Free Account →
+        </a>
+        <a href="#" class="btn btn-orange btn-xl" style="width:100%;max-width:340px;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
+          Download on Android
+        </a>
       </div>
-    </div>
-    <div class="price-cards">
-      <!-- Free -->
-      <div class="pcard reveal">
-        <div class="pcard-tier">Free</div>
-        <div class="pcard-price">€0</div>
-        <p class="pcard-desc">Forever free. No tricks.</p>
-        <ul class="price-list">
-          <li><span class="ck">✓</span> AI workout plan</li>
-          <li><span class="ck">✓</span> Basic calorie tracking</li>
-          <li><span class="ck">✓</span> Progress charts</li>
-          <li style="color:var(--xsoft);"><span class="no">—</span> Weekly plan adaptation</li>
-          <li style="color:var(--xsoft);"><span class="no">—</span> Barcode scanner</li>
-          <li style="color:var(--xsoft);"><span class="no">—</span> AI Coach</li>
-        </ul>
-        <a href="#" class="btn-upgrade" style="background:var(--bg3);color:var(--blue);box-shadow:none;">Get Started Free</a>
-      </div>
-      <!-- Pro -->
-      <div class="pcard featured reveal d1">
-        <div class="pcard-badge">MOST POPULAR</div>
-        <div class="pcard-tier" style="color:var(--blue);">Pro</div>
-        <!-- Billing toggle -->
-        <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;">
-          <div style="text-align:center;">
-            <div style="font-size:.75rem;font-weight:600;color:var(--mid);">Monthly</div>
-            <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:var(--ink);">€3.49</div>
-            <div style="font-size:.72rem;color:var(--soft);">/month</div>
-          </div>
-          <div style="color:var(--xsoft);font-size:1rem;">or</div>
-          <div style="text-align:center;background:var(--ink);border-radius:12px;padding:8px 12px;position:relative;">
-            <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:100px;white-space:nowrap;">Save 20%</div>
-            <div style="font-size:.72rem;font-weight:600;color:rgba(255,255,255,.7);">Annually</div>
-            <div style="font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;">€2.98</div>
-            <div style="font-size:.72rem;color:rgba(255,255,255,.6);">/month</div>
-          </div>
-        </div>
-        <ul class="price-list">
-          <li><span class="ck">✓</span> Everything in Free</li>
-          <li><span class="ck">✓</span> 24/7 AI Coach</li>
-          <li><span class="ck">✓</span> Weekly adaptive updates</li>
-          <li><span class="ck">✓</span> Full macro view + barcode</li>
-          <li><span class="ck">✓</span> No ads</li>
-          <li><span class="ck">✓</span> Solo &amp; Group plans (2–6)</li>
-        </ul>
-        <a href="#" class="btn-upgrade">Upgrade to Pro</a>
-        <a href="#" class="btn-trial">7 Days Free Trial</a>
-        <p style="text-align:center;font-size:.72rem;color:var(--soft);margin-top:8px;">No payment method needed, cancel anytime!</p>
-        <p style="text-align:center;font-size:.75rem;color:var(--mid);margin-top:4px;font-weight:600;">Join 1000 Pro Members! 🎉</p>
-      </div>
+      <p class="pricing-note">Sign up with email or continue with Google · Takes 30 seconds</p>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════
      FAQ
-══════════════════════════════════════ -->
+═══════════════ -->
 <section id="faq">
   <div class="wrap">
     <div class="sec-center reveal">
@@ -1447,59 +976,145 @@ footer{
       <h2>Common questions.<br/><span class="bl">Honest answers.</span></h2>
     </div>
     <div class="faq-wrap">
-      <div class="fq reveal"><button class="fq-q" aria-expanded="false" aria-controls="a1" id="q1">Is Glowupp really free?<span class="fq-icon">▼</span></button><div class="fq-a" id="a1">Yes — workout plans, basic food logging, and progress tracking are completely free with no hidden costs. Pro adds weekly adaptive plan updates, barcode scanning, AI coach access, and removes ads. You can try Pro free for 7 days with no card needed.</div></div>
-      <div class="fq reveal d1"><button class="fq-q" aria-expanded="false" aria-controls="a2" id="q2">What are the modules?<span class="fq-icon">▼</span></button><div class="fq-a" id="a2">Glowupp has three modules: Body (workouts, muscle building, challenges), Hair (daily care routines, habit tracking), and Face (skincare routines and tips). Each has its own progress tracker and daily goals.</div></div>
-      <div class="fq reveal d2"><button class="fq-q" aria-expanded="false" aria-controls="a3" id="q3">What's the difference between Monthly and Annual Pro?<span class="fq-icon">▼</span></button><div class="fq-a" id="a3">Both give you identical Pro features. Annual billing works out to €2.98/month (saving 20% vs monthly €3.49). You can cancel anytime — no questions asked.</div></div>
-      <div class="fq reveal"><button class="fq-q" aria-expanded="false" aria-controls="a4" id="q4">Can I use it as a complete beginner?<span class="fq-icon">▼</span></button><div class="fq-a" id="a4">Absolutely. You set your experience level during setup and get a beginner-appropriate plan. Volume increases gradually as you improve. You don't need to know anything about fitness to get started.</div></div>
-      <div class="fq reveal d1"><button class="fq-q" aria-expanded="false" aria-controls="a5" id="q5">What does the AI Coach do?<span class="fq-icon">▼</span></button><div class="fq-a" id="a5">The AI Coach (Pro feature) is available 24/7 to answer your fitness and nutrition questions, give you form tips, help you plan meals, and adjust your programme advice based on your progress data.</div></div>
-      <div class="fq reveal d2"><button class="fq-q" aria-expanded="false" aria-controls="a6" id="q6">Is there a group/friends plan?<span class="fq-icon">▼</span></button><div class="fq-a" id="a6">Yes! Pro supports group plans for 2–6 people. Train with friends or family and stay accountable together.</div></div>
-      <div class="fq reveal"><button class="fq-q" aria-expanded="false" aria-controls="a7" id="q7">Is it Android only?<span class="fq-icon">▼</span></button><div class="fq-a" id="a7">Currently yes — Glowupp is available on Android (Google Play). iOS is actively in development. Join the waitlist to be notified when it launches.</div></div>
+
+      <div class="fq reveal">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-1" id="fqb-1">
+          Do I need to pay anything?
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-1" role="region" aria-labelledby="fqb-1">
+          No — Upp is completely free. Everything is included when you create your account: all three modules, the AI workout plan, calorie tracking, weekly adaptive updates, XP system, challenges, badges, and community. No hidden tier, no payment ever required.
+        </div>
+      </div>
+
+      <div class="fq reveal d1">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-2" id="fqb-2">
+          Why do I need to sign up?
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-2" role="region" aria-labelledby="fqb-2">
+          Your account is what makes the app personal. We store your progress, adapt your plan week by week, track your XP and streaks, and sync everything across sessions. Without an account, none of this personalisation is possible. Sign up takes 30 seconds — just an email and a password.
+        </div>
+      </div>
+
+      <div class="fq reveal d2">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-3" id="fqb-3">
+          What are the three modules?
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-3" role="region" aria-labelledby="fqb-3">
+          Body — workouts, muscle building, strength tracking and challenges like "30 Days Sixpack". Hair — daily care routines, habit tracking, personalised tips for your hair type. Face — skincare routines, daily logging and advice for clear confident skin. All three are fully included and track your progress independently.
+        </div>
+      </div>
+
+      <div class="fq reveal">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-4" id="fqb-4">
+          I'm a complete beginner — will this work for me?
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-4" role="region" aria-labelledby="fqb-4">
+          Absolutely. You set your experience level during sign-up and get a plan tailored to a beginner. Volume and intensity increase gradually as you improve. You don't need to know anything about fitness, hair care or skincare to get started — Upp guides you through everything.
+        </div>
+      </div>
+
+      <div class="fq reveal d1">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-5" id="fqb-5">
+          Can I train at home? I don't have a gym.
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-5" role="region" aria-labelledby="fqb-5">
+          Yes. During sign-up, select your available equipment — dumbbells, resistance bands, or just bodyweight. The algorithm builds a complete programme around what you have access to.
+        </div>
+      </div>
+
+      <div class="fq reveal d2">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-6" id="fqb-6">
+          How long until I see real results?
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-6" role="region" aria-labelledby="fqb-6">
+          Most users notice strength improvements within 2–3 weeks. Visible physique changes typically come in 6–8 weeks with consistent effort. Skincare and hair improvements vary — most users see noticeable changes within 4 weeks of following their daily routine. Upp gives you the exact plan — showing up is still your job.
+        </div>
+      </div>
+
+      <div class="fq reveal">
+        <button class="fq-q" aria-expanded="false" aria-controls="fqa-7" id="fqb-7">
+          Is Upp only on Android?
+          <span class="fq-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="fq-body" id="fqa-7" role="region" aria-labelledby="fqb-7">
+          Currently yes — Upp is available on Android via Google Play. iOS is actively in development. Sign up with your email now and you'll be among the first notified when the iPhone version launches.
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════
-     CTA
-══════════════════════════════════════ -->
-<section id="cta">
-  <div class="cta-deco cd1"></div>
-  <div class="cta-deco cd2"></div>
-  <h2 class="reveal">The version of you<br/>people can't ignore<br/>starts <span class="or">today.</span></h2>
-  <p class="sub reveal d1">Free to download. No credit card. No excuses. Just the most efficient path to a body, hair, and face you're proud of.</p>
-  <div class="cta-btns reveal d2">
-    <a href="#" class="btn-white">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
-      Download Free on Android
-    </a>
-    <a href="#pricing" class="btn-white-outline">See Pro Plans →</a>
-  </div>
-  <div class="cta-proof reveal d3">
-    <div class="stars">★★★★★</div>
-    <p>24,000+ users · 4.9 rating · Join 1000 Pro Members</p>
+<!-- ═══════════════
+     CONTACT
+═══════════════ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-center reveal">
+      <div class="sec-tag">Get in touch</div>
+      <h2>Contact <span class="bl">Us</span></h2>
+      <p class="sec-sub" style="margin:0 auto;">Have questions, feedback, or just want to say hi? We'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-card reveal d1">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xyklabqq" method="POST">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Email address" required>
+        <textarea rows="5" placeholder="Your message..."></textarea>
+        <button type="submit" class="btn btn-blue">Send Message</button>
+      </form>
+    </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════
+     CTA
+═══════════════ -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="sec-tag reveal">✦ Ready?</div>
+    <h2 class="reveal d1">
+      The version of you<br/>
+      people can't ignore<br/>
+      starts <span class="or">today.</span>
+    </h2>
+    <p class="cta-sub reveal d2">Free account. No credit card. No excuses. Just the most efficient path to a body, hair and face you're proud of.</p>
+    <div class="cta-btns reveal d3">
+      <a href="#" class="btn btn-blue btn-xl" id="ctaSignupBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Sign Up Free
+      </a>
+      <a href="#" class="btn btn-outline btn-xl">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
+        Get on Google Play
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════
      FOOTER
-══════════════════════════════════════ -->
+═══════════════ -->
 <footer>
   <div class="foot-in">
     <div class="foot-top">
-      <div>
-        <a class="foot-logo" href="#">
-          <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
-            <circle cx="20" cy="7" r="5" fill="none" stroke="#1A1A1A" stroke-width="2"/>
-            <ellipse cx="20" cy="4" rx="7" ry="2.5" fill="none" stroke="#F5A623" stroke-width="1.5"/>
-            <line x1="20" y1="12" x2="20" y2="26" stroke="#1A1A1A" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M20 16 L11 20 L8 16" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="20" y1="26" x2="14" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-            <line x1="20" y1="26" x2="26" y2="36" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span class="logo-name" style="font-size:1.1rem;">Glowupp</span>
+      <div class="foot-brand">
+        <a class="foot-brand-logo" href="#">
+          <img src="Upp.svg" alt="Upp" class="foot-logo-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <span style="display:none;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--ink);">Upp</span>
+          <span class="foot-brand-name">Upp</span>
         </a>
-        <p class="foot-tagline">The most efficient way to get muscles and look better.</p>
+        <p class="foot-tagline">The most efficient way to get muscles, improve your hair and look better.</p>
       </div>
       <div class="foot-col">
         <h4>Product</h4>
@@ -1507,7 +1122,7 @@ footer{
           <li><a href="#features">Features</a></li>
           <li><a href="#modules">Modules</a></li>
           <li><a href="#screens">Screenshots</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#pricing">Get started</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -1515,7 +1130,7 @@ footer{
         <ul class="foot-links">
           <li><a href="#">About</a></li>
           <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
           <li><a href="#">Community</a></li>
         </ul>
       </div>
@@ -1529,189 +1144,180 @@ footer{
       </div>
     </div>
     <div class="foot-bottom">
-      <p class="foot-copy">© 2026 Glowupp. All rights reserved.</p>
+      <p class="foot-copy">© 2026 Upp. All rights reserved.</p>
       <p class="foot-copy">Made for people who want more from themselves. 💪</p>
     </div>
   </div>
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Scroll reveal
-const obs = new IntersectionObserver(e => {
-  e.forEach(x => { if(x.isIntersecting){ x.target.classList.add('visible'); obs.unobserve(x.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+<script>
+/* ═══════════════════════════════════
+   SCREENSHOTS — edit paths here
+   ═══════════════════════════════════
+   Put your screenshot files in an "images/" folder
+   next to this HTML file, then update the paths below.
+════════════════════════════════════ */
+const SCREENSHOTS = [
+  { src: 'images/screen-home.png',      label: 'Home — Modules'        },
+  { src: 'images/screen-body.png',      label: 'Body Module'           },
+  { src: 'images/screen-nutrition.png', label: 'Calorie Tracker'       },
+  { src: 'images/screen-hair.png',      label: 'Hair Module'           },
+  { src: 'images/screen-face.png',      label: 'Face Module'           },
+  { src: 'images/screen-profile.png',   label: 'Profile & XP'         },
+];
 
-// FAQ
+/* Build carousel */
+function buildCarousel() {
+  const track = document.getElementById('screenTrack');
+  track.innerHTML = '';
+  SCREENSHOTS.forEach(({ src, label }) => {
+    const slide = document.createElement('div');
+    slide.className = 'sphone';
+    slide.setAttribute('role', 'listitem');
+
+    const notch = document.createElement('div');
+    notch.className = 'sp-notch';
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = label;
+    img.className = 'screenshot-img';
+    img.onerror = () => {
+      slide.style.cssText += `display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;cursor:pointer;`;
+      slide.innerHTML = `
+        <div style="font-size:2.4rem;">📱</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--blue-dk);">${label}</div>
+        <code style="font-size:.65rem;color:var(--mid);background:var(--bg3);padding:4px 10px;border-radius:6px;display:block;">${src}</code>
+        <div style="font-size:.72rem;color:var(--soft);line-height:1.4;">Place your screenshot<br>at this path.</div>`;
+      slide.prepend(notch);
+    };
+
+    const caption = document.createElement('div');
+    caption.className = 'slide-caption';
+    caption.textContent = label;
+
+    slide.appendChild(notch);
+    slide.appendChild(img);
+    slide.appendChild(caption);
+    track.appendChild(slide);
+  });
+}
+buildCarousel();
+
+
+/* ═══════════════════════════════════
+   FAQ — accordion
+═══════════════════════════════════ */
 document.querySelectorAll('.fq-q').forEach(btn => {
   btn.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') === 'true';
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    /* Close all */
     document.querySelectorAll('.fq-q').forEach(b => {
-      b.setAttribute('aria-expanded','false');
-      document.getElementById(b.getAttribute('aria-controls'))?.classList.remove('open');
-      b.closest('.fq')?.classList.remove('open-item');
+      b.setAttribute('aria-expanded', 'false');
+      const bodyId = b.getAttribute('aria-controls');
+      if (bodyId) document.getElementById(bodyId)?.classList.remove('open');
+      b.closest('.fq')?.classList.remove('fq-open');
     });
-    if(!open){
-      btn.setAttribute('aria-expanded','true');
-      document.getElementById(btn.getAttribute('aria-controls'))?.classList.add('open');
-      btn.closest('.fq')?.classList.add('open-item');
+    /* Open clicked */
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      const bodyId = btn.getAttribute('aria-controls');
+      if (bodyId) document.getElementById(bodyId)?.classList.add('open');
+      btn.closest('.fq')?.classList.add('fq-open');
     }
   });
 });
 
-// Navbar shadow
-const nav = document.getElementById('navbar');
+
+/* ═══════════════════════════════════
+   HAMBURGER MENU
+═══════════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
+/* Close mobile menu on link click */
+document.querySelectorAll('.mobile-link, #mobileSignupBtn').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+});
+
+
+/* ═══════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════ */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.09, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+
+/* ═══════════════════════════════════
+   CONTACT FORM
+═══════════════════════════════════ */
+document.getElementById('contactForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      alert('Thanks! Your message was sent successfully.');
+      form.reset();
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch (error) {
+    alert('Network error. Please check your connection.');
+  }
+  
+  btn.textContent = 'Send Message';
+  btn.disabled = false;
+});
+
+
+/* ═══════════════════════════════════
+   NAV SHADOW ON SCROLL
+═══════════════════════════════════ */
 window.addEventListener('scroll', () => {
-  nav.style.boxShadow = window.scrollY > 20 ? '0 4px 20px rgba(41,184,212,0.1)' : 'none';
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.4)' : 'none';
 }, { passive: true });
 
 
-// ══════════════════════════════════════
-//  ▶▶ SCREENSHOTI — UREDI TUKAJ ◀◀
-//
-//  Struktura map ko uploadaš na Netlify:
-//    glowupp-v4-app-match.html   ← ta datoteka
-//    images/
-//      screen1.png               ← Home screen
-//      screen2.png               ← Body Module
-//      screen3.png               ← Nutrition
-//      screen4.png               ← Progress
-//      screen5.png               ← Premium
-//
-//  Samo zamenjaj poti spodaj s svojimi imeni datotek.
-//  Dodaj ali odstrani vrstice po potrebi.
-// ══════════════════════════════════════
-const SCREENSHOTS = [
-  { src: 'images/screen1.png', label: 'Home'        },
-  { src: 'images/screen2.png', label: 'Body Module' },
-  { src: 'images/screen3.png', label: 'Nutrition'   },
-  { src: 'images/screen4.png', label: 'Progress'    },
-  { src: 'images/screen5.png', label: 'Premium'     },
-  // Dodaj več:
-  // { src: 'images/screen6.png', label: 'Profile'  },
-  // { src: 'images/screen7.png', label: 'Workout'  },
-];
-// ══════════════════════════════════════
-
-const track       = document.getElementById('screen-track');
-const previewGrid = document.getElementById('preview-grid');
-const uploadPrev  = document.getElementById('upload-preview');
-const dragOverlay = document.getElementById('drag-overlay');
-let   uploadedImages = [];
-
-function makeSlide(src, label, isDataUrl) {
-  const slide = document.createElement('div');
-  slide.setAttribute('role','listitem');
-  slide.style.cssText = `flex-shrink:0;scroll-snap-align:start;width:210px;height:420px;
-    border-radius:28px;overflow:hidden;border:1.5px solid rgba(0,0,0,0.08);
-    box-shadow:0 12px 36px rgba(0,0,0,0.09),0 4px 12px rgba(41,184,212,0.1);
-    position:relative;transition:transform .25s;background:#111;`;
-  slide.onmouseover = () => slide.style.transform = 'translateY(-5px)';
-  slide.onmouseout  = () => slide.style.transform = 'translateY(0)';
-
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = label;
-  img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top;display:block;';
-
-  img.onerror = () => {
-    slide.style.cssText = `flex-shrink:0;scroll-snap-align:start;width:210px;height:420px;
-      border-radius:28px;border:2px dashed rgba(41,184,212,0.35);background:#F9FDFE;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:10px;padding:20px;text-align:center;cursor:pointer;`;
-    slide.innerHTML = `
-      <div style="font-size:2rem;">📱</div>
-      <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.85rem;color:#1E9AB3;">${label}</div>
-      <div style="font-size:.7rem;color:#aaa;line-height:1.5;">Slika ni najdena.<br>Dodaj datoteko v<br><code style="background:#E3F6FA;padding:2px 6px;border-radius:4px;font-size:.65rem;color:#29B8D4;">images/</code> mapo.</div>`;
-    slide.onclick = () => { showUploadZone(); document.getElementById('screen-upload').click(); };
-  };
-
-  const lbl = document.createElement('div');
-  lbl.style.cssText = `position:absolute;bottom:0;left:0;right:0;
-    background:linear-gradient(transparent,rgba(0,0,0,0.65));
-    padding:24px 14px 12px;font-family:Nunito,sans-serif;
-    font-weight:800;font-size:.78rem;color:#fff;`;
-  lbl.textContent = label;
-
-  slide.appendChild(img);
-  slide.appendChild(lbl);
-  return slide;
-}
-
-function renderCarousel() {
-  track.innerHTML = '';
-  const all = [
-    ...SCREENSHOTS,
-    ...uploadedImages.map(u => ({ src: u.dataUrl, label: u.name, isDataUrl: true }))
-  ];
-  if (all.length === 0) { showPlaceholders(); return; }
-  all.forEach(item => track.appendChild(makeSlide(item.src, item.label, item.isDataUrl)));
-}
-
-function showPlaceholders() {
-  [
-    { icon:'🏠', label:'Home',        hint:'screen1.png' },
-    { icon:'💪', label:'Body Module', hint:'screen2.png' },
-    { icon:'🥗', label:'Nutrition',   hint:'screen3.png' },
-    { icon:'📈', label:'Progress',    hint:'screen4.png' },
-    { icon:'⭐', label:'Premium',     hint:'screen5.png' },
-  ].forEach(p => {
-    const s = document.createElement('div');
-    s.setAttribute('role','listitem');
-    s.style.cssText = `flex-shrink:0;scroll-snap-align:start;width:210px;height:420px;
-      border-radius:28px;border:2px dashed rgba(41,184,212,0.3);background:#F9FDFE;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:10px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;`;
-    s.onmouseover = () => s.style.borderColor='rgba(41,184,212,0.6)';
-    s.onmouseout  = () => s.style.borderColor='rgba(41,184,212,0.3)';
-    s.innerHTML = `
-      <div style="font-size:2.5rem;">${p.icon}</div>
-      <div style="font-family:Nunito,sans-serif;font-weight:800;font-size:.9rem;color:#1E9AB3;">${p.label}</div>
-      <div style="font-size:.7rem;color:#aaa;line-height:1.4;">Dodaj<br><code style="background:#E3F6FA;padding:2px 6px;border-radius:4px;color:#29B8D4;">images/${p.hint}</code></div>`;
-    s.onclick = () => { showUploadZone(); document.getElementById('screen-upload').click(); };
-    track.appendChild(s);
-  });
-}
-
-function renderPreviews() {
-  previewGrid.innerHTML = '';
-  if (!uploadedImages.length) { uploadPrev.style.display='none'; return; }
-  uploadPrev.style.display='block';
-  uploadedImages.forEach((img,i) => {
-    const w=document.createElement('div'); w.style.cssText='position:relative;width:72px;';
-    const t=document.createElement('img'); t.src=img.dataUrl;
-    t.style.cssText='width:72px;height:128px;object-fit:cover;object-position:top;border-radius:10px;border:1.5px solid rgba(41,184,212,0.2);display:block;';
-    const d=document.createElement('button'); d.innerHTML='×';
-    d.style.cssText='position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:#ff4444;color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;';
-    d.onclick=()=>{uploadedImages.splice(i,1);renderPreviews();renderCarousel();};
-    const l=document.createElement('div'); l.style.cssText='font-size:.63rem;color:#555;text-align:center;margin-top:4px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
-    l.textContent=img.name;
-    w.append(t,d,l); previewGrid.appendChild(w);
-  });
-}
-
-function processFiles(files) {
-  const valid=['image/png','image/jpeg','image/jpg','image/webp'];
-  const toAdd=Array.from(files).filter(f=>valid.includes(f.type)).slice(0,10-uploadedImages.length);
-  let loaded=0;
-  toAdd.forEach(file=>{
-    const r=new FileReader();
-    r.onload=e=>{
-      uploadedImages.push({name:file.name.replace(/\.[^.]+$/,'').replace(/[_-]/g,' '),dataUrl:e.target.result});
-      if(++loaded===toAdd.length){renderPreviews();renderCarousel();}
-    };
-    r.readAsDataURL(file);
-  });
-}
-
-document.getElementById('screen-upload').addEventListener('change',e=>processFiles(e.target.files));
-['dragenter','dragover'].forEach(ev=>document.addEventListener(ev,e=>{e.preventDefault();if(e.dataTransfer.types.includes('Files'))dragOverlay.style.display='flex';}));
-['dragleave','dragend'].forEach(ev=>document.addEventListener(ev,e=>{if(!e.relatedTarget||e.relatedTarget===document.documentElement)dragOverlay.style.display='none';}));
-document.addEventListener('drop',e=>{e.preventDefault();dragOverlay.style.display='none';if(e.dataTransfer.files.length){processFiles(e.dataTransfer.files);showUploadZone();}});
-
-// INIT — poskusi naložiti slike iz images/ mape
-renderCarousel();
+/* ═══════════════════════════════════
+   SIGN UP BUTTONS — replace href with your real signup URL
+═══════════════════════════════════ */
+const signupIds = ['signupBtn','mobileSignupBtn','getStartedBtn','pricingSignupBtn','ctaSignupBtn','bodyEnterBtn','hairEnterBtn','faceEnterBtn'];
+signupIds.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      alert('Sign up coming soon!\n\nReplace this with your real signup URL.');
+    });
+  }
+});
 </script>
 </body>
 </html>
