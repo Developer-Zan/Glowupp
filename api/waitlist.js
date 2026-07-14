@@ -15,8 +15,8 @@ module.exports = async function waitlist(req, res) {
     return send(res, 405, { error: 'Method not allowed.' });
   }
 
-  const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-  const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+  UPSTASH_REDIS_REST_URL="https://internal-robin-42179.upstash.io"
+  UPSTASH_REDIS_REST_TOKEN="********"
   if (!redisUrl || !redisToken) {
     console.error('Waitlist storage is not configured.');
     return send(res, 503, { error: 'The waitlist is temporarily unavailable. Please try again soon.' });
