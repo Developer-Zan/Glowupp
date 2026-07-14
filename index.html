@@ -470,7 +470,7 @@
       setStatus('Saving your place…');
 
       try {
-        const response = await fetch('/api/waitlist', {
+        const response = await fetch('netlify/functions/waitlist.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email: value, company: form.company.value })
