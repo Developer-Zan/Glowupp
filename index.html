@@ -1,1324 +1,520 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Upp — Get Muscles. Look Better.</title>
-<meta name="description" content="The most efficient way to get muscles, improve your hair and skincare. Smart AI plans that adapt weekly. Free to join."/>
-<link rel="icon" type="image/png" href="favicon.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<style>
-/* ═══════════════════════════════════
-   TOKENS
-═══════════════════════════════════ */
-:root{
-  --blue:      #5079D4;
-  --blue-dk:   #6B8FE8;
-  --blue-lt:   rgba(80,121,212,0.15);
-  --orange:    #FF5A0E;
-  --orange-lt: rgba(255,90,14,0.15);
-  --orange-dk: #FF7A35;
-  --bg:        #161513;
-  --bg2:       #1D1B18;
-  --bg3:       #232018;
-  --bg4:       #2A2722;
-  --ink:       #F8F7F5;
-  --mid:       #A8A49E;
-  --soft:      #6B6660;
-  --xsoft:     #3D3A35;
-  --bdr:       rgba(80,121,212,0.22);
-  --bdr2:      rgba(80,121,212,0.5);
-  --sh:        rgba(80,121,212,0.18);
-  --r:20px; --r2:14px; --r3:100px;
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Upp — Your glow up, built around you</title>
+  <meta name="description" content="Personalized workouts, nutrition, run tracking and daily challenges in one adaptive self-improvement app. Join the Upp early-access waitlist.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --surface: #151515;
+      --surface-2: #1c1c1c;
+      --surface-3: #24211f;
+      --orange: #ff5a0a;
+      --orange-hi: #ff761f;
+      --orange-soft: #2d190f;
+      --white: #f7f7f4;
+      --muted: #9a9995;
+      --muted-2: #6e6d69;
+      --line: #2b2b29;
+      --success: #62d49b;
+      --danger: #ff7b71;
+      --radius: 22px;
+      --radius-sm: 14px;
+      --page: 1160px;
+    }
 
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);color:var(--ink);
-  font-family:'Inter',sans-serif;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-}
-::-webkit-scrollbar{width:3px;}
-::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: var(--orange); color: #fff; }
+    :focus-visible { outline: 3px solid rgba(255,90,10,.45); outline-offset: 3px; }
 
-/* ═══════════════════════════════════
-   NAV
-═══════════════════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:999;
-  background:rgba(22,21,19,0.92);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--bdr);
-  transition:box-shadow .3s;
-}
-.nav-in{
-  max-width:1120px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  height:64px;padding:0 20px;gap:16px;
-}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.logo-img{
-  height:64px;width:auto;
-  /* LOGO: replace logo.svg with your actual SVG filename in the same folder */
-}
-.logo-name{
-  font-family:'Nunito',sans-serif;font-size:1.3rem;
-  font-weight:900;color:var(--ink);letter-spacing:-.01em;
-}
-.nav-links{display:flex;gap:24px;list-style:none;}
-.nav-links a{
-  font-size:.85rem;font-weight:500;color:var(--mid);
-  text-decoration:none;transition:color .2s;padding:4px 0;
-}
-.nav-links a:hover{color:var(--ink);}
-.btn-nav{
-  background:var(--blue);color:#fff;
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
-  padding:10px 22px;border-radius:var(--r3);border:none;cursor:pointer;
-  text-decoration:none;white-space:nowrap;
-  display:inline-flex;align-items:center;gap:6px;
-  transition:all .22s;
-}
-.btn-nav:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 6px 20px var(--sh);}
-.hamburger{
-  display:none;flex-direction:column;gap:5px;
-  background:none;border:none;cursor:pointer;padding:6px;
-}
-.hamburger span{
-  width:22px;height:2px;border-radius:2px;
-  background:var(--ink);transition:all .3s;display:block;
-}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-menu{
-  display:none;position:fixed;top:64px;left:0;right:0;z-index:998;
-  background:rgba(22,21,19,0.98);backdrop-filter:blur(20px);
-  padding:20px;flex-direction:column;gap:4px;
-  border-bottom:1px solid var(--bdr);
-}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{
-  color:var(--mid);text-decoration:none;font-size:1rem;
-  font-weight:600;padding:14px 16px;border-radius:var(--r2);
-  transition:all .2s;
-}
-.mobile-menu a:hover{background:var(--bg3);color:var(--ink);}
-.mobile-menu .btn-nav{margin-top:8px;justify-content:center;width:100%;}
+    .skip-link { position: fixed; left: 16px; top: -60px; z-index: 200; padding: 12px 18px; border-radius: 12px; background: #fff; color: #000; transition: top .2s; }
+    .skip-link:focus { top: 16px; }
+    .wrap { width: min(calc(100% - 40px), var(--page)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 18px; color: #c7c6c2; font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 18px var(--orange); }
+    .section-title { max-width: 720px; margin: 0; font-size: clamp(38px, 5.4vw, 70px); line-height: .98; letter-spacing: -.055em; }
+    .section-title span, .orange { color: var(--orange); }
+    .section-copy { max-width: 590px; margin: 22px 0 0; color: var(--muted); font-size: clamp(16px, 2vw, 19px); line-height: 1.65; }
+    .section-head.center { display: grid; justify-items: center; text-align: center; }
+    section { padding: 112px 0; }
 
-/* ═══════════════════════════════════
-   BUTTONS
-═══════════════════════════════════ */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
-  border:none;cursor:pointer;text-decoration:none;
-  border-radius:var(--r3);transition:all .22s;white-space:nowrap;
-}
-.btn-blue{background:var(--blue);color:#fff;padding:15px 30px;}
-.btn-blue:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 10px 28px var(--sh);}
-.btn-orange{background:var(--orange);color:#fff;padding:15px 30px;}
-.btn-orange:hover{background:var(--orange-dk);transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,90,14,.3);}
-.btn-outline{background:transparent;color:var(--blue);border:2px solid var(--blue);padding:13px 28px;}
-.btn-outline:hover{background:var(--blue-lt);transform:translateY(-1px);}
-.btn-xl{padding:18px 38px;font-size:1.05rem;}
+    .nav { position: fixed; inset: 0 0 auto; z-index: 100; border-bottom: 1px solid transparent; background: rgba(11,11,11,.72); backdrop-filter: blur(18px); transition: border-color .25s, background .25s; }
+    .nav.scrolled { border-color: var(--line); background: rgba(11,11,11,.93); }
+    .nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: -.05em; }
+    .brand-mark { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; background: var(--orange); color: #fff; font-size: 17px; letter-spacing: -.08em; box-shadow: 0 7px 22px rgba(255,90,10,.22); }
+    .nav-links { display: flex; align-items: center; gap: 28px; margin: 0; padding: 0; list-style: none; }
+    .nav-links a { color: #b0afab; text-decoration: none; font-size: 14px; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
+    .button { min-height: 50px; padding: 0 22px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; border-radius: 999px; background: var(--orange); color: #fff; text-decoration: none; font-weight: 800; cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s; }
+    .button:hover { transform: translateY(-2px); background: var(--orange-hi); box-shadow: 0 12px 32px rgba(255,90,10,.22); }
+    .button:disabled { cursor: wait; opacity: .72; transform: none; }
+    .button.small { min-height: 42px; padding-inline: 18px; font-size: 13px; }
+    .button.ghost { border-color: #3b3b38; background: #151515; color: #ecece9; box-shadow: none; }
+    .button.ghost:hover { background: #20201f; border-color: #50504d; }
+    .menu-toggle { display: none; width: 44px; height: 44px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: #fff; cursor: pointer; }
+    .menu-toggle svg { width: 20px; }
 
-/* ═══════════════════════════════════
-   HERO
-═══════════════════════════════════ */
-#hero{
-  min-height:100svh;
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;gap:48px;
-  padding:100px 20px 60px;
-  max-width:1120px;margin:0 auto;
-  position:relative;
-}
-.hero-left{display:flex;flex-direction:column;}
-.hero-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--orange-lt);color:var(--orange-dk);
-  font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;
-  padding:7px 16px;border-radius:var(--r3);
-  border:1.5px solid rgba(255,90,14,.25);
-  margin-bottom:22px;align-self:flex-start;
-}
-.pill-dot{
-  width:7px;height:7px;border-radius:50%;background:var(--orange);
-  animation:pulse-dot 1.8s ease-in-out infinite;
-}
-@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.6;}}
+    .hero { min-height: 820px; padding: 150px 0 82px; position: relative; display: grid; align-items: center; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; width: 700px; height: 700px; right: -190px; top: 30px; border-radius: 50%; background: radial-gradient(circle, rgba(255,90,10,.14), transparent 66%); filter: blur(10px); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; inset: 0; opacity: .17; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 58px 58px; mask-image: linear-gradient(to bottom, #000, transparent 75%); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr); align-items: center; gap: 70px; }
+    .hero h1 { max-width: 720px; margin: 0; font-size: clamp(54px, 7.3vw, 92px); line-height: .91; letter-spacing: -.072em; }
+    .hero-copy { max-width: 590px; margin: 26px 0 32px; color: #aaa9a5; font-size: clamp(17px, 2vw, 20px); line-height: 1.62; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .proof { display: flex; align-items: center; gap: 14px; margin-top: 28px; color: var(--muted); font-size: 13px; }
+    .avatars { display: flex; }
+    .avatars span { width: 30px; height: 30px; display: grid; place-items: center; margin-left: -7px; border: 2px solid var(--bg); border-radius: 50%; background: var(--surface-2); font-size: 11px; font-weight: 800; }
+    .avatars span:first-child { margin-left: 0; }
+    .hero-visual { position: relative; min-height: 610px; display: grid; place-items: center; }
+    .phone-shell { position: relative; width: 275px; aspect-ratio: 200 / 445; overflow: hidden; border: 7px solid #20201f; border-radius: 44px; background: #111; box-shadow: 0 45px 100px rgba(0,0,0,.6), 0 0 0 1px #393936, 0 0 90px rgba(255,90,10,.08); transform: rotate(2.2deg); }
+    .phone-shell::after { content: ""; position: absolute; inset: 0; border-radius: 36px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); pointer-events: none; }
+    .screen-crop { position: absolute; inset: 0; overflow: hidden; background: #0d0d0d; }
+    .screen-crop img { position: absolute; max-width: none; width: var(--iw); height: var(--ih); left: var(--ix); top: var(--iy); }
+    .home-crop { --iw: 1022.1%; --ih: 371.9%; --ix: -69.6%; --iy: -220%; }
+    .workout-crop { --iw: 1016.5%; --ih: 371%; --ix: -330.8%; --iy: -140%; }
+    .reps-crop { --iw: 1016.5%; --ih: 371%; --ix: -470.4%; --iy: -140%; }
+    .time-crop { --iw: 1016.5%; --ih: 371%; --ix: -742.9%; --iy: -140%; }
+    .complete-crop { --iw: 1016.5%; --ih: 371%; --ix: -886.4%; --iy: -140%; }
+    .onboard-crop { --iw: 801.9%; --ih: 249.8%; --ix: -31.3%; --iy: -21.8%; }
+    .challenge-crop { --iw: 940.5%; --ih: 390.1%; --ix: -600%; --iy: -22%; }
+    .reward-crop { --iw: 848.8%; --ih: 344.1%; --ix: -162%; --iy: -190.2%; }
+    .run-crop { --iw: 848.8%; --ih: 345.6%; --ix: -646.8%; --iy: -122.4%; }
+    .float-card { position: absolute; z-index: 3; min-width: 176px; padding: 15px; border: 1px solid #37332f; border-radius: 18px; background: rgba(25,24,23,.92); backdrop-filter: blur(14px); box-shadow: 0 20px 45px rgba(0,0,0,.42); animation: float 5s ease-in-out infinite; }
+    .float-card.top { top: 78px; right: -3px; }
+    .float-card.bottom { bottom: 70px; left: 0; animation-delay: -2.3s; }
+    .float-label { display: block; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .09em; }
+    .float-value { display: block; margin-top: 6px; font-size: 20px; font-weight: 800; }
+    .float-value i { color: var(--orange); font-style: normal; }
+    @keyframes float { 50% { transform: translateY(-10px); } }
 
-h1{
-  font-family:'Nunito',sans-serif;
-  font-size:clamp(2.4rem,5vw,4.2rem);
-  font-weight:900;line-height:1.06;letter-spacing:-.025em;
-  margin-bottom:20px;
-}
-h1 .blue{color:var(--blue);}
-h1 .orange{color:var(--orange);}
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: #0e0e0e; }
+    .ticker-track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+    .ticker-group { display: flex; align-items: center; gap: 32px; padding: 18px 16px; }
+    .ticker span { display: inline-flex; align-items: center; gap: 32px; color: #a8a7a3; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+    .ticker span::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+    @keyframes ticker { to { transform: translateX(-50%); } }
 
-.hero-sub{
-  font-size:1.05rem;color:var(--mid);
-  line-height:1.68;max-width:460px;margin-bottom:32px;
-}
-.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
-.chip-item{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--blue-lt);color:var(--blue-dk);
-  font-size:.8rem;font-weight:600;
-  padding:6px 14px;border-radius:var(--r3);border:1px solid var(--bdr);
-  transition:all .25s;
-}
-.chip-item:hover{transform:translateY(-2px);background:rgba(80,121,212,.25);}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px;}
+    .features { background: #101010; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 54px; }
+    .feature-card { min-height: 310px; padding: 28px; position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, #191919, #131313); transition: transform .25s, border-color .25s; }
+    .feature-card:hover { transform: translateY(-5px); border-color: #46413d; }
+    .feature-card.wide { grid-column: span 2; }
+    .feature-number { color: #5f5e5a; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .feature-icon { width: 48px; height: 48px; margin: 45px 0 24px; display: grid; place-items: center; border: 1px solid #55301e; border-radius: 15px; background: var(--orange-soft); color: var(--orange); }
+    .feature-icon svg { width: 24px; }
+    .feature-card h3 { margin: 0 0 12px; font-size: 22px; letter-spacing: -.03em; }
+    .feature-card p { max-width: 500px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+    .feature-card.wide::after { content: ""; position: absolute; width: 250px; height: 250px; right: -60px; top: -70px; border-radius: 50%; border: 38px solid rgba(255,90,10,.055); box-shadow: 0 0 0 38px rgba(255,90,10,.028); }
 
-.hero-right{display:flex;justify-content:center;align-items:center;position:relative;}
-.phone-hero{
-  width:240px;height:480px;border-radius:36px;
-  background:var(--bg2);border:2px solid var(--bdr);
-  position:relative;overflow:hidden;flex-shrink:0;
-  box-shadow:0 40px 80px rgba(0,0,0,.4),0 8px 24px var(--sh);
-  animation:float 3.5s ease-in-out infinite;
-}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-.phone-glow{
-  position:absolute;width:360px;height:360px;border-radius:50%;
-  background:radial-gradient(circle,rgba(80,121,212,.18) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;z-index:-1;
-  animation:glow-pulse 3.5s ease-in-out infinite;
-}
-@keyframes glow-pulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08);}}
-.ph-notch{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:72px;height:22px;background:var(--bg);
-  border-radius:0 0 12px 12px;z-index:10;
-}
-.ph-body{
-  position:absolute;inset:0;padding:28px 13px 13px;
-  display:flex;flex-direction:column;gap:8px;overflow:hidden;
-}
-.ph-toprow{display:flex;justify-content:space-between;align-items:center;padding-top:6px;}
-.ph-appname{font-family:'Nunito',sans-serif;font-weight:900;font-size:10px;color:var(--ink);}
-.ph-badge{background:var(--blue);color:#fff;font-size:5.5px;font-weight:700;padding:3px 8px;border-radius:100px;}
-.ph-module{background:var(--bg3);border-radius:10px;padding:9px 10px;border:1px solid var(--bdr);}
-.ph-mod-name{font-size:7px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;margin-bottom:3px;}
-.ph-mod-desc{font-size:5.5px;color:var(--mid);margin-bottom:5px;}
-.ph-bar{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-bottom:5px;}
-.ph-fill{height:100%;border-radius:2px;background:var(--orange);}
-.ph-enter{background:var(--blue);color:#fff;font-size:6px;font-weight:700;padding:4px 0;border-radius:100px;text-align:center;width:55%;font-family:'Nunito',sans-serif;}
-.ph-nav{
-  position:absolute;bottom:0;left:0;right:0;
-  background:var(--bg2);border-top:1px solid var(--bdr);
-  display:flex;justify-content:space-around;padding:6px 0 8px;
-}
-.ph-ni{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:4.5px;color:var(--soft);}
-.ph-ni.a{color:var(--ink);font-weight:700;}
+    .screens { overflow: hidden; }
+    .screens-row { width: min(calc(100% - 40px), 1360px); margin: 58px auto 0; display: grid; grid-template-columns: repeat(5, minmax(210px, 1fr)); gap: 18px; }
+    .screen-card { position: relative; aspect-ratio: 199 / 439; overflow: hidden; border: 5px solid #242423; border-radius: 34px; background: #111; box-shadow: 0 24px 50px rgba(0,0,0,.34); transition: transform .28s; }
+    .screen-card:nth-child(even) { transform: translateY(34px); }
+    .screen-card:hover { transform: translateY(-8px); }
+    .screen-card:nth-child(even):hover { transform: translateY(22px); }
 
-/* ═══════════════════════════════════
-   MARQUEE
-═══════════════════════════════════ */
-.mwrap{
-  overflow:hidden;padding:14px 0;
-  background:var(--bg3);
-  border-top:1px solid var(--bdr);
-  border-bottom:1px solid var(--bdr);
-}
-.mtrack{
-  display:flex;gap:40px;width:max-content;
-  animation:mscroll 26s linear infinite;
-}
-.mtrack:hover{animation-play-state:paused;}
-@keyframes mscroll{to{transform:translateX(-50%);}}
-.mi{
-  display:flex;align-items:center;gap:12px;
-  font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;
-  color:var(--blue-dk);white-space:nowrap;
-}
-.md{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0;}
+    .benefits { background: #101010; }
+    .benefit-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: start; }
+    .benefit-list { display: grid; gap: 12px; }
+    .benefit { display: grid; grid-template-columns: 45px 1fr; gap: 16px; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+    .benefit b { display: grid; width: 45px; height: 45px; place-items: center; border-radius: 50%; background: var(--orange); color: #fff; font-size: 14px; }
+    .benefit h3 { margin: 2px 0 7px; font-size: 17px; }
+    .benefit p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 
-/* ═══════════════════════════════════
-   SECTIONS
-═══════════════════════════════════ */
-section{padding:88px 20px;}
-.wrap{max-width:1120px;margin:0 auto;}
-.sec-center{text-align:center;}
-.sec-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--blue-lt);color:var(--blue-dk);
-  font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  padding:5px 14px;border-radius:var(--r3);margin-bottom:14px;
-}
-h2{
-  font-family:'Nunito',sans-serif;
-  font-size:clamp(1.9rem,4vw,2.9rem);
-  font-weight:900;color:var(--ink);
-  line-height:1.1;letter-spacing:-.02em;margin-bottom:14px;
-}
-h2 .bl{color:var(--blue);}
-h2 .or{color:var(--orange);}
-.sec-sub{font-size:.97rem;color:var(--mid);line-height:1.65;max-width:520px;}
+    .waitlist { position: relative; overflow: hidden; }
+    .waitlist::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 110%, rgba(255,90,10,.2), transparent 43%); pointer-events: none; }
+    .waitlist-card { position: relative; max-width: 940px; margin: auto; padding: clamp(36px, 7vw, 80px); border: 1px solid #3b312b; border-radius: 32px; background: linear-gradient(145deg, #1c1816, #111); text-align: center; box-shadow: 0 35px 100px rgba(0,0,0,.35); }
+    .waitlist-card .section-title { margin-inline: auto; }
+    .waitlist-card .section-copy { margin-inline: auto; }
+    .waitlist-form { max-width: 620px; margin: 34px auto 0; }
+    .form-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; padding: 7px; border: 1px solid #42413e; border-radius: 999px; background: #0d0d0d; transition: border-color .2s, box-shadow .2s; }
+    .form-row:focus-within { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(255,90,10,.1); }
+    .form-row.invalid { border-color: var(--danger); }
+    .form-row input { min-width: 0; padding: 0 16px; border: 0; outline: 0; background: transparent; color: #fff; }
+    .form-row input::placeholder { color: #6e6d69; }
+    .form-row .button { min-width: 166px; }
+    .form-note { margin: 13px 0 0; color: var(--muted-2); font-size: 12px; }
+    .form-status { min-height: 23px; margin: 13px 0 0; color: var(--muted); font-size: 14px; }
+    .form-status.success { color: var(--success); }
+    .form-status.error { color: var(--danger); }
+    .hp { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; }
 
-/* ═══════════════════════════════════
-   FEATURES
-═══════════════════════════════════ */
-#features{background:var(--bg2);}
-.feat-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:16px;margin-top:48px;
-}
-.feat-card{
-  background:var(--bg3);border-radius:var(--r);padding:28px;
-  border:1.5px solid var(--bdr);position:relative;overflow:hidden;
-  transition:all .3s cubic-bezier(.2,.9,.4,1.1);
-}
-.feat-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--blue),transparent);
-  border-radius:3px 3px 0 0;
-  transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
-}
-.feat-card.orange-top::before{background:linear-gradient(90deg,var(--orange),transparent);}
-.feat-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.3);border-color:var(--bdr2);}
-.feat-card:hover::before{transform:scaleX(1);}
-.feat-icon{
-  width:50px;height:50px;border-radius:14px;
-  background:var(--bg4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.4rem;margin-bottom:16px;border:1px solid var(--bdr);
-  transition:transform .3s;
-}
-.feat-card:hover .feat-icon{transform:scale(1.08) rotate(3deg);}
-.feat-h{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:8px;}
-.feat-p{font-size:.88rem;color:var(--mid);line-height:1.6;}
+    .faq { background: #101010; }
+    .faq-list { max-width: 820px; margin: 50px auto 0; border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { width: 100%; padding: 23px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 0; background: none; color: #fff; text-align: left; font-size: 17px; font-weight: 700; cursor: pointer; }
+    .faq-question span { width: 28px; height: 28px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; background: var(--surface-2); color: var(--orange); transition: transform .25s; }
+    .faq-question[aria-expanded="true"] span { transform: rotate(45deg); }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .faq-answer > div { overflow: hidden; }
+    .faq-answer p { margin: 0; padding: 0 42px 23px 0; color: var(--muted); line-height: 1.7; }
+    .faq-answer.open { grid-template-rows: 1fr; }
 
-/* ═══════════════════════════════════
-   MODULES
-═══════════════════════════════════ */
-#modules{background:var(--bg3);}
-.modules-layout{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:48px;align-items:center;margin-top:56px;
-}
-.mod-list{display:flex;flex-direction:column;gap:14px;}
-.mod-card{
-  background:var(--bg2);border-radius:var(--r);padding:22px 24px;
-  border:1.5px solid var(--bdr);transition:all .25s;
-}
-.mod-card:hover{transform:translateX(6px);border-color:var(--bdr2);box-shadow:0 8px 28px rgba(0,0,0,.3);}
-.mod-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.mod-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--ink);}
-.mod-pct{font-size:.78rem;font-weight:700;color:var(--orange);}
-.mod-desc{font-size:.84rem;color:var(--mid);line-height:1.5;margin-bottom:10px;}
-.mod-bar{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-bottom:12px;}
-.mod-fill{height:100%;background:var(--orange);border-radius:2px;}
-.mod-enter{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--blue);color:#fff;
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;
-  padding:8px 20px;border-radius:var(--r3);
-  border:none;cursor:pointer;text-decoration:none;transition:all .2s;
-}
-.mod-enter:hover{background:var(--blue-dk);transform:translateY(-1px);}
-.mod-phone-wrap{display:flex;justify-content:center;}
-.mod-phone{
-  width:230px;height:450px;border-radius:34px;background:var(--bg2);
-  border:2px solid var(--bdr);position:relative;overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,.4),0 4px 16px var(--sh);
-}
+    .contact { padding-top: 84px; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; }
+    .contact-card { display: grid; gap: 12px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .contact-card label { color: #d1d0cc; font-size: 13px; font-weight: 700; }
+    .contact-card input, .contact-card textarea { width: 100%; padding: 14px 15px; border: 1px solid #393936; border-radius: 12px; outline: 0; background: #0e0e0e; color: #fff; resize: vertical; }
+    .contact-card input:focus, .contact-card textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(255,90,10,.08); }
+    .contact-card textarea { min-height: 120px; }
+    .contact-card .button { justify-self: start; margin-top: 4px; }
+    .contact-status { min-height: 21px; margin: 0; color: var(--muted); font-size: 13px; }
+    .contact-status.success { color: var(--success); }
+    .contact-status.error { color: var(--danger); }
 
-/* ═══════════════════════════════════
-   SCREEN CAROUSEL
-═══════════════════════════════════ */
-#screens{background:var(--bg);padding:88px 0;}
-.screens-head{padding:0 20px;max-width:1120px;margin:0 auto 40px;text-align:center;}
-.screen-track{
-  display:flex;gap:18px;
-  overflow-x:auto;scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  padding:8px 20px 20px;
-  scrollbar-width:thin;scrollbar-color:var(--blue) var(--bg3);
-}
-.screen-track::-webkit-scrollbar{height:3px;}
-.screen-track::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
-.sphone{
-  flex-shrink:0;width:210px;height:420px;
-  border-radius:28px;background:var(--bg2);
-  border:1.5px solid var(--bdr);
-  position:relative;overflow:hidden;scroll-snap-align:start;
-  transition:all .28s;
-}
-.sphone:hover{transform:translateY(-7px) scale(1.02);box-shadow:0 24px 48px rgba(0,0,0,.4);border-color:var(--bdr2);}
-.sp-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:58px;height:17px;background:var(--bg);border-radius:0 0 9px 9px;z-index:2;}
-.screenshot-img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;}
-.slide-caption{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(0,0,0,.7));
-  padding:24px 14px 12px;
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.78rem;color:#fff;
-  text-align:center;pointer-events:none;z-index:3;
-}
-.screen-hint{text-align:center;font-size:.78rem;color:var(--soft);margin-top:14px;padding:0 20px;}
+    footer { padding: 55px 0 32px; border-top: 1px solid var(--line); }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 50px; }
+    .footer-copy { max-width: 330px; margin: 15px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 26px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 12px; }
 
-/* ═══════════════════════════════════
-   HOW IT WORKS
-═══════════════════════════════════ */
-#how{background:var(--bg3);}
-.steps{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;margin-top:48px;position:relative;
-}
-.steps::before{
-  content:'';position:absolute;top:46px;left:10%;right:10%;height:1px;
-  background:linear-gradient(90deg,transparent,var(--bdr),var(--blue),var(--bdr),transparent);
-  z-index:0;
-}
-.step{
-  background:var(--bg2);border-radius:var(--r);padding:28px;
-  border:1.5px solid var(--bdr);transition:all .28s;
-  position:relative;z-index:1;display:flex;flex-direction:column;gap:14px;
-}
-.step:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.3);border-color:var(--bdr2);}
-.step-n{
-  width:46px;height:46px;border-radius:14px;
-  background:var(--blue);color:#fff;
-  font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  transition:transform .28s,box-shadow .28s;
-}
-.step:hover .step-n{transform:scale(1.1);box-shadow:0 8px 20px var(--sh);}
-.step-h{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);}
-.step-p{font-size:.86rem;color:var(--mid);line-height:1.6;}
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
 
-/* ═══════════════════════════════════
-   PRICING — free, sign-up gated
-═══════════════════════════════════ */
-#pricing{background:var(--bg2);}
-.pricing-card{
-  max-width:560px;margin:48px auto 0;
-  background:var(--bg3);border-radius:24px;
-  border:2px solid var(--blue);padding:40px;
-  text-align:center;position:relative;
-  transition:all .3s;box-shadow:0 0 0 0 var(--sh);
-}
-.pricing-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.35),0 0 40px var(--sh);}
-.pricing-badge{
-  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
-  background:var(--orange);color:#fff;
-  font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;
-  padding:5px 20px;border-radius:var(--r3);white-space:nowrap;letter-spacing:.04em;
-}
-.pricing-title{
-  font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:900;
-  color:var(--ink);margin:20px 0 6px;
-}
-.pricing-subtitle{font-size:.95rem;color:var(--mid);margin-bottom:28px;line-height:1.5;}
-.price-features{
-  list-style:none;display:flex;flex-direction:column;gap:12px;
-  text-align:left;margin-bottom:32px;
-}
-.price-features li{
-  display:flex;align-items:center;gap:12px;
-  font-size:.9rem;color:var(--ink);
-}
-.pf-icon{
-  width:28px;height:28px;border-radius:8px;
-  background:var(--blue-lt);border:1px solid var(--bdr);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;flex-shrink:0;color:var(--blue-dk);
-}
-.pricing-actions{display:flex;flex-direction:column;gap:10px;align-items:center;}
-.pricing-note{font-size:.76rem;color:var(--soft);margin-top:10px;}
-
-/* ═══════════════════════════════════
-   CONTACT
-═══════════════════════════════════ */
-#contact{background:var(--bg2);}
-.contact-card{
-  max-width:600px;margin:48px auto 0;
-  background:var(--bg3);border-radius:var(--r);padding:32px;
-  border:1.5px solid var(--bdr);
-  transition:all .25s;
-}
-.contact-card:hover{border-color:var(--bdr2);box-shadow:0 16px 40px rgba(0,0,0,.3);}
-.contact-form{display:flex;flex-direction:column;gap:18px;}
-.contact-form input,
-.contact-form textarea{
-  background:var(--bg4);border:1px solid var(--bdr);
-  border-radius:12px;padding:14px 18px;
-  color:var(--ink);font-family:'Inter',sans-serif;font-size:.92rem;
-  outline:none;transition:border-color .2s;
-}
-.contact-form input:focus,
-.contact-form textarea:focus{border-color:var(--blue);}
-.contact-form textarea{resize:vertical;min-height:120px;}
-.contact-form button{align-self:flex-start;}
-
-/* ═══════════════════════════════════
-   FAQ
-═══════════════════════════════════ */
-#faq{background:var(--bg3);}
-.faq-wrap{max-width:640px;margin:48px auto 0;}
-.fq{
-  background:var(--bg2);border-radius:var(--r2);
-  border:1.5px solid var(--bdr);
-  margin-bottom:10px;overflow:hidden;
-  transition:border-color .2s;
-}
-.fq.fq-open{border-color:var(--bdr2);}
-.fq-q{
-  width:100%;background:none;border:none;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:18px 22px;
-  font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;
-  color:var(--ink);text-align:left;gap:12px;
-  transition:background .2s;
-}
-.fq-q:hover{background:rgba(80,121,212,.06);}
-.fq-chevron{
-  width:28px;height:28px;border-radius:50%;flex-shrink:0;
-  background:var(--bg3);border:1.5px solid var(--bdr);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;color:var(--mid);
-  transition:all .3s;
-}
-.fq-q[aria-expanded="true"] .fq-chevron{
-  transform:rotate(180deg);
-  background:var(--blue);border-color:var(--blue);color:#fff;
-}
-.fq-body{
-  max-height:0;overflow:hidden;
-  transition:max-height .38s cubic-bezier(.4,0,.2,1),padding .3s;
-  font-size:.9rem;color:var(--mid);line-height:1.7;
-}
-.fq-body.open{max-height:400px;padding:0 22px 20px;}
-
-/* ═══════════════════════════════════
-   CTA
-═══════════════════════════════════ */
-#cta{
-  background:linear-gradient(140deg,var(--bg2) 0%,var(--bg3) 100%);
-  text-align:center;padding:110px 20px;
-  position:relative;overflow:hidden;
-}
-#cta::before{
-  content:'';position:absolute;
-  width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(80,121,212,.12),transparent 70%);
-  top:-200px;right:-150px;pointer-events:none;
-}
-#cta::after{
-  content:'';position:absolute;
-  width:350px;height:350px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,90,14,.08),transparent 70%);
-  bottom:-150px;left:-100px;pointer-events:none;
-}
-#cta .cta-inner{position:relative;z-index:1;}
-#cta h2{font-size:clamp(2rem,5vw,3.6rem);}
-#cta .cta-sub{
-  color:var(--mid);font-size:1.05rem;max-width:440px;
-  margin:16px auto 0;line-height:1.65;
-}
-.cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px;}
-
-/* ═══════════════════════════════════
-   FOOTER
-═══════════════════════════════════ */
-footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:52px 20px 36px;}
-.foot-in{max-width:1120px;margin:0 auto;}
-.foot-top{
-  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:40px;margin-bottom:48px;
-}
-.foot-brand{display:flex;flex-direction:column;gap:12px;}
-.foot-brand-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.foot-logo-img{height:28px;width:auto;}
-.foot-brand-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--ink);}
-.foot-tagline{font-size:.82rem;color:var(--soft);line-height:1.55;max-width:220px;}
-.foot-col h4{
-  font-family:'Nunito',sans-serif;font-weight:800;font-size:.85rem;
-  color:var(--ink);margin-bottom:14px;letter-spacing:.03em;
-}
-.foot-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
-.foot-links a{font-size:.82rem;color:var(--mid);text-decoration:none;transition:color .2s;}
-.foot-links a:hover{color:var(--blue);}
-.foot-bottom{
-  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
-  gap:12px;border-top:1px solid var(--bdr);padding-top:24px;
-}
-.foot-copy{font-size:.78rem;color:var(--soft);}
-
-/* ═══════════════════════════════════
-   REVEAL
-═══════════════════════════════════ */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
-
-/* ═══════════════════════════════════
-   MOBILE
-═══════════════════════════════════ */
-@media(max-width:900px){
-  .foot-top{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:860px){
-  #hero{grid-template-columns:1fr;text-align:center;min-height:auto;padding:96px 20px 56px;}
-  .hero-left{align-items:center;}
-  .hero-pill{align-self:center;}
-  .hero-sub{text-align:center;margin-left:auto;margin-right:auto;}
-  .hero-chips{justify-content:center;}
-  .hero-btns{justify-content:center;}
-  .hero-right{display:none;}
-  .modules-layout{grid-template-columns:1fr;}
-  .mod-phone-wrap{display:none;}
-  .steps::before{display:none;}
-}
-@media(max-width:640px){
-  section{padding:64px 16px;}
-  #screens{padding:64px 0;}
-  h2{font-size:1.9rem;}
-  h1{font-size:2.3rem;}
-  nav .nav-links{display:none;}
-  .hamburger{display:flex;}
-  .hero-btns{flex-direction:column;align-items:center;}
-  .hero-btns .btn{width:100%;max-width:320px;}
-  .feat-grid{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr;}
-  .cta-btns{flex-direction:column;align-items:center;}
-  .cta-btns a{width:100%;max-width:320px;justify-content:center;}
-  .foot-top{grid-template-columns:1fr;gap:28px;}
-  .foot-bottom{flex-direction:column;align-items:flex-start;}
-  .pricing-card{padding:32px 20px;}
-}
-@media(max-width:400px){
-  h1{font-size:2rem;}
-}
-</style>
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr .76fr; gap: 24px; }
+      .hero-visual { min-height: 550px; }
+      .phone-shell { width: 235px; }
+      .float-card { display: none; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-card.wide { grid-column: span 1; }
+      .screens-row { overflow-x: auto; grid-template-columns: repeat(5, 220px); justify-content: start; padding: 8px 20px 50px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+      .screen-card { scroll-snap-align: center; }
+      .benefit-layout { gap: 45px; }
+    }
+    @media (max-width: 760px) {
+      section { padding: 82px 0; }
+      .wrap { width: min(calc(100% - 32px), var(--page)); }
+      .nav-links, .nav-cta { display: none; }
+      .menu-toggle { display: grid; }
+      .nav-links.open { position: fixed; inset: 72px 0 auto; display: grid; gap: 0; padding: 18px 16px 24px; border-bottom: 1px solid var(--line); background: rgba(11,11,11,.98); }
+      .nav-links.open a { display: block; padding: 15px 12px; font-size: 17px; }
+      .hero { min-height: auto; padding: 132px 0 72px; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero h1 { font-size: clamp(52px, 15vw, 76px); }
+      .hero-copy { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .proof { justify-content: center; }
+      .hero-visual { min-height: 520px; margin-top: 24px; }
+      .phone-shell { width: 238px; transform: rotate(0); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-card { min-height: auto; }
+      .feature-icon { margin-top: 36px; }
+      .benefit-layout { grid-template-columns: 1fr; }
+      .benefit-layout .section-head { text-align: center; display: grid; justify-items: center; }
+      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-top { flex-direction: column; }
+    }
+    @media (max-width: 540px) {
+      .hero-actions { display: grid; }
+      .hero-actions .button { width: min(100%, 350px); }
+      .proof { align-items: flex-start; }
+      .screens-row { width: 100%; grid-template-columns: repeat(5, min(66vw, 235px)); }
+      .screen-card:nth-child(even) { transform: none; }
+      .screen-card:nth-child(even):hover { transform: translateY(-8px); }
+      .form-row { grid-template-columns: 1fr; border-radius: 18px; padding: 8px; }
+      .form-row input { min-height: 50px; text-align: center; }
+      .form-row .button { width: 100%; }
+      .waitlist-card { border-radius: 24px; }
+      .footer-bottom { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ═══════════════
-     NAV
-═══════════════ -->
-<nav id="navbar">
-  <div class="nav-in">
-    <a class="logo" href="#" aria-label="Upp home">
-      <!--
-        LOGO: Replace "logo.svg" below with your SVG filename.
-        Place your logo file in the same folder as this HTML file.
-      -->
-      <img src="Upp.svg" alt="Upp" class="logo-img"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-    </a>
-
-    <ul class="nav-links" id="nav-links-desktop">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#modules">Modules</a></li>
-      <li><a href="#screens">Screenshots</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-
-    <div style="display:flex;align-items:center;gap:10px;">
-      <a href="#" class="btn-nav" id="signupBtn">Sign Up Free</a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <header class="nav" id="navbar">
+    <div class="nav-inner wrap">
+      <a class="brand" href="#top" aria-label="Upp home"><span class="brand-mark">U</span>upp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#app">The app</a></li>
+        <li><a href="#benefits">Why Upp</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="button small nav-cta" href="#waitlist">Join the waitlist <span aria-hidden="true">→</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
-  </div>
-</nav>
+  </header>
 
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
-  <a href="#features" class="mobile-link">Features</a>
-  <a href="#modules" class="mobile-link">Modules</a>
-  <a href="#screens" class="mobile-link">Screenshots</a>
-  <a href="#how" class="mobile-link">How it works</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-  <a href="#" class="btn-nav" id="mobileSignupBtn">Sign Up Free →</a>
-</div>
-
-
-<!-- ═══════════════
-     HERO
-═══════════════ -->
-<section id="hero" aria-labelledby="hero-heading">
-  <div class="hero-left">
-    <div class="hero-pill reveal"><span class="pill-dot"></span>Sign up free · Start today</div>
-
-    <h1 id="hero-heading" class="reveal d1">
-      Get <span class="blue">muscles.</span><br/>
-      Look <span class="orange">better.</span><br/>
-      Feel confident.
-    </h1>
-
-    <p class="hero-sub reveal d2">
-      Upp is your all-in-one self-improvement app. Smart AI workout plans, accurate calorie tracking, hair and skincare routines — all adapting to you every week.
-    </p>
-
-    <div class="hero-chips reveal d2">
-      <span class="chip-item">💪 Body Module</span>
-      <span class="chip-item">💇 Hair Module</span>
-      <span class="chip-item">✨ Face Module</span>
-      <span class="chip-item">🥗 Nutrition</span>
-    </div>
-
-    <div class="hero-btns reveal d3">
-      <a class="btn btn-blue btn-xl" href="#" id="getStartedBtn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Sign Up Free
-      </a>
-      <a class="btn btn-outline btn-xl" href="#features">See how it works</a>
-    </div>
-  </div>
-
-  <!-- Hero phone -->
-  <div class="hero-right">
-    <div class="phone-glow"></div>
-    <div class="phone-hero">
-      <div class="ph-notch"></div>
-      <div class="ph-body">
-        <div class="ph-toprow">
-          <div class="ph-appname">Upp</div>
-          <div class="ph-badge">Sign up free</div>
-        </div>
-        <div class="ph-module">
-          <div class="ph-mod-name">BODY MODULE</div>
-          <div class="ph-mod-desc">Build muscle with your daily plan.</div>
-          <div class="ph-bar"><div class="ph-fill" style="width:22%"></div></div>
-          <div class="ph-enter">Enter →</div>
-        </div>
-        <div class="ph-module">
-          <div class="ph-mod-name">HAIR MODULE</div>
-          <div class="ph-mod-desc">Daily care habits, tracked.</div>
-          <div class="ph-bar"><div class="ph-fill" style="width:68%"></div></div>
-          <div class="ph-enter">Enter →</div>
-        </div>
-        <div class="ph-module">
-          <div class="ph-mod-name">FACE MODULE</div>
-          <div class="ph-mod-desc">Skincare routines & logging.</div>
-          <div class="ph-bar"><div class="ph-fill" style="width:35%"></div></div>
-          <div class="ph-enter">Enter →</div>
-        </div>
-        <div class="ph-nav">
-          <div class="ph-ni a"><span>🏠</span>Home</div>
-          <div class="ph-ni"><span>📈</span>Progress</div>
-          <div class="ph-ni"><span>🥗</span>Nutrition</div>
-          <div class="ph-ni"><span>👥</span>Community</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════
-     MARQUEE
-═══════════════ -->
-<div class="mwrap" aria-hidden="true">
-  <div class="mtrack">
-    <span class="mi">Body Module<span class="md"></span></span>
-    <span class="mi">Hair Module<span class="md"></span></span>
-    <span class="mi">Face Module<span class="md"></span></span>
-    <span class="mi">Calorie Tracking<span class="md"></span></span>
-    <span class="mi">Daily Challenges<span class="md"></span></span>
-    <span class="mi">XP &amp; Badges<span class="md"></span></span>
-    <span class="mi">Community<span class="md"></span></span>
-    <span class="mi">Free to Join<span class="md"></span></span>
-    <span class="mi">Body Module<span class="md"></span></span>
-    <span class="mi">Hair Module<span class="md"></span></span>
-    <span class="mi">Face Module<span class="md"></span></span>
-    <span class="mi">Calorie Tracking<span class="md"></span></span>
-    <span class="mi">Daily Challenges<span class="md"></span></span>
-    <span class="mi">XP &amp; Badges<span class="md"></span></span>
-    <span class="mi">Community<span class="md"></span></span>
-    <span class="mi">Free to Join<span class="md"></span></span>
-  </div>
-</div>
-
-
-<!-- ═══════════════
-     FEATURES
-═══════════════ -->
-<section id="features">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">Why Upp works</div>
-      <h2>Built different.<br/><span class="bl">Works different.</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Everything you need to improve your body, hair and face — in one smart app that learns from you.</p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat-card reveal">
-        <div class="feat-icon">🧠</div>
-        <div class="feat-h">Adaptive AI Algorithm</div>
-        <p class="feat-p">Your plan updates every week based on what you actually did. Gaining strength? It adds load. Missing workouts? It adjusts. You never plateau.</p>
-      </div>
-      <div class="feat-card orange-top reveal d1">
-        <div class="feat-icon">🍎</div>
-        <div class="feat-h">Accurate Calorie Tracking</div>
-        <p class="feat-p">5M+ food database and barcode scanning. Logging your full day takes under 2 minutes. Targets adjust automatically as you change.</p>
-      </div>
-      <div class="feat-card reveal d2">
-        <div class="feat-icon">⚡</div>
-        <div class="feat-h">Built Around Your Life</div>
-        <p class="feat-p">Home gym or commercial? 2 days or 6? Student schedule? Tell us your constraints and get a plan that actually fits your real life.</p>
-      </div>
-      <div class="feat-card orange-top reveal d3">
-        <div class="feat-icon">🏆</div>
-        <div class="feat-h">XP, Badges &amp; Challenges</div>
-        <p class="feat-p">Earn XP, level up your profile, complete 30-day challenges and unlock badges. Self-improvement made genuinely addictive.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════
-     MODULES
-═══════════════ -->
-<section id="modules">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">The Modules</div>
-      <h2>Every part of you.<br/><span class="or">Covered.</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Upp isn't just a workout app. Three separate modules, one account, all adapting to your progress.</p>
-    </div>
-    <div class="modules-layout">
-      <div class="mod-list">
-        <div class="mod-card reveal">
-          <div class="mod-top">
-            <div class="mod-name">💪 BODY MODULE</div>
-            <div class="mod-pct">22%</div>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid wrap">
+        <div class="hero-content">
+          <p class="eyebrow reveal">Your next level starts here</p>
+          <h1 class="reveal">Build the habits.<br><span class="orange">Become more.</span></h1>
+          <p class="hero-copy reveal">Upp turns your goals into a personalized daily plan—adaptive workouts, nutrition, runs, streaks and challenges, all working together.</p>
+          <div class="hero-actions reveal">
+            <a class="button" href="#waitlist">Get early access <span aria-hidden="true">→</span></a>
+            <a class="button ghost" href="#app">Explore the app</a>
           </div>
-          <p class="mod-desc">Daily workout plans, strength tracking, challenges like "30 Days Sixpack". Your physique transformation starts here.</p>
-          <div class="mod-bar"><div class="mod-fill" style="width:22%"></div></div>
-          <a class="mod-enter" href="#" id="bodyEnterBtn">Enter Module →</a>
-        </div>
-        <div class="mod-card reveal d1">
-          <div class="mod-top">
-            <div class="mod-name">💇 HAIR MODULE</div>
-            <div class="mod-pct">68%</div>
+          <div class="proof reveal">
+            <div class="avatars" aria-hidden="true"><span>AM</span><span>NK</span><span>LJ</span></div>
+            <span>Join the first people building their Upp journey.</span>
           </div>
-          <p class="mod-desc">Build daily hair care habits, track routines, get tips personalised to your hair type and goals.</p>
-          <div class="mod-bar"><div class="mod-fill" style="width:68%"></div></div>
-          <a class="mod-enter" href="#" id="hairEnterBtn">Enter Module →</a>
         </div>
-        <div class="mod-card reveal d2">
-          <div class="mod-top">
-            <div class="mod-name">✨ FACE MODULE</div>
-            <div class="mod-pct">35%</div>
+        <div class="hero-visual reveal" aria-label="Upp app home screen preview">
+          <div class="float-card top"><span class="float-label">Current streak</span><span class="float-value">3 days <i>🔥</i></span></div>
+          <div class="phone-shell">
+            <div class="screen-crop home-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Upp home dashboard showing workout progress"></div>
           </div>
-          <p class="mod-desc">Skincare routines, daily logging and face-specific advice. Build habits for clear, confident skin.</p>
-          <div class="mod-bar"><div class="mod-fill" style="width:35%"></div></div>
-          <a class="mod-enter" href="#" id="faceEnterBtn">Enter Module →</a>
+          <div class="float-card bottom"><span class="float-label">Today's plan</span><span class="float-value"><i>Upper body</i></span></div>
         </div>
       </div>
+    </section>
 
-      <!-- Module phone mockup -->
-      <div class="mod-phone-wrap">
-        <div class="mod-phone">
-          <div class="ph-notch" style="background:var(--bg);"></div>
-          <div class="ph-body">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:8px;">
-              <div style="font-size:6px;color:var(--mid);">← Back</div>
-              <div style="font-size:9px;font-weight:900;color:var(--ink);font-family:'Nunito',sans-serif;">Body Module</div>
-              <div style="width:20px;"></div>
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><div class="ticker-group"><span>Adaptive workouts</span><span>Run tracking</span><span>Progress that rewards you</span><span>Daily challenges</span><span>Nutrition made simple</span></div><div class="ticker-group"><span>Adaptive workouts</span><span>Run tracking</span><span>Progress that rewards you</span><span>Daily challenges</span><span>Nutrition made simple</span></div></div></div>
+
+    <section class="features" id="features">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">One app. Your whole journey.</p>
+          <h2 class="section-title">Everything you need to move <span>Upp.</span></h2>
+          <p class="section-copy">No disconnected plans or abandoned trackers. Upp gives you a clear next step and adapts as your life changes.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card wide reveal"><span class="feature-number">01</span><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4v16M18 4v16M3 8h6M15 8h6M3 16h6M15 16h6M9 12h6"/></svg></div><h3>Workouts that adapt</h3><p>Train at home or in the gym with plans shaped around your goals, equipment, progress and feedback.</p></article>
+          <article class="feature-card reveal"><span class="feature-number">02</span><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M4.5 6.5 12 2l7.5 4.5v11L12 22l-7.5-4.5z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></div><h3>Progress you can feel</h3><p>XP, streaks and rewards turn consistency into momentum you’ll want to keep.</p></article>
+          <article class="feature-card reveal"><span class="feature-number">03</span><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19c5-1 5-13 14-14-1 9-7 14-14 14Z"/><path d="M5 19c4-5 7-7 12-10"/></svg></div><h3>Nutrition made clear</h3><p>Simple targets and useful context help your food support the work—not complicate it.</p></article>
+          <article class="feature-card wide reveal"><span class="feature-number">04</span><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 18c2-5 4-8 7-8s4 3 7 0"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="10" r="2"/><path d="M12 4v3M10.5 5.5h3"/></svg></div><h3>Runs, challenges and real variety</h3><p>Track routes, take on guided challenges and keep moving with more than one way to win the day.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="screens" id="app">
+      <div class="section-head center wrap reveal">
+        <p class="eyebrow">Designed for action</p>
+        <h2 class="section-title">Your journey, <span>in your pocket.</span></h2>
+        <p class="section-copy">Dark, focused and built around the one thing that matters now: your next move.</p>
+      </div>
+      <div class="screens-row" aria-label="Upp app screenshots">
+        <div class="screen-card reveal"><div class="screen-crop workout-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Today's workout screen"></div></div>
+        <div class="screen-card reveal"><div class="screen-crop reps-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Exercise repetition tracking screen"></div></div>
+        <div class="screen-card reveal"><div class="screen-crop time-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Timed exercise screen"></div></div>
+        <div class="screen-card reveal"><div class="screen-crop complete-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Workout completed and streak screen"></div></div>
+        <div class="screen-card reveal"><div class="screen-crop challenge-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.43.png" alt="Challenges and run tracking screen"></div></div>
+      </div>
+    </section>
+
+    <section class="benefits" id="benefits">
+      <div class="benefit-layout wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Why join early</p>
+          <h2 class="section-title">Shape the app that shapes <span>you.</span></h2>
+          <p class="section-copy">Early members won’t just get Upp first. They’ll help us tune the experience around real goals and real lives.</p>
+        </div>
+        <div class="benefit-list">
+          <article class="benefit reveal"><b>01</b><div><h3>First access</h3><p>Be among the first invited when the next release opens.</p></div></article>
+          <article class="benefit reveal"><b>02</b><div><h3>A voice in the roadmap</h3><p>Your feedback can directly influence what we build and refine next.</p></div></article>
+          <article class="benefit reveal"><b>03</b><div><h3>Founding-member recognition</h3><p>Early supporters get a place in the Upp story from day one.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="waitlist" id="waitlist">
+      <div class="wrap">
+        <div class="waitlist-card reveal">
+          <p class="eyebrow">Early access</p>
+          <h2 class="section-title">Ready to level <span>Upp?</span></h2>
+          <p class="section-copy">Leave your email and we’ll let you know when your invitation is ready.</p>
+          <form class="waitlist-form" id="waitlistForm" novalidate>
+            <label class="hp" for="company">Company (leave blank)</label>
+            <input class="hp" id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+            <div class="form-row" id="formRow">
+              <label class="hp" for="email">Email address</label>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required aria-describedby="formStatus formNote">
+              <button class="button" id="submitButton" type="submit"><span class="button-text">Join the waitlist</span><span aria-hidden="true">→</span></button>
             </div>
-            <div style="text-align:center;font-size:7px;color:var(--mid);">Weekly goal: <span style="color:var(--blue);font-weight:800;">2/4</span></div>
-            <div style="background:var(--bg3);border-radius:12px;padding:10px;border:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-size:6px;color:var(--mid);">Your plan</div>
-                <div style="font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:var(--ink);">DAY 5</div>
-                <div style="font-size:10px;">3🔥</div>
-                <div style="background:var(--blue);color:#fff;font-size:7px;font-weight:800;padding:4px 14px;border-radius:100px;margin-top:6px;display:inline-block;">START</div>
-              </div>
-              <svg width="32" height="44" viewBox="0 0 40 55" fill="none">
-                <circle cx="20" cy="7" r="6" fill="none" stroke="#F8F7F5" stroke-width="2.5"/>
-                <ellipse cx="20" cy="3.5" rx="8" ry="3" fill="none" stroke="#FF5A0E" stroke-width="1.5"/>
-                <line x1="20" y1="13" x2="20" y2="30" stroke="#F8F7F5" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M20 18 L10 22 L7 17" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M20 18 L30 15" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round"/>
-                <line x1="20" y1="30" x2="14" y2="42" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round"/>
-                <line x1="20" y1="30" x2="26" y2="42" stroke="#F8F7F5" stroke-width="2" stroke-linecap="round"/>
-                <text x="16" y="27" font-size="6" font-weight="700" fill="#F8F7F5" font-family="Arial">G</text>
-              </svg>
-            </div>
-            <div style="font-size:8px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">Challenges</div>
-            <div style="background:var(--bg3);border-radius:10px;padding:8px;border:1px solid var(--bdr);">
-              <div style="font-size:7.5px;font-weight:800;color:var(--ink);font-family:'Nunito',sans-serif;">30 days sixpack</div>
-              <div style="font-size:5.5px;color:var(--mid);margin:3px 0;">Get visible abs in 30 days.</div>
-              <div style="background:var(--orange);color:#fff;font-size:6.5px;font-weight:800;padding:4px 12px;border-radius:100px;display:inline-block;">Accept</div>
-            </div>
-          </div>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            <p class="form-note" id="formNote">No spam. Just your invite and important Upp updates.</p>
+          </form>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-<!-- ═══════════════
-     SCREENSHOTS
-═══════════════ -->
-<section id="screens">
-  <div class="screens-head reveal">
-    <div class="sec-tag">The App</div>
-    <h2>Clean. Fast.<br/><span class="bl">Yours.</span></h2>
-    <p class="sec-sub">Swipe through the real app screens below.</p>
-  </div>
-
-  <!--
-    ══════════════════════════════════════════════
-    SCREENSHOTS — HOW TO ADD YOUR REAL SCREENSHOTS
-    ══════════════════════════════════════════════
-    1. Create an "images" folder next to this HTML file
-    2. Put your screenshot PNG/JPG files in it
-    3. Update the SCREENSHOTS array in the <script> at the bottom
-       with the correct filename and label for each screen.
-    Example: { src: 'images/home.png', label: 'Home' }
-    ══════════════════════════════════════════════
-  -->
-  <div class="screen-track" id="screenTrack" role="list" aria-label="App screenshots"></div>
-  <p class="screen-hint">← Swipe or drag to see all screens →</p>
-</section>
-
-
-<!-- ═══════════════
-     HOW IT WORKS
-═══════════════ -->
-<section id="how">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">The process</div>
-      <h2>From sign-up<br/>to results in <span class="or">4 steps.</span></h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-n">1</div>
-        <div class="step-h">Create your account</div>
-        <p class="step-p">Sign up in 30 seconds. No credit card, no commitment — just your email and you're in.</p>
-      </div>
-      <div class="step reveal d1">
-        <div class="step-n">2</div>
-        <div class="step-h">Set your goals</div>
-        <p class="step-p">Tell us your schedule, equipment, and current stats. Bulk, cut, or recomp — we build around your actual life.</p>
-      </div>
-      <div class="step reveal d2">
-        <div class="step-n">3</div>
-        <div class="step-h">Get your plan instantly</div>
-        <p class="step-p">A personalised workout schedule and daily nutrition targets, generated in seconds — not a template someone else used.</p>
-      </div>
-      <div class="step reveal d3">
-        <div class="step-n">4</div>
-        <div class="step-h">Watch it adapt</div>
-        <p class="step-p">Every week the algorithm reviews your data and updates your plan automatically. You just keep showing up.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════
-     PRICING — sign-up focused, no tiers
-═══════════════ -->
-<section id="pricing">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">Get started</div>
-      <h2>Create your account.<br/><span class="bl">Start improving today.</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Sign up takes 30 seconds. Everything you need to glow up is waiting inside.</p>
-    </div>
-
-    <div class="pricing-card reveal d1">
-      <div class="pricing-badge">✦ FREE TO JOIN</div>
-      <div class="pricing-title">One account. Everything included.</div>
-      <p class="pricing-subtitle">No credit card. No hidden costs. No limits.<br/>Just sign up and start your journey.</p>
-
-      <ul class="price-features">
-        <li><div class="pf-icon">💪</div> Full Body Module — workouts, tracking, challenges</li>
-        <li><div class="pf-icon">💇</div> Full Hair Module — daily routines, personalised tips</li>
-        <li><div class="pf-icon">✨</div> Full Face Module — skincare logging and advice</li>
-        <li><div class="pf-icon">🥗</div> Complete calorie and macro tracking</li>
-        <li><div class="pf-icon">🧠</div> AI plan that adapts to you every week</li>
-        <li><div class="pf-icon">🏆</div> XP, levels, badges and 30-day challenges</li>
-        <li><div class="pf-icon">👥</div> Community access</li>
-        <li><div class="pf-icon">🚫</div> No ads, ever</li>
-      </ul>
-
-      <div class="pricing-actions">
-        <a href="#" class="btn btn-blue btn-xl" id="pricingSignupBtn" style="width:100%;max-width:340px;justify-content:center;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Create Free Account →
-        </a>
-        <a href="#" class="btn btn-orange btn-xl" style="width:100%;max-width:340px;justify-content:center;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
-          Download on Android
-        </a>
-      </div>
-      <p class="pricing-note">Sign up with email or continue with Google · Takes 30 seconds</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════
-     FAQ
-═══════════════ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">FAQ</div>
-      <h2>Common questions.<br/><span class="bl">Honest answers.</span></h2>
-    </div>
-    <div class="faq-wrap">
-
-      <div class="fq reveal">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-1" id="fqb-1">
-          Do I need to pay anything?
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-1" role="region" aria-labelledby="fqb-1">
-          No — Upp is completely free. Everything is included when you create your account: all three modules, the AI workout plan, calorie tracking, weekly adaptive updates, XP system, challenges, badges, and community. No hidden tier, no payment ever required.
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <div class="section-head center reveal"><p class="eyebrow">Good to know</p><h2 class="section-title">Questions, <span>answered.</span></h2></div>
+        <div class="faq-list">
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false" aria-controls="answer-1">What is Upp?<span aria-hidden="true">+</span></button><div class="faq-answer" id="answer-1"><div><p>Upp is a self-improvement app that brings adaptive workouts, nutrition, run tracking, challenges, streaks and rewards into one focused daily experience.</p></div></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false" aria-controls="answer-2">When will I get access?<span aria-hidden="true">+</span></button><div class="faq-answer" id="answer-2"><div><p>Invitations will roll out in waves. Waitlist members will hear first as each new group opens.</p></div></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false" aria-controls="answer-3">Is joining the waitlist free?<span aria-hidden="true">+</span></button><div class="faq-answer" id="answer-3"><div><p>Yes. Joining is free and does not commit you to a purchase.</p></div></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false" aria-controls="answer-4">Which devices will Upp support?<span aria-hidden="true">+</span></button><div class="faq-answer" id="answer-4"><div><p>The mobile experience is the priority. Platform availability and release details will be shared with waitlist members.</p></div></div></div>
         </div>
       </div>
+    </section>
 
-      <div class="fq reveal d1">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-2" id="fqb-2">
-          Why do I need to sign up?
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-2" role="region" aria-labelledby="fqb-2">
-          Your account is what makes the app personal. We store your progress, adapt your plan week by week, track your XP and streaks, and sync everything across sessions. Without an account, none of this personalisation is possible. Sign up takes 30 seconds — just an email and a password.
-        </div>
+    <section class="contact" id="contact">
+      <div class="contact-grid wrap">
+        <div class="section-head reveal"><p class="eyebrow">Talk to us</p><h2 class="section-title">Have something <span>to share?</span></h2><p class="section-copy">Questions, feedback or partnership ideas—we’d love to hear from you.</p></div>
+        <form class="contact-card reveal" id="contactForm" action="https://formspree.io/f/xyklabqq" method="post">
+          <label for="contactName">Name</label><input id="contactName" name="name" autocomplete="name" required>
+          <label for="contactEmail">Email</label><input id="contactEmail" name="email" type="email" autocomplete="email" required>
+          <label for="contactMessage">Message</label><textarea id="contactMessage" name="message" required></textarea>
+          <button class="button" type="submit"><span>Send message</span><span aria-hidden="true">→</span></button>
+          <p class="contact-status" id="contactStatus" role="status" aria-live="polite"></p>
+        </form>
       </div>
+    </section>
+  </main>
 
-      <div class="fq reveal d2">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-3" id="fqb-3">
-          What are the three modules?
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-3" role="region" aria-labelledby="fqb-3">
-          Body — workouts, muscle building, strength tracking and challenges like "30 Days Sixpack". Hair — daily care routines, habit tracking, personalised tips for your hair type. Face — skincare routines, daily logging and advice for clear confident skin. All three are fully included and track your progress independently.
-        </div>
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div><a class="brand" href="#top"><span class="brand-mark">U</span>upp</a><p class="footer-copy">Personalized progress for your body, habits and confidence.</p></div>
+        <nav class="footer-links" aria-label="Footer navigation"><a href="#features">Features</a><a href="#app">The app</a><a href="#benefits">Why Upp</a><a href="#waitlist">Waitlist</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
       </div>
-
-      <div class="fq reveal">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-4" id="fqb-4">
-          I'm a complete beginner — will this work for me?
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-4" role="region" aria-labelledby="fqb-4">
-          Absolutely. You set your experience level during sign-up and get a plan tailored to a beginner. Volume and intensity increase gradually as you improve. You don't need to know anything about fitness, hair care or skincare to get started — Upp guides you through everything.
-        </div>
-      </div>
-
-      <div class="fq reveal d1">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-5" id="fqb-5">
-          Can I train at home? I don't have a gym.
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-5" role="region" aria-labelledby="fqb-5">
-          Yes. During sign-up, select your available equipment — dumbbells, resistance bands, or just bodyweight. The algorithm builds a complete programme around what you have access to.
-        </div>
-      </div>
-
-      <div class="fq reveal d2">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-6" id="fqb-6">
-          How long until I see real results?
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-6" role="region" aria-labelledby="fqb-6">
-          Most users notice strength improvements within 2–3 weeks. Visible physique changes typically come in 6–8 weeks with consistent effort. Skincare and hair improvements vary — most users see noticeable changes within 4 weeks of following their daily routine. Upp gives you the exact plan — showing up is still your job.
-        </div>
-      </div>
-
-      <div class="fq reveal">
-        <button class="fq-q" aria-expanded="false" aria-controls="fqa-7" id="fqb-7">
-          Is Upp only on Android?
-          <span class="fq-chevron" aria-hidden="true">▼</span>
-        </button>
-        <div class="fq-body" id="fqa-7" role="region" aria-labelledby="fqb-7">
-          Currently yes — Upp is available on Android via Google Play. iOS is actively in development. Sign up with your email now and you'll be among the first notified when the iPhone version launches.
-        </div>
-      </div>
-
+      <div class="footer-bottom"><span>© 2026 Upp. All rights reserved.</span><span>Built to help you become more.</span></div>
     </div>
-  </div>
-</section>
+  </footer>
 
+  <script>
+    const nav = document.getElementById('navbar');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
-<!-- ═══════════════
-     CONTACT
-═══════════════ -->
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-center reveal">
-      <div class="sec-tag">Get in touch</div>
-      <h2>Contact <span class="bl">Us</span></h2>
-      <p class="sec-sub" style="margin:0 auto;">Have questions, feedback, or just want to say hi? We'd love to hear from you.</p>
-    </div>
-
-    <div class="contact-card reveal d1">
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xyklabqq" method="POST">
-         <input type="text" name="name" placeholder="Your name" required>
-         <input type="email" name="email" placeholder="Email address" required>
-         <textarea name="message" rows="5" placeholder="Your message..."></textarea>
-         <button type="submit" class="btn btn-blue">Send Message</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════
-     CTA
-═══════════════ -->
-<section id="cta">
-  <div class="cta-inner">
-    <div class="sec-tag reveal">✦ Ready?</div>
-    <h2 class="reveal d1">
-      The version of you<br/>
-      people can't ignore<br/>
-      starts <span class="or">today.</span>
-    </h2>
-    <p class="cta-sub reveal d2">Free account. No credit card. No excuses. Just the most efficient path to a body, hair and face you're proud of.</p>
-    <div class="cta-btns reveal d3">
-      <a href="#" class="btn btn-blue btn-xl" id="ctaSignupBtn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Sign Up Free
-      </a>
-      <a href="#" class="btn btn-outline btn-xl">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.82a1.49 1.49 0 0 1-.93-.93V1.11a1.49 1.49 0 0 1 .93-.93L13.81 12 3.18 23.82zm17.5-10.06-2.6 1.47-2.74-2.74L18.08 9.75l2.6 1.5a1.5 1.5 0 0 1 0 2.51zM5.06 1.76l9.78 9.78-1.85 1.85-9.1-9.1zm0 20.48 8.93-5.06 1.85 1.85-9.78 9.78z"/></svg>
-        Get on Google Play
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════
-     FOOTER
-═══════════════ -->
-<footer>
-  <div class="foot-in">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a class="foot-brand-logo" href="#">
-          <img src="Upp.svg" alt="Upp" class="foot-logo-img"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
-          <span style="display:none;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--ink);">Upp</span>
-          <span class="foot-brand-name">Upp</span>
-        </a>
-        <p class="foot-tagline">The most efficient way to get muscles, improve your hair and look better.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Product</h4>
-        <ul class="foot-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#modules">Modules</a></li>
-          <li><a href="#screens">Screenshots</a></li>
-          <li><a href="#pricing">Get started</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h4>Company</h4>
-        <ul class="foot-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Community</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h4>Legal</h4>
-        <ul class="foot-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <p class="foot-copy">© 2026 Upp. All rights reserved.</p>
-      <p class="foot-copy">Made for people who want more from themselves. 💪</p>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-/* ═══════════════════════════════════
-   SCREENSHOTS — edit paths here
-   ═══════════════════════════════════
-   Put your screenshot files in an "images/" folder
-   next to this HTML file, then update the paths below.
-════════════════════════════════════ */
-const SCREENSHOTS = [
-  { src: 'images/screen1.png',      label: 'Home — Modules'        },
-  { src: 'images/screen2.png',      label: 'Body Module'           },
-  { src: 'images/screen3.png', label: 'Calorie Tracker'       },
-  { src: 'images/screen4.png',      label: 'Hair Module'           },
-  { src: 'images/screen5.png',      label: 'Face Module'           },
-  { src: 'images/screen2.png',   label: 'Profile & XP'         },
-];
-
-/* Build carousel */
-function buildCarousel() {
-  const track = document.getElementById('screenTrack');
-  track.innerHTML = '';
-  SCREENSHOTS.forEach(({ src, label }) => {
-    const slide = document.createElement('div');
-    slide.className = 'sphone';
-    slide.setAttribute('role', 'listitem');
-
-    const notch = document.createElement('div');
-    notch.className = 'sp-notch';
-
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = label;
-    img.className = 'screenshot-img';
-    img.onerror = () => {
-      slide.style.cssText += `display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center;cursor:pointer;`;
-      slide.innerHTML = `
-        <div style="font-size:2.4rem;">📱</div>
-        <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--blue-dk);">${label}</div>
-        <code style="font-size:.65rem;color:var(--mid);background:var(--bg3);padding:4px 10px;border-radius:6px;display:block;">${src}</code>
-        <div style="font-size:.72rem;color:var(--soft);line-height:1.4;">Place your screenshot<br>at this path.</div>`;
-      slide.prepend(notch);
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation');
     };
 
-    const caption = document.createElement('div');
-    caption.className = 'slide-caption';
-    caption.textContent = label;
-
-    slide.appendChild(notch);
-    slide.appendChild(img);
-    slide.appendChild(caption);
-    track.appendChild(slide);
-  });
-}
-buildCarousel();
-
-
-/* ═══════════════════════════════════
-   FAQ — accordion
-═══════════════════════════════════ */
-document.querySelectorAll('.fq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    /* Close all */
-    document.querySelectorAll('.fq-q').forEach(b => {
-      b.setAttribute('aria-expanded', 'false');
-      const bodyId = b.getAttribute('aria-controls');
-      if (bodyId) document.getElementById(bodyId)?.classList.remove('open');
-      b.closest('.fq')?.classList.remove('fq-open');
+    menuToggle.addEventListener('click', () => {
+      const open = !navLinks.classList.contains('open');
+      navLinks.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     });
-    /* Open clicked */
-    if (!isOpen) {
-      btn.setAttribute('aria-expanded', 'true');
-      const bodyId = btn.getAttribute('aria-controls');
-      if (bodyId) document.getElementById(bodyId)?.classList.add('open');
-      btn.closest('.fq')?.classList.add('fq-open');
-    }
-  });
-});
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 18), { passive: true });
 
-
-/* ═══════════════════════════════════
-   HAMBURGER MENU
-═══════════════════════════════════ */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-
-hamburger.addEventListener('click', () => {
-  const open = hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-
-/* Close mobile menu on link click */
-document.querySelectorAll('.mobile-link, #mobileSignupBtn').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
-});
-
-
-/* ═══════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════ */
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-  });
-}, { threshold: 0.09, rootMargin: '0px 0px -28px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-
-/* ═══════════════════════════════════
-   CONTACT FORM
-═══════════════════════════════════ */
-document.getElementById('contactForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  
-  try {
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-question').forEach(other => {
+          other.setAttribute('aria-expanded', 'false');
+          document.getElementById(other.getAttribute('aria-controls')).classList.remove('open');
+        });
+        if (!isOpen) {
+          button.setAttribute('aria-expanded', 'true');
+          document.getElementById(button.getAttribute('aria-controls')).classList.add('open');
+        }
+      });
     });
-    if (response.ok) {
-      alert('Thanks! Your message was sent successfully.');
-      form.reset();
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     } else {
-      alert('Something went wrong. Please try again.');
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      }), { threshold: .08, rootMargin: '0px 0px -28px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
-  } catch (error) {
-    alert('Network error. Please check your connection.');
-  }
-  
-  btn.textContent = 'Send Message';
-  btn.disabled = false;
-});
 
+    const form = document.getElementById('waitlistForm');
+    const email = document.getElementById('email');
+    const formRow = document.getElementById('formRow');
+    const status = document.getElementById('formStatus');
+    const submit = document.getElementById('submitButton');
+    const buttonText = submit.querySelector('.button-text');
 
-/* ═══════════════════════════════════
-   NAV SHADOW ON SCROLL
-═══════════════════════════════════ */
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').style.boxShadow =
-    window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.4)' : 'none';
-}, { passive: true });
+    const setStatus = (message, type = '') => {
+      status.textContent = message;
+      status.className = `form-status ${type}`.trim();
+      formRow.classList.toggle('invalid', type === 'error');
+    };
 
+    email.addEventListener('input', () => { if (status.classList.contains('error')) setStatus(''); });
 
-/* ═══════════════════════════════════
-   SIGN UP BUTTONS — replace href with your real signup URL
-═══════════════════════════════════ */
-const signupIds = ['signupBtn','mobileSignupBtn','getStartedBtn','pricingSignupBtn','ctaSignupBtn','bodyEnterBtn','hairEnterBtn','faceEnterBtn'];
-signupIds.forEach(id => {
-  const el = document.getElementById(id);
-  if (el) {
-    el.addEventListener('click', e => {
-      e.preventDefault();
-      alert('Sign up coming soon!\n\nReplace this with your real signup URL.');
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const value = email.value.trim().toLowerCase();
+      if (!value || !email.validity.valid) {
+        setStatus('Enter a valid email address to join.', 'error');
+        email.focus();
+        return;
+      }
+
+      submit.disabled = true;
+      buttonText.textContent = 'Joining…';
+      setStatus('Saving your place…');
+
+      try {
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: value, company: form.company.value })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (response.ok) {
+          form.reset();
+          setStatus(data.duplicate ? 'You’re already on the list—we’ll be in touch.' : 'You’re in. Welcome to the start of your Upp journey.', 'success');
+          buttonText.textContent = 'You’re on the list';
+          return;
+        }
+        throw new Error(data.error || 'We couldn’t save your place. Please try again.');
+      } catch (error) {
+        setStatus(error.message || 'We couldn’t save your place. Please try again.', 'error');
+        submit.disabled = false;
+        buttonText.textContent = 'Join the waitlist';
+      }
     });
-  }
-});
-</script>
+
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+    contactForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
+      const contactButton = contactForm.querySelector('button');
+      const originalLabel = contactButton.querySelector('span').textContent;
+      contactButton.disabled = true;
+      contactButton.querySelector('span').textContent = 'Sending…';
+      contactStatus.textContent = 'Sending your message…';
+      contactStatus.className = 'contact-status';
+      try {
+        const response = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error('Your message could not be sent. Please try again.');
+        contactForm.reset();
+        contactStatus.textContent = 'Thanks—your message is on its way.';
+        contactStatus.className = 'contact-status success';
+      } catch (error) {
+        contactStatus.textContent = error.message || 'Your message could not be sent. Please try again.';
+        contactStatus.className = 'contact-status error';
+      } finally {
+        contactButton.disabled = false;
+        contactButton.querySelector('span').textContent = originalLabel;
+      }
+    });
+  </script>
 </body>
 </html>

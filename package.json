@@ -1,0 +1,9 @@
+{
+  "name": "upp-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "check": "node --check api/waitlist.js && node --test",
+    "build": "node --check api/waitlist.js && node --test"
+  }
+}
