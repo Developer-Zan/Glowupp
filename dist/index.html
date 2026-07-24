@@ -158,6 +158,10 @@
     .form-status { min-height: 23px; margin: 13px 0 0; color: var(--muted); font-size: 14px; }
     .form-status.success { color: var(--success); }
     .form-status.error { color: var(--danger); }
+    .waitlist-count { margin: 24px 0 -12px; display: inline-flex; align-items: center; gap: 7px; color: #b6b5b1; font-size: 14px; }
+    .waitlist-count[hidden] { display: none; }
+    .waitlist-count::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 14px rgba(98,212,155,.5); }
+    .waitlist-count strong { color: #fff; font-variant-numeric: tabular-nums; }
     .hp { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; }
 
     .faq { background: #101010; }
@@ -344,6 +348,7 @@
           <p class="eyebrow">Early access</p>
           <h2 class="section-title">Ready to level <span>Upp?</span></h2>
           <p class="section-copy">Leave your email and we’ll let you know when your invitation is ready.</p>
+          <p class="waitlist-count" id="waitlistCount" aria-live="polite" hidden><strong id="waitlistCountValue">0</strong> <span id="waitlistCountCopy">people are already on the waitlist.</span></p>
           <form class="waitlist-form" id="waitlistForm" novalidate>
             <label class="hp" for="company">Company (leave blank)</label>
             <input class="hp" id="company" name="company" type="text" tabindex="-1" autocomplete="off">
@@ -447,6 +452,27 @@
     const status = document.getElementById('formStatus');
     const submit = document.getElementById('submitButton');
     const buttonText = submit.querySelector('.button-text');
+    const waitlistCount = document.getElementById('waitlistCount');
+    const waitlistCountValue = document.getElementById('waitlistCountValue');
+    const waitlistCountCopy = document.getElementById('waitlistCountCopy');
+
+    const renderWaitlistCount = count => {
+      const value = Number(count);
+      if (!Number.isInteger(value) || value < 0) return;
+      waitlistCountValue.textContent = new Intl.NumberFormat().format(value);
+      waitlistCountCopy.textContent = value === 1
+        ? 'person is already on the waitlist.'
+        : 'people are already on the waitlist.';
+      waitlistCount.hidden = false;
+    };
+
+    fetch('/api/waitlist-count', { headers: { Accept: 'application/json' } })
+      .then(response => {
+        if (!response.ok) throw new Error('Count unavailable');
+        return response.json();
+      })
+      .then(data => renderWaitlistCount(data.count))
+      .catch(() => { waitlistCount.hidden = true; });
 
     const setStatus = (message, type = '') => {
       status.textContent = message;
@@ -478,7 +504,13 @@
         const data = await response.json().catch(() => ({}));
         if (response.ok) {
           form.reset();
-          setStatus(data.duplicate ? 'You’re already on the list—we’ll be in touch.' : 'You’re in. Welcome to the start of your Upp journey.', 'success');
+          renderWaitlistCount(data.count);
+          const successMessage = data.duplicate
+            ? 'You’re already on the list—we’ll be in touch.'
+            : data.confirmationSent
+              ? 'You’re in. Check your inbox for confirmation.'
+              : 'You’re in. Welcome to the start of your Upp journey.';
+          setStatus(successMessage, 'success');
           buttonText.textContent = 'You’re on the list';
           return;
         }
