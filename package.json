@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "check": "node --check netlify/functions/waitlist.js && node --test",
+    "check": "node --check netlify/functions/waitlist.js && node --check netlify/functions/waitlist-count.js && node --test",
     "build": "npm run check && node scripts/build.mjs"
   }
 }

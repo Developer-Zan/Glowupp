@@ -10,6 +10,11 @@
   to = "/.netlify/functions/waitlist"
   status = 200
 
+[[redirects]]
+  from = "/api/waitlist-count"
+  to = "/.netlify/functions/waitlist-count"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
