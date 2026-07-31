@@ -89,17 +89,8 @@
     .hero-visual { position: relative; min-height: 610px; display: grid; place-items: center; }
     .phone-shell { position: relative; width: 275px; aspect-ratio: 200 / 445; overflow: hidden; border: 7px solid #20201f; border-radius: 44px; background: #111; box-shadow: 0 45px 100px rgba(0,0,0,.6), 0 0 0 1px #393936, 0 0 90px rgba(255,90,10,.08); transform: rotate(2.2deg); }
     .phone-shell::after { content: ""; position: absolute; inset: 0; border-radius: 36px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); pointer-events: none; }
-    .screen-crop { position: absolute; inset: 0; overflow: hidden; background: #0d0d0d; }
-    .screen-crop img { position: absolute; max-width: none; width: var(--iw); height: var(--ih); left: var(--ix); top: var(--iy); }
-    .home-crop { --iw: 1022.1%; --ih: 371.9%; --ix: -69.6%; --iy: -220%; }
-    .workout-crop { --iw: 1016.5%; --ih: 371%; --ix: -330.8%; --iy: -140%; }
-    .reps-crop { --iw: 1016.5%; --ih: 371%; --ix: -470.4%; --iy: -140%; }
-    .time-crop { --iw: 1016.5%; --ih: 371%; --ix: -742.9%; --iy: -140%; }
-    .complete-crop { --iw: 1016.5%; --ih: 371%; --ix: -886.4%; --iy: -140%; }
-    .onboard-crop { --iw: 801.9%; --ih: 249.8%; --ix: -31.3%; --iy: -21.8%; }
-    .challenge-crop { --iw: 940.5%; --ih: 390.1%; --ix: -600%; --iy: -22%; }
-    .reward-crop { --iw: 848.8%; --ih: 344.1%; --ix: -162%; --iy: -190.2%; }
-    .run-crop { --iw: 848.8%; --ih: 345.6%; --ix: -646.8%; --iy: -122.4%; }
+    .app-shot { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .app-shot.long { height: auto; min-height: 100%; object-fit: initial; }
     .float-card { position: absolute; z-index: 3; min-width: 176px; padding: 15px; border: 1px solid #37332f; border-radius: 18px; background: rgba(25,24,23,.92); backdrop-filter: blur(14px); box-shadow: 0 20px 45px rgba(0,0,0,.42); animation: float 5s ease-in-out infinite; }
     .float-card.top { top: 78px; right: -3px; }
     .float-card.bottom { bottom: 70px; left: 0; animation-delay: -2.3s; }
@@ -284,10 +275,10 @@
             <span>Join the first people building their Upp journey.</span>
           </div>
         </div>
-        <div class="hero-visual reveal" aria-label="Upp app home screen preview">
+        <div class="hero-visual reveal" aria-label="Upp home screen preview">
           <div class="float-card top"><span class="float-label">Current streak</span><span class="float-value">3 days <i>🔥</i></span></div>
           <div class="phone-shell">
-            <div class="screen-crop home-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Upp home dashboard showing workout progress"></div>
+            <img class="app-shot" src="upp-home.png" alt="Upp home dashboard showing quests, streak, calories, workouts and body plan" width="824" height="1834" fetchpriority="high">
           </div>
           <div class="float-card bottom"><span class="float-label">Today's plan</span><span class="float-value"><i>Upper body</i></span></div>
         </div>
@@ -319,11 +310,11 @@
         <p class="section-copy">Dark, focused and built around the one thing that matters now: your next move.</p>
       </div>
       <div class="screens-row" aria-label="Upp app screenshots">
-        <div class="screen-card reveal"><div class="screen-crop workout-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Today's workout screen"></div></div>
-        <div class="screen-card reveal"><div class="screen-crop reps-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Exercise repetition tracking screen"></div></div>
-        <div class="screen-card reveal"><div class="screen-crop time-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Timed exercise screen"></div></div>
-        <div class="screen-card reveal"><div class="screen-crop complete-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.35.png" alt="Workout completed and streak screen"></div></div>
-        <div class="screen-card reveal"><div class="screen-crop challenge-crop"><img src="Posnetek zaslona 2026–07–14 ob 11.17.43.png" alt="Challenges and run tracking screen"></div></div>
+        <div class="screen-card reveal"><img class="app-shot" src="upp-home.png" alt="Upp home dashboard with quests and progress metrics" width="824" height="1834" loading="lazy" decoding="async"></div>
+        <div class="screen-card reveal"><img class="app-shot long" src="upp-workout-path.png" alt="Upp multi-week workout plan path" width="824" height="7968" loading="lazy" decoding="async"></div>
+        <div class="screen-card reveal"><img class="app-shot" src="upp-active-run.png" alt="Upp active run map with distance, pace, calories and heart rate" width="824" height="1834" loading="lazy" decoding="async"></div>
+        <div class="screen-card reveal"><img class="app-shot" src="upp-log-meal.png" alt="Upp meal logging screen with recent foods" width="824" height="1834" loading="lazy" decoding="async"></div>
+        <div class="screen-card reveal"><img class="app-shot" src="upp-welcome.png" alt="Upp welcome screen with Start Journey action" width="824" height="1834" loading="lazy" decoding="async"></div>
       </div>
     </section>
 
