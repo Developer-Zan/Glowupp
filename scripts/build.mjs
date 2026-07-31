@@ -8,9 +8,11 @@ const assets = [
   'index.html',
   'favicon.png',
   'Upp.svg',
-  'Posnetek zaslona 2026–07–14 ob 11.17.14.png',
-  'Posnetek zaslona 2026–07–14 ob 11.17.35.png',
-  'Posnetek zaslona 2026–07–14 ob 11.17.43.png'
+  'upp-welcome.png',
+  'upp-home.png',
+  'upp-active-run.png',
+  'upp-workout-path.png',
+  'upp-log-meal.png'
 ];
 
 await rm(output, { recursive: true, force: true });
