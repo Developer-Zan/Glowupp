@@ -15,6 +15,16 @@
   to = "/.netlify/functions/waitlist-count"
   status = 200
 
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy-policy.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms-of-service"
+  to = "/terms-of-service.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

@@ -6,6 +6,9 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(root, 'dist');
 const assets = [
   'index.html',
+  'privacy-policy.html',
+  'terms-of-service.html',
+  'legal.css',
   'favicon.png',
   'Upp.svg',
   'upp-welcome.png',
